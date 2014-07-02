@@ -1,0 +1,75 @@
+<% content_for :clazz do 'prod' end %>
+
+<% content_for :concept do %>
+<div class="subconcept scm">
+	<div class="title">
+		home > products > 供应链管理系统
+		<label>供应链管理系统</label>
+		<span>Supply Chain Management</span>
+	</div>
+	<div class="image">
+	</div>
+</div>
+<% end %>
+
+<%= render :partial => 'prod_sublink' %>
+
+<div class="subContentWrap scm">
+	<div>
+		<span class="prodImg"></span>
+		<span class="greenText">通过蔚森供应链管理系统，可逐步提升制造企业的采购业务和供应商管理业务的执行效率，减少冗余的重复工作，将优质资源分配到更有价值的业务领域之中。</span>
+
+		对于制造企业来说，稳定可靠的供应链保障不容忽视。蔚森供应链管理系统SCM（Supply Chain Management）为制造企业提供其供应商基础信息的管理维护和日常采购业务的系统化处理，还通过其内嵌的供应商门户实现与旗下供应商的在线互动，如缺陷产品的申报及处理、询价报价业务的在线输入、出库与入库信息共享等等。
+		<%= image_tag("site/archSCM.png", :alt => "SCM Architecture", :class => "marginT40") %>
+		
+	</div>
+	<div class="feature">
+		<div>
+			<label>供应商信息</label>
+			<ul>
+				<li class="depth1">供应商清单</li>
+				<li class="depth2">概况、产品、评审记录等内容</li>
+				<li class="depth1">供应商评级</li>
+				<li class="depth2">定期评审计划、内容、评分记录</li>
+				<li class="depth1">潜在供应商评审</li>
+				<li class="depth2">制定评审内容，记录管理评审结果</li>
+			</ul>
+			
+			<label>采购管理</label>
+			<ul>
+				<li class="depth1">采购品清单</li>
+				<li class="depth2">产品、图号、供应商、对应的客户产品、价格、最少起订量等</li>
+				<li class="depth1">付款信息</li>
+				<li class="depth2">管理付款状态、日期、金额等</li>
+				<li class="depth1">询价包管理</li>
+				<li class="depth2">在系统上发布并追踪供应商报价</li>
+				<li class="depth1">发布 PO 和 Release</li>
+				<li class="depth2">通过邮件或 EDI 发送</li>
+				<li class="depth1">记录采购实绩</li>
+				<li class="depth2">基于入库处理</li>
+				<li class="depth1">退货管理</li>
+				<li class="depth2">跟踪退返货物，与库存管理，供应商评级等整合</li>
+			</ul>
+		</div>
+		
+		<div>
+			<label>原材料、外购件库存管理</label>
+			<ul>
+				<li class="depth1">原料库存管理</li>
+				<li class="depth1">原料入库、出库登记</li>
+				<li class="depth1">原料先进先出</li>
+				<li class="depth1">原料库位管理</li>
+				<li class="depth1">库存报表</li>
+			</ul>
+			
+			<label>Supplier portal 供应商门户</label>
+			<ul>
+				<li class="depth1">系统上发布RFQ</li>
+				<li class="depth1">供应商登录系统完成报价</li>
+				<li class="depth1">供应商自助查询各自评级</li>
+				<li class="depth1">供应商网上提交PPAP</li>
+				<li class="depth1">门户网与内部 QMS，SCM 衔接，信息同步</li>
+			</ul>
+		</div>
+	</div>
+</div>

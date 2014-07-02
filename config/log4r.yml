@@ -1,0 +1,34 @@
+log4r_config:
+  loggers:
+  - name      : production
+    level     : WARN
+    trace     : 'false'
+    outputters :
+    - rolling_production
+  - name      : development
+    level     : DEBUG
+    trace     : 'true'
+    outputters :
+    - stdout
+  - name      : test
+    level     : DEBUG
+    trace     : 'true'
+    outputters :
+    - stdout
+  outputters:
+  - type: RollingFileOutputter
+    name: rolling_production
+    filename: "log/production.log"
+    maxsize: 10000000
+    count: 20
+    maxtime: 86400
+    formatter:
+      date_pattern: '%Y-%m-%d %H:%M:%S'
+      pattern     : '[%5l %d] %C: %M [%t] %s'
+      type        : PatternFormatter
+  - type     : StdoutOutputter
+    name     : stdout
+    formatter:
+      date_pattern: '%Y-%m-%d %H:%M:%S'
+      pattern     : '%d %l: #\{TEST\} %m '
+      type        : PatternFormatter

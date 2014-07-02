@@ -1,0 +1,71 @@
+<% content_for :clazz do 'prod' end %>
+
+<% content_for :concept do %>
+<div class="subconcept qms">
+	<div class="title">
+		home > products > 质量管理系统
+		<label>质量管理系统</label>
+		<span>Quality Management System</span>
+	</div>
+	<div class="image">
+	</div>
+</div>
+<% end %>
+
+<%= render :partial => 'prod_sublink' %>
+
+<div class="subContentWrap qms">
+	<div>
+		<span class="prodImg"></span>
+		<span class="greenText">蔚森质量管理系统的设计思路遵照当今主流的质量管理体系，如TS16949, QS9000等质量管理标准，覆盖所有业务部门的质量相关业务，提高产品质量稳定性，降低质量偏差，提高生产通过率，降低产品缺陷率。</span>
+
+		蔚森质量管理系统QMS（Quality Management System）实时监控生产线上与线下的成品、中间产品、原材料等物料的质量状态，搜集产品质量信息，并结合制造企业自身的质量管理模式分析具体产品某个参数的质量表现，集成显示各种图表、曲线等功能，使质量管理业务简单高效，摆脱人为干扰，获得实时准确的质量数据，以便质量管理者作出正确决策。
+		<%= image_tag("site/archQMS.png", :alt => "QMS Architecture", :class => "marginT40") %>
+		
+	</div>
+	<div class="feature">
+		<div>
+			<label>质量数据</label>
+			<ul>
+				<li class="depth1">IQC (Incoming Quality Control), OQC (Outgoing Quality Control) 检验数据管理</li>
+				<li class="depth1">基于 Control Plan 的检验流程</li>
+				<li class="depth1">定义不良种类，分类管理不良数据</li>
+				<li class="depth1">不良品追溯及确认</li>
+				<li class="depth2">批次追溯, 检验数据追溯</li>
+				<li class="depth1">CAR, 8D</li>
+				<li class="depth2">整改报告、措施</li>
+				<li class="depth1">过程能力计算分析</li>
+				<li class="depth1">生成检验报告及质量报告</li>
+			</ul>
+			
+			<label>质量规划</label>
+			<ul>
+				<li class="depth1">APQP</li>
+				<li class="depth2">按照先期质量规划原则制定各项质量任务</li>
+				<li class="depth1">内部评审</li>
+				<li class="depth2">定期内审、过程评审的计划与记录</li>
+				<li class="depth1">Continuous Improvement</li>
+				<li class="depth2">追踪记录诸如成本节约, 最佳范例, poka-yoke(防错纠错) 等持续改进项目</li>
+			</ul>
+		</div>
+		
+		<div>
+			<label>Gage管理</label>
+			<ul>
+				<li class="depth1">编号、条码管理量具信息</li>
+				<li class="depth1">量具校准、维护计划的管理实施</li>
+				<li class="depth1">Gage R&R</li>
+				<li class="depth2">分析量具可重复性再现性</li>
+			</ul>
+			
+			<label>供应商质量管理</label>
+			<ul>
+				<li class="depth1">潜在供应商质量评审</li>
+				<li class="depth1">供应商PPAP审批</li>
+				<li class="depth1">供应商不良记录、整改实施记录</li>
+				<li class="depth1">供应商质量评级</li>
+				<li class="depth1">定期评审计划、记录</li>
+			</ul>
+		</div>
+	</div>
+</div>

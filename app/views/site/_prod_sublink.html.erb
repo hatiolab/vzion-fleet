@@ -1,0 +1,15 @@
+<div class="subLink">
+	<button type="button" class="demo">关联产品链接</button>
+	
+	<ul>
+		<% [['site_prod_mes', '生产管理系统'], ['site_prod_qms', '质量管理系统'], ['site_prod_scm', '供应链管理系统'], ['site_prod_crm', '客户管理系统'], ['site_prod_edm', '工程数据管理系统'], ['site_prod_wms', '仓储管理系统']].each do |site| %>
+		<li><a href="<%= site[0] %>" class="<%= 'site_' + params[:action] == site[0] ? 'active' : ''%>"><%= site[1] %></a></li>
+		<% end %>
+	</ul>
+	
+	<!--div class="contactInfo">
+		<span class="title">如果您需要任何帮助</span>
+		<span class="phone">021-6402-7715</span>
+		<span class="mail">support@vzionsys.com</span>
+	</div-->
+</div>

@@ -1,0 +1,63 @@
+<% content_for :clazz do 'prod' end %>
+
+<% content_for :concept do %>
+<div class="subconcept edm">
+	<div class="title">
+		home > products > 工程数据管理系统
+		<label>工程数据管理系统</label>
+		<span>Engineering Data Management</span>
+	</div>
+	<div class="image">
+	</div>
+</div>
+<% end %>
+
+<%= render :partial => 'prod_sublink' %>
+
+<div class="subContentWrap edm">
+	<div>
+		<span class="prodImg"></span>
+		<span class="greenText">工程数据在制造企业内部无处不在。</span>
+
+		品目繁多的产品编号、几经更改的产品和图纸版本如人工处理起来难免有些力不从心。蔚森工程数据管理系统EDM（Engineering Data Management）代替人工操作，保障每个业务部门每个角落每个人所用的工程数据的一致性，或者是最新版本。
+		<%= image_tag("site/archEDM.png", :alt => "SCM Architecture") %>
+	</div>
+	<div class="feature">
+		<div>
+			<label>工程数据及变更管理</label>
+			<ul>
+				<li class="depth1">变更管理</li>
+				<li class="depth2">追踪变更流程及最新状态</li>
+				<li class="depth1">产品(型号、版本)管理</li>
+				<li class="depth2">确保最新版本一致性</li>
+				<li class="depth1">图纸、标准等技术资料管理</li>
+				<li class="depth2">便于调取规范文件</li>
+				<li class="depth1">EBOM 零件及组件清单</li>
+				<li class="depth1">产品特性设置</li>
+				<li class="depth2">特殊特性、重要特性</li>
+				<li class="depth1">Control plan</li>
+				<li class="depth2">制定各工序控制参数</li>
+				<li class="depth1">Process Flow Chart</li>
+				<li class="depth2">定义工序</li>
+				<li class="depth1">FMEA</li>
+				<li class="depth2">失效模式分析</li>
+				<li class="depth1">CP/PFC/FMEA 保持关联性、同步性</li>
+				<li class="depth1">PPAP进程追踪</li>
+			</ul>
+		</div>
+		
+		<div>
+			<label>项目管理(PMS)</label>
+			<ul>
+				<li class="depth1">依据产品开发流程的项目管理</li>
+				<li class="depth1">Milestone</li>
+				<li class="depth2">节点跟踪、提醒</li>
+				<li class="depth1">任务管理</li>
+				<li class="depth2">项目成员任务分配、跟踪</li>
+				<li class="depth1">WBS(Work Breakdown Structure)管理</li>
+				<li class="depth1">进程管理</li>
+				<li class="depth2">甘特图</li>
+			</ul>
+		</div>
+	</div>
+</div>

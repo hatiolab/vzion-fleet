@@ -1,0 +1,11 @@
+//= require extjs/ext-all
+//= require locale/locale
+//= require stacktrace/stacktrace
+//= require jquery-fileupload/basic
+//= require colorbox/jquery.colorbox-min
+//= require_tree ./kinetic
+//= require_tree ./ux
+//= require bwip-min
+//= require infogra-min
+//= require swfobject/swfobject
+//= require_tree ./realgrid

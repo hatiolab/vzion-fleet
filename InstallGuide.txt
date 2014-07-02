@@ -1,0 +1,7 @@
+1. Refer to Dockerfile
+2. Build Docker Image for vzionsys
+$ docker build -t vzionsys github.com/hatiolab/vzionsys.git
+3. Run Docker Container
+$ docker run -d -p 80:80 --name vzionsys vzionsys
+4. Check Rails production.log files
+$ docker run --rm --volumes-from vzionsys -t -i ubuntu /bin/bash

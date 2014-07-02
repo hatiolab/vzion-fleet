@@ -1,0 +1,66 @@
+<% content_for :clazz do 'indu' end %>
+
+<% content_for :concept do %>
+<div class="subconcept logistics">
+	<div class="title">
+		home > industries > 物流
+		<label>物流</label>
+		<span>Logistics Industries</span>
+	</div>
+	<div class="image">
+	</div>
+</div>
+<% end %>
+
+<%= render :partial => 'indu_sublink' %>
+
+<div class="subContentWrap">
+	<div>
+		<span class="induImg"><%= image_tag("site/indu_logistics.png", :alt => "electronics") %></span>
+		<span class="cyanText">title description</span>
+		description
+	</div>
+	
+	<div class="sysModule">
+		<label><span>系统模块</span>System Modules</label>
+		<div>
+			<ul>
+				<li class="module7">
+					<span class="title">入库管理</span>
+					plan based on production activities, predicted system implementation according to customer's order
+					<ul>
+						<li class="depth1">实物检查</li>
+						<li class="depth1">账务处理</li>
+						<li class="depth1">产品数据</li>
+						<li class="depth1">成品检查</li>
+					</ul>
+				</li>
+				<li class="module8">
+					<span class="title">库存管理</span>
+					plan based on production activities, predicted system implementation according to customer's order
+					<ul>
+						<li class="depth1">先进先出</li>
+						<li class="depth1">状态管理</li>
+						<li class="depth1">货位管理</li>
+						<li class="depth1">盘点管理</li>
+					</ul>
+				</li>
+				</ul>
+			</div>
+			
+			<div>
+				<ul>
+					<li class="module9">
+						<span class="title">出库管理</span>
+						plan based on production activities, predicted system implementation according to customer's order
+						<ul>
+							<li class="depth1">捡料包装</li>
+							<li class="depth1">标签制作</li>
+							<li class="depth1">库龄管理</li>
+							<li class="depth1">出库确认</li>
+						</ul>
+					</li>
+			</ul>
+			</div>
+	</div>
+</div>

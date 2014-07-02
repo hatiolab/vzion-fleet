@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+	<% @export_columns.each do |key, value| %>
+		<% next if(key.empty? || key == 'null') %>
+        <Cell><Data ss:Type="String"><%= value %></Data></Cell>
+	<% end if @export_columns %>
+      </Row>
+    <% @collection.each do |item| %>
+      <Row>
+		<% @export_columns.each do |key, value| %>
+		<% next if(key.empty? || key == 'null') %>
+        <Cell><Data ss:Type="String"><%= item[key] ? item[key] : item[key.to_sym] %></Data></Cell>
+		<% end %>
+      </Row>	  
+    <% end if @collection %>
+    </Table>
+  </Worksheet>
+</Workbook>

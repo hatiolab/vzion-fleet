@@ -1,0 +1,66 @@
+<% content_for :clazz do 'support' end %>
+
+<% content_for :concept do %>
+<div class="subconcept support">
+	<div class="title">
+		<label>Vzionsys Support</label>
+		<span>我们乐于倾听来自客户的声音，请联系我们的营销专员，以便深入探讨蔚森管理系统软件如何助力您的企业实现革新。</span>
+	</div>
+</div>
+<% end %>
+
+<div class="subContentWrap support">
+	<div class="mailForm">
+		Contact Us..
+		<%= form_tag({:controller => :site, :action => :contact}, :remote => true) do %>
+			<span>
+				<%= label_tag(:product, "interest") %>
+				<%= select_tag(:product, options_for_select([
+					['生产管理系统', 'MES'], 
+					['质量管理系统', 'QMS'], 
+					['供应链管理', 'SCM'], 
+					['客户管理系统', 'CRM'], 
+					['工程数据管理', 'EDM'], 
+					['仓储管理系统', 'WMS'], 
+					['Training', 'Traning'], 
+					['Regarding the website … ', 'WebSite']]), :prompt => "Please select a product")
+				%>
+			</span>
+			<span>
+				<%= label_tag(:name, "name") %>
+				<%= text_field_tag(:name)%>
+			</span>
+			<span>
+				<%= label_tag(:email, "email") %>
+				<%= text_field_tag(:email)%>
+			</span>
+			<span>
+				<%= label_tag(:company, "company") %>
+				<%= text_field_tag(:company)%>
+			</span>
+			<span>
+				<%= label_tag(:phone, "phone") %>
+				<%= text_field_tag(:phone)%>
+			</span>
+			<span>
+				<%= label_tag(:message, "message") %>
+				<%= text_area_tag(:message, '', :rows => 3)%>
+			</span>
+			<span>
+				<%= check_box_tag(:subscribe) %>
+				Keep me up to date with Vzionsys news!
+			</span>
+			<div class="notice" id="flash_notice"><%= flash[:notice] %></div>
+			<%= submit_tag("Send Message", :class => 'btnSend') %>
+		<% end %>
+
+	</div>
+	<div class="info">
+		<p><strong>欢迎！</strong>若您有任何有关产品销售、商业授权、用户培训、专业服务等方面的疑问需要我们解答，请在此页面上的留言栏里留言，我们的服务团队会在收到您的提问后以最快的速度与您取得联系。<br/><br/>感谢您对我公司产品和服务的关心！</p>
+		<label>Headquarters</label>
+		<span>上海市闵行区联明路389号麦可将大厦527室</span>
+		<span>+86.21.64027719</span>
+		<span>support@vzionsys.com</span>
+		<span><a href="https://maps.google.com/maps/myplaces?hl=en&ll=31.157296,121.521126&spn=0.014965,0.023324&ctz=-540&t=m&z=16&iwloc=A" target="_blank">View Map</a></span>
+	</div>
+</div>

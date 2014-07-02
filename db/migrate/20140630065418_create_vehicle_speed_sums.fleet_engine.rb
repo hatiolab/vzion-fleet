@@ -1,0 +1,33 @@
+# This migration comes from fleet_engine (originally 20140630065309)
+class CreateVehicleSpeedSums < ActiveRecord::Migration
+
+	def change
+		create_table :vehicle_speed_sums do |t|
+			t.references :domain, :null => false
+			t.references :vehicle, :null => false
+			t.integer :run_year
+			t.integer :run_month
+			t.integer :run_day
+			t.date :run_date
+			t.integer :spd_lt_10
+			t.integer :spd_lt_20
+			t.integer :spd_lt_30
+			t.integer :spd_lt_40
+			t.integer :spd_lt_50
+			t.integer :spd_lt_60
+			t.integer :spd_lt_70
+			t.integer :spd_lt_80
+			t.integer :spd_lt_90
+			t.integer :spd_lt_100
+			t.integer :spd_lt_110
+			t.integer :spd_lt_120
+			t.integer :spd_lt_130
+			t.integer :spd_lt_140
+			t.integer :spd_lt_150
+			t.integer :spd_lt_160
+		end
+
+    add_index :vehicle_speed_sums, [:vehicle_id, :run_date], :unique => true, :name => :ix_vehicle_spd_sum_0
+	end
+
+end

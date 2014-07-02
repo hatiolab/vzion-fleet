@@ -1,0 +1,71 @@
+<% content_for :clazz do 'prod' end %>
+
+<% content_for :concept do %>
+<div class="subconcept crm">
+	<div class="title">
+		home > products > 客户管理系统
+		<label>客户管理系统</label>
+		<span>Customer Relationship Management</span>
+	</div>
+	<div class="image">
+	</div>
+</div>
+<% end %>
+
+<%= render :partial => 'prod_sublink' %>
+
+<div class="subContentWrap crm">
+	<div>
+		<span class="prodImg"></span>
+		<span class="greenText">销售管理业务是连接制造企业生产结果与客户需求的纽带，蔚森客户管理系统CRM（Customer Relationship Management）将客户订单衔接至成品库存甚至生产计划，充分发挥销售业务作为对外窗口的纽带作用，客户需求信息的内部转化亦执行起来更为顺畅。</span>
+
+		客户需求的实时更新有助于更有效地进行生产计划安排组织生产；客户询价及自身报价的跟踪分析可让企业获得更多业务拓展机遇。<br/><br/><br/>
+		<%= image_tag("site/archCRM.png", :alt => "SCM Architecture") %>
+	</div>
+	<div class="feature">
+		<div>
+			<label>报价管理</label>
+			<ul>
+				<li class="depth1">询价包管理</li>
+				<li class="depth2">编号、种类、期限、状态、次级等内容的跟踪</li>
+				<li class="depth1">流程管理</li>
+				<li class="depth2">相应部门或责任人根据内部流程循序输入相关报价内容</li>
+				<li class="depth1">报价单履历</li>
+			</ul>
+			
+			<label>客户及订单管理</label>
+			<ul>
+				<li class="depth1">客户信息分类管理</li>
+				<li class="depth1">PO & Release</li>
+				<li class="depth2">EDI与系统对接</li>
+				<li class="depth1">PO vs. Shipping</li>
+				<li class="depth2">履历对比</li>
+				<li class="depth1">与库存和生产计划相连接</li>
+				<li class="depth1">生成、打印发票(Invoice)</li>
+				<li class="depth1">客户满意度</li>
+				<li class="depth2">记录自评或客户对本公司价格、交付及时率、质量表现等指标的评级</li>
+				<li class="depth1">客户抱怨</li>
+				<li class="depth2">管理抱怨信息，追踪对应过程 （CAR, 8D)</li>
+			</ul>
+		</div>
+		
+		<div>
+			<label>装运</label>
+			<ul>
+				<li class="depth1">成品库存确认</li>
+				<li class="depth1">Shipping : PO No.</li>
+				<li class="depth2">Lot No. 对应输入</li>
+				<li class="depth1">系统实时反映实物出库</li>
+				<li class="depth1">打印单据</li>
+			</ul>
+			
+			<label>成品库存</label>
+			<ul>
+				<li class="depth1">成品出库登记</li>
+				<li class="depth1">成品库存管理</li>
+				<li class="depth1">先进先出</li>
+				<li class="depth1">库位管理</li>
+			</ul>
+		</div>
+	</div>
+</div>

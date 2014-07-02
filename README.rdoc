@@ -1,0 +1,75 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
+
+== Getting Started
+
+1. Environment
+	<tt>Ruby : 1.9.3 이상</tt>
+	<tt>Database : Postgre</tt>
+
+2. Database User/Password Infomation (.bash_profile 등에 환경변수 설정)
+	<tt>export POSTGRE_USERNAME='username'</tt>
+	<tt>export POSTGRE_PASSWORD='password'</tt>
+
+3. /etc/hosts 파일에 호스트이름 등록
+	<tt>127.0.0.1       system.vzionsys.com</tt>
+	
+4. bundle install
+		<tt>bundle install</tt>
+
+5. create DB table
+		<tt>rake hatio:reset</tt>
+		<tt>rake hatio:reset RAILS_ENV=production</tt>
+
+6. Production Mode로 패키징하기 전에 아래 커맨드로 Asset들을 Precompile 해야 한다. (public/assets 폴더에 asset생성)
+		<tt>bundle exec rake assets:precompile</tt>
+		
+7. run server (default port 3000)
+		<tt>rails s</tt>
+		<tt>rails s -p 80 -e production</tt>
+
+8. site URL (/etc/hosts 파일에 system.vzionsys.com 호스트를 127.0.0.1로 등록하고 접속함.)
+		<tt>http://system.vzionsys.com:3000</tt>
+
+9. login
+		<tt>user : admin@example.com</tt>
+		<tt>password : admin</tt>
+
+10. Locale 파일들을 읽어서 Terminology 테이블에 업로드 하는 방법.(초기 hatio:setup에 포함되어있으나, 별도 실행 가능함)
+		<tt>rake hatio:upload_locale</tt>
+		<tt>rake hatio:upload_locale RAILS_ENV=production</tt>
+
+== Trouble Shooting
+
+1. Database 연결이 안될 경우 - Postgre Installer를 사용해서 인스톨한 경우 socket 파일의 위치가 다를 수 있다. 이 경우에 소프트링크를 만들어준다.
+	<tt>mkdir /var/pgsql_socket/</tt>
+	<tt>ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/</tt>
+	
+2. 각 번들의 db migration 파일을 어플리케이션에 복사하기
+	<tt>rake railties:install:migrations</tt>

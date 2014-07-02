@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Contact Request Information.</h1>
+		<p>
+			PRODUCT : <%= @contact[:product] %>
+		</p>
+    <p>
+			NAME : <%= @contact[:name] %>
+		</p>
+    <p>
+			EMAIL : <%= @contact[:email] %>
+		</p>
+    <p>
+			COMPANY : <%= @contact[:company] %>
+		</p>
+    <p>
+			PHONE : <%= @contact[:phone] %>
+		</p>
+    <p>
+			MESSAGE : <%= @contact[:message] %>
+		</p>
+    <p>
+			SUBSCRIBE : <%= @contact[:subscribe] ? TRUE : FALSE %>
+		</p>
+  </body>
+</html>

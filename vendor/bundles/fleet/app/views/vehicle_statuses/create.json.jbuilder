@@ -1,0 +1,2 @@
+json.(@vehicle_status, :id,:vehicle_id,:driver_id,:terminal_id,:status,:health_status,:total_dist,:total_runtime,:remain_fuel,:official_effcc,:avg_effcc,:eco_index,:eco_run_rate,:lat,:lng,:creator_id,:updater_id,:created_at,:updated_at)
+		

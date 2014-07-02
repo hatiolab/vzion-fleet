@@ -1,0 +1,214 @@
+// Place all the styles related to the site controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*{margin:0;padding:0;font-size:100%;}
+ol,ul{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+body{font-size:13px;color:#333;font-family:"Microsoft Yahei",tahoma,arial;}
+button,img,input[type="button"],input[type="submit"]{border:0;}
+a{color:#3a699a;}
+
+.nav{height:50px;background-color:#202f42;color:#fff;}
+.concept{background-color:#4990d2;}
+.company .concept{background:image-url('site/conceptCompany.png') 50% 0 no-repeat #454545;height:140px;}
+.support .concept{background:image-url('site/conceptSupport.png') 50% 3px no-repeat #2ca65d;height:140px;}
+.indu .concept{background:#198eab;height:140px;}
+.footer{height:30px;padding-top:15px;clear:both;text-align:center;color:#585858;font-size:12px;}
+.innerbox{width:950px;margin:auto;}
+
+.main .concept{height:300px;}
+
+.shadow{background:image-url('site/shadow.png') repeat-x;position:absolute;top:50px;width:100%;height:2px;}
+.shadow.bottom{top:188px;}
+.main .shadow.bottom{top:348px;}
+.prod .shadow.bottom{top:195px;}
+
+.marginT40{margin-top:40px !important;}
+
+
+/* nav style */
+.cbp-hsmenu-wrapper .bizname{background:image-url('site/bizarea.png') no-repeat;background-size:50px 480px;height:42px;text-indent:50px;color:#fff;font-size:18px;font-weight:bold;white-space:nowrap;text-align:left;}
+.cbp-hsmenu-wrapper .bizname span,.cbp-hsmenu-wrapper .prodname span{display:block;color:#7ec0fd;font-size:10px;}
+.cbp-hsmenu-wrapper .auto{background-position:-1px 1px;}
+.cbp-hsmenu-wrapper .elect{background-position:2px -80px;}
+.cbp-hsmenu-wrapper .mecha{background-position:-3px -160px;}
+.cbp-hsmenu-wrapper .mold{background-position:0px -235px;}
+.cbp-hsmenu-wrapper .food{background-position:0px -320px;}
+.cbp-hsmenu-wrapper .logistic{background-position:-2px -400px;}
+.cbp-hsmenu-wrapper .prodname{background:image-url('site/product_boxs.png') 3px 0 no-repeat;background-size:700px 115px;width:130px;display:inline-block;padding-top:120px;color:#fff;font-size:15px;font-weight:bold;text-align:center;}
+.cbp-hsmenu-wrapper .qms{background-position:-112px 0;}
+.cbp-hsmenu-wrapper .scm{background-position:-230px 0;}
+.cbp-hsmenu-wrapper .crm{background-position:-348px 0;}
+.cbp-hsmenu-wrapper .edm{background-position:-465px 0;}
+.cbp-hsmenu-wrapper .wms{background-position:-580px 0;}
+.cbp-hsmenu-wrapper a{text-decoration:none;}
+.brand{background:image-url('site/vzionsys.png') no-repeat;position:absolute;top:13px;z-index:10000;width:145px;height:30px;}
+.cbp-hsinner{position:relative;z-index:100;padding-left:300px;text-align:right;}/* 100% width bar for menu */
+.cbp-hsmenu{right:0;}
+.cbp-hsmenu > li{margin-left:4em;display:inline-block;}
+.cbp-hsmenu > li:first-child {margin-left:0;}
+.childY{background:image-url('site/menu_arrowdown.png') 100% 22px no-repeat;padding-right:12px;}
+.childY:hover,.cbp-hsitem-open .childY{background-position:100% -18px}
+ 
+.cbp-hsmenu > li > a{color: #fff;font-weight:bold;font-size:1.1em;text-transform:capitalize;line-height:3.5em;display:inline-block;position:relative;z-index: 10000;}/* Main menu link style */
+.no-touch .cbp-hsmenu > li > a:hover,.no-touch .cbp-hsmenu > li > a:focus,.cbp-hsmenu > li.cbp-hsitem-open > a {color: #b5d250;}
+.cbp-hsmenu > li > a:not(:only-child):before {/* Add an arrow to the main menu link if it has a submenu (not the only child) */
+    display: inline-block;margin-right: 0.3em;opacity: 0.4;vertical-align: middle;
+}
+.cbp-hsmenu > li.cbp-hsitem-open > a:after{/* Add a triangle to currently open menu item link */
+    top: 100%;border: solid transparent;content: " ";height: 0;width: 0;position: absolute;left: 50%;margin-left: -10px;
+    border-color: transparent;border-top-color: #2a3f52;border-width: 10px;
+}
+.cbp-hssubmenu{position:absolute;right: 0;top: 100%;z-index: 0;visibility: hidden;}
+.cbp-hssubmenu:before,.cbp-hssubmenu:after{ content: " ";display: table;}
+.cbp-hssubmenu:after{clear: both;}
+.cbp-hssubmenu > li{
+    display: inline-block;vertical-align: top;opacity: 0;
+    -webkit-transition: opacity 0.1s 0s;-moz-transition: opacity 0.1s 0s;transition: opacity 0.1s 0s;
+}
+.cbp-hssubmenu > li a{display:block;outline: none;padding:12px 12px 7px 10px;border-right:1px dotted #3b5678;}
+.cbp-hssubmenu > li a:hover{background-color:#284c6e;}
+.cbp-hssubmenu > li:last-child a{border-right:0;}
+.no-touch .cbp-hssubmenu > li a:hover,.no-touch .cbp-hssubmenu > li a:focus{color: #888;}
+.cbp-hssubmenu > li a .bizname{display: block;margin-top: 0.4em;}
+.cbp-hsmenu > li.cbp-hsitem-open .cbp-hssubmenu{z-index: 1000;visibility: visible;}
+.cbp-hsmenu > li.cbp-hsitem-open .cbp-hssubmenu > li{opacity: 1;-webkit-transition: opacity 0.5s 0.1s;-moz-transition: opacity 0.5s 0.1s;transition: opacity 0.5s 0.1s;}
+.cbp-hsmenubg {background: #375d81;position: absolute;width: 100%;opacity:.9;left: 0;z-index: 1;height: 0px;}/* Helper div for animating the background */
+.no-touch .cbp-hsmenubg {-webkit-transition: height 0.3s;-moz-transition: height 0.3s;transition: height 0.3s;}
+
+
+/* concept style */
+.flashMovie{display:inline-block;width:560px;float:left;}
+.flashMovie img{margin-top:23px;margin-bottom:-15px;}
+.productDescription{margin:60px 0 0 10px;width:350px;float:left;}
+.productDescription label{display:block;font-size:48px;font-weight:bold;color:#fff;}
+.productDescription span{display:block;margin-bottom:5px;font-size:18px;color:#d5ff83;}
+.productDescription p{margin-bottom:15px;font-size:12px;color:#fff;}
+.productDescription a{background:image-url('site/arrowRightWhite.png') 100% 50% no-repeat;padding-right:10px;margin:0 20px 0 0;color:#fff;font-weight:bold;text-decoration:none;font-size:14px;}
+.subconcept{overflow:hidden;}
+.subconcept.mes .title{background:image-url('site/conceptMES.png') 100% 100% no-repeat;width:470px;height:97px;float:left;padding:25px 0;}
+.subconcept.qms .title{background:image-url('site/conceptQMS.png') 95% 90% no-repeat;width:470px;height:97px;float:left;padding:25px 0;}
+.subconcept.scm .title{background:image-url('site/conceptSCM.png') 85% 100% no-repeat;width:470px;height:97px;float:left;padding:25px 0;}
+.subconcept.crm .title{background:image-url('site/conceptCRM.png') 100% 40% no-repeat;width:470px;height:97px;float:left;padding:25px 0;}
+.subconcept.edm .title{background:image-url('site/conceptEDM.png') 100% 40% no-repeat;width:500px;height:97px;float:left;padding:25px 0;line-height:1.25;height:97px;}
+.subconcept.wms .title{background:image-url('site/conceptWMS.png') 100% -10px no-repeat;width:470px;height:97px;float:left;padding:25px 0;}
+.subconcept.automotive .title{background:image-url('site/bizarea.png') -3px 55px no-repeat;width:470px;float:left;padding:25px 0;}
+.subconcept.electronics .title{background:image-url('site/bizarea.png') -3px -47px no-repeat;width:470px;float:left;padding:25px 0;}
+.subconcept.mechanics .title{background:image-url('site/bizarea.png') -3px -149px no-repeat;width:470px;float:left;padding:25px 0;}
+.subconcept.metalforming .title{background:image-url('site/bizarea.png') -3px -240px no-repeat;width:470px;float:left;padding:25px 0;}
+.subconcept.logistics .title{background:image-url('site/bizarea.png') -3px -443px no-repeat;width:470px;float:left;padding:25px 0;}
+.subconcept .title{color:#fff;font-size:13px;}
+.subconcept .title label{display:block;font-size:43px;font-weight:bold;}
+.subconcept .title span{font-size:18px;color:#055a95;}
+.indu .subconcept .title label{display:block;font-size:43px;font-weight:bold;text-indent:60px;line-height:1.4;}
+.indu .subconcept .title span{position:absolute;margin-top:-5px;font-size:18px;color:#95daeb;}
+.support .subconcept{padding:5px 0 0 65px;}
+.support .subconcept .title label{display:block;font-size:26px;font-weight:bold;font-family:"Helvetica Neue",helvetica;}
+.support .subconcept .title span{font-size:12px;color:#caff9b;}
+
+
+/* main style */
+.vzionsysWrap,.industriesWrap{clear:both;overflow:hidden;padding:0 0 25px 0;}
+.vzionsysWrap .description{margin-top:25px;width:560px;float:left;color:#585858;font-size:14px;}
+.vzionsysWrap .contactInfo{background:image-url('site/bgEye.png') 100% 0 no-repeat;padding-top:25px;width:380px;float:left;margin-left:10px;}
+.vzionsysWrap .contactInfo .comment{display:block;height:10px;margin-top:-3px;margin-bottom:7px;font-size:11px;color:#999;}
+.vzionsysWrap .description > span{display:block;font-size:20px;color:#254a7a;font-weight:bold;}
+.vzionsysWrap .description span span{color:#4990d2;font-weight:bold;}
+.vzionsysWrap .contactInfo .title{display:block;font-size:17px;color:#4990d2;font-weight:bold;}
+.vzionsysWrap .contactInfo .phone{display:block;font-size:22px;color:#254a7a;font-weight:bold;font-family:"Helvetica Neue";}
+.vzionsysWrap .contactInfo .mail{background:image-url('site/iconMail.png') 0 50% no-repeat;padding-left:20px;}
+.industriesWrap{background-color:#edf2f8;padding:20px 15px 10px 15px;text-align:center;}
+.industriesWrap .description{color:#585858;font-size:18px;}
+.industriesWrap .description span{color:#254a7a;font-size:22px;display:block;}
+.industriesWrap .bizArea{background:image-url('site/bizarea.png') 50% 0 no-repeat #4990d2;border:5px solid #ccdef0;width:90px;height:90px;display:block;-webkit-border-radius:60px;-moz-border-radius:60px;border-radius:60px;}
+.industriesWrap .automotive{background-position:50% 25px;}
+.industriesWrap .electronics{background-position:50% -77px;}
+.industriesWrap .mechanics{background-position:50% -177px;}
+.industriesWrap .mold{background-position:50% -271px;}
+.industriesWrap .logistic{background-position:50% -472px;}
+.industriesWrap li:hover{background-color:#fff;-webkit-transition:all 0.7s ease;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;}
+.industriesWrap a:hover .bizArea{background-color:#70a630;border-color:#c2d7b6;-webkit-transition : all 0.7s ease;}
+.industriesWrap a:hover label{color:#447a03;-webkit-transition : all 0.7s ease;}
+.industriesWrap li{width:220px;float:left;padding:10px 5px;cursor:pointer;}
+.industriesWrap span{margin:auto;}
+.industriesWrap label{display:inline-block;margin:9px 0 1px 0;font-size:15px;color:#254a7a;font-weight:bold;}
+.industriesWrap a{width:170px;overflow:hidden;text-decoration:none;}
+.industriesWrap p{padding:0 5px;font-size:11px;color:#585858;}
+
+
+/* sub style */
+.prod .content > .innerbox{padding:25px 0;}
+.subContentWrap{width:740px;font-size:14px;line-height:1.5;}
+.mes .prodImg{background:image-url('site/product_boxs.png') -7px 0 no-repeat;width:130px;height:175px;margin:0 20px 0 0;display:inline-block;float:left;}
+.qms .prodImg{background:image-url('site/product_boxs.png') -155px 0 no-repeat;width:130px;height:175px;margin:0 20px 0 0;display:inline-block;float:left;}
+.scm .prodImg{background:image-url('site/product_boxs.png') -305px 0 no-repeat;width:130px;height:175px;margin:0 20px 0 0;display:inline-block;float:left;}
+.crm .prodImg{background:image-url('site/product_boxs.png') -460px 0 no-repeat;width:130px;height:175px;margin:0 20px 0 0;display:inline-block;float:left;}
+.edm .prodImg{background:image-url('site/product_boxs.png') -605px 0 no-repeat;width:130px;height:175px;margin:0 20px 0 0;display:inline-block;float:left;}
+.wms .prodImg{background:image-url('site/product_boxs.png') -755px 0 no-repeat;width:130px;height:175px;margin:0 20px 0 0;display:inline-block;float:left;}
+.greenText{display:block;padding:10px 0;font-size:18px;color:#6c9e01;}
+.cyanText{display:block;padding:10px 0;font-size:18px;color:#0f7f9b;}
+.subContentWrap img{clear:both;margin:auto;margin-bottom:20px;display:block;}
+.company img{clear:both;margin:30px auto 10px auto;display:block;}
+.subLink{width:190px;background-color:#edf2f8;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;position:absolute;margin-left:760px;margin-top:-40px;z-index:0;}
+
+button.demo{background:image-url('site/btnDemo.png') no-repeat;width:180px;height:40px;margin:4px 0 5px 5px;cursor:pointer;padding-right:10px;font-size:16px;font-weight:bold;color:#fff;}
+button.demo:hover{background-position:0 -50px;}
+.subLink a{background:image-url('site/bg_dotdark.png') 12px 50% no-repeat;text-decoration:none;border-top:1px solid #fafbfd;border-bottom:1px solid #dce1e6;padding:9px 0 5px 20px;display:block;color:#666;}
+.subLink a:first-child{border-top:none;}
+.subLink a:hover{background-color:#585858;border-color:#333;color:#fff;font-weight:bold;}
+.subLink a.active{background-color:#707070;border-color:#333;color:#fff;font-weight:bold;cursor:default;}
+.subLink ul{margin-bottom:10px;}
+.indu .subLink{margin-top:-8px;}
+.indu .subLink ul{margin:8px 0 10px 0;}
+.subLink .contactInfo{position:absolute;margin-top:20px;}
+.subLink .contactInfo .title{display:block;color:#4990d2;font-weight:bold;font-size:13px;}
+.subLink .contactInfo .phone{display:block;font-size:23px;color:#254a7a;font-weight:bold;font-family:"Helvetica Neue";}
+.subLink .contactInfo .mail{background:image-url('site/iconMail.png') 0 50% no-repeat;padding-left:20px;font-size:14px;}
+.feature{margin-top:30px;}
+.feature div{width:355px;float:left;margin:20px 0 0 0;display:block;}
+.feature div:last-child{width:350px;margin-left:30px;}
+.feature label{font-size:18px;font-weight:bold;color:#2c5f91;}
+.feature ul{margin-bottom:15px;}
+.feature .depth1{background:image-url('site/iconCheck.png') 0 4px no-repeat;margin:2px 0;padding-left:14px;}
+.feature .depth2{padding-left:14px;font-size:12px;color:#666;}
+.company p{line-height:2;padding-bottom:15px;border-bottom:1px dotted #e4e4e4;}
+.subContentWrap.company{width:100%;}
+.subContentWrap.support{overflow:hidden;}
+.support .mailForm{
+	width:520px;background-color:#edf2f8;position:absolute;
+	-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;
+	margin-left:400px;margin-top:-10px;padding:10px 15px 5px 15px;z-index:0;box-shadow: 2px 2px 1px #ccc;
+	font-size:18px;color:#666;
+}
+.mailForm form{font-size:13px;color:#585858;}
+.mailForm form span{background:image-url('site/bg_dotdark.png') 0 50% no-repeat;display:block;border-bottom:1px dotted #cfcfcf;padding:5px 0 2px 10px;}
+.mailForm form span *{vertical-align:middle;}
+.mailForm form label{width:110px;display:inline-block;}
+.mailForm form input[type='text'],.mailForm form textarea{width:350px;}
+.support .info{width:370px;padding:20px 0 5px 0;}
+.support .info p strong{display:block;font-size:18px;color:#585858;}
+.support .info label{margin:25px 0 5px 0;display:block;color:#2c5f91;font-size:14px;font-weight:bold;}
+.support .info span{background:image-url('site/iconCheck.png') 0 3px no-repeat;margin:2px 0;padding-left:14px;display:block;}
+.mailForm form .btnSend{background:image-url('site/btnDemo.png') no-repeat;width:180px;height:40px;margin:10px 45px 5px 0;cursor:pointer;padding:0 25px 5px 0;font-size:16px;font-weight:bold;color:#fff;float:right;}
+.mailForm form .btnSend:hover{background-position:0 -50px;}
+.indu .subContentWrap{padding-top:25px;}
+.induImg{width:250px;margin:10px 20px 0 0;display:inline-block;float:left;}
+.induImg img{width:250px;border:1px solid #cfcfcf;}
+.sysModule{clear:both;margin:40px 0 0 0;}
+.sysModule label{display:block;margin-bottom:10px;color:#b5b5b5;text-transform:uppercase;text-align:center;}
+.sysModule label span{display:block;border-bottom:1px dotted #ddd;margin-bottom:4px;color:#585858;font-size:25px;font-weight:bold;}
+.sysModule li{background:image-url('site/iconInduModule.png') no-repeat;padding-left:45px;margin-bottom:25px;width:315px;float:left;font-size:12px;}
+//.sysModule li:nth-child(2n){margin-left:20px;}
+.sysModule span.title{display:block;font-weight:bold;font-size:16px;color:#585858;}
+.sysModule span.titleEng{display:block;font-size:12px;color:#999;}
+.sysModule .module2{background-position:0 -200px;}
+.sysModule .module3{background-position:0 -400px;}
+.sysModule .module4{background-position:0 -600px;}
+.sysModule .module5{background-position:0 -800px;}
+.sysModule .module6{background-position:0 -1000px;}
+.sysModule .module7{background-position:0 -1200px;}
+.sysModule .module8{background-position:0 -1400px;}
+.sysModule .module9{background-position:0 -1600px;}
+.sysModule .depth1{background:image-url('site/iconCheck.png') 43px 6px no-repeat #fff;margin:0 0 0 -45px !important;padding:2px 0 2px 55px;display:block;}
+.sysModule div{width:355px;float:left;margin:20px 0 0 0;display:block;}
+.sysModule div:nth-child(odd){margin-left:25px;}

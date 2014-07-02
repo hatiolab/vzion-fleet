@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		
+	  <title>VzionSys</title>
+	  <%= stylesheet_link_tag    "site", media: "all" %>
+	  <%= javascript_include_tag "site" %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+
+		<%= yield(:head) %>
+
+		<div class="wrap <%= yield(:clazz) %>">
+			<!--main처럼  여기에 각 main과 메뉴마다 다른 class가 들어갑니다. 예)main,industries,products,company,support-->
+			<div class="nav"><!--이 부분은 공통파일로 모든 화면 동일합니다-->
+				<div class="innerbox">
+					<%= render :partial => 'nav' %>
+				</div>
+			</div>
+
+			<div class="concept">
+				<!--이부분은 공통파일로 만들어주시고 조건문으로 각 메뉴마다, 하위메뉴마다 다른 내용이 들어갑니다-->
+				<div class="innerbox">
+					<%= render :partial => 'concept' %>
+				</div>
+				<div class="shadow top"></div>
+				<div class="shadow bottom"></div>
+			</div>
+			
+			<!--이부분에 main,industries,products,company,support와 각각의 하위메뉴마다 메뉴코드를 다르게 선언해주어야합니다-->
+			<!--인클루드를 해주시면 제가 그부분을 보고 각 페이지마다 그 인클루드부분과 아래 content부분만 있도록 작성할거임-->
+			<div class="content">
+				<div class="innerbox">
+					<%= yield %>
+				</div>	
+			</div>
+			
+			<%= render :partial => 'footer' %>
+		</div>
+	</body>
+</html>
+<!--즉 각 메뉴코드를 선언하는 것, 파일 분리 후 인클루드하는 것, if/if else 문을 샘플로 작성해주시면 제가 나머지 진도나갈께요.-->
+<!--image, css, include파일들의 경로는 후에 도메인으로 교체하는 등의 경로변경이 용이하도록 변수로 만들어서 알려주시면 더 좋습니다-->
+<!--디렉토리는 image,css,common(include파일들,기타 공통파일 모음),industries,products,company,support-->

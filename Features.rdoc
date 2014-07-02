@@ -1,0 +1,33 @@
+== Feartures
+
+* Edge Rails - Rails 4를 목표로 개발합니다.
+ Rails 4 : PostgreSQL 서포트
+* Ext JS 4.2 적용
+* PostgreSQL 적용
+ 멀티테넌시를 위한 다양한 방법 제공
+ Key-Value DB와의 트랜잭션 통합
+* Multi-Tenancy
+ Subdomain을 테넌시 구분으로 사용 : Domain Scope 지정
+ Subdomain이 없는 경우(예를 들어 localhost 접근시) 'system' 도메인이 Scope이 됨
+ 클라이언트 코드에서 도메인 정보를 모두 삭제하는 목표
+* 프레임워크 구조 변경
+ 인터넷 환경에서의 화면 오픈 속도 개선 목표(화면 관련 디펜던시 클래스 최소화, 클래스 상속 깊이를 얕게)
+ Asset Pipeline 구성을 단순하게 할 수 있도록 개선 (Frx와 Base 번들 분리)
+ 소스 자동 생성 개선 목표
+ 리스트-아이템 구조의 단순화 : Grid, Tab, Form 형 화면의 라이프사이클 정리
+* 바코드 모델러 구조
+ MVC 구조를 위해서 backbone.js 프레임워크 사용
+ 그래픽 모델러 기반 마련
+ 바코드 Image Object 와 Canvas Integration
+* Calendar Component
+ Sencha Sample의 Calendar Component 사용
+* RealGrid+ 적용
+ RealGrid+ 를 적용하여 리포트 및 대량 데이타 처리를 대응할 목표
+* Ace Editor 적용
+ 소스코드형 에디트 컴포넌트에 적용 (DiySelection/Form/Report..)
+* Deep Link 접근시 로그인을 지나면, 링크가 풀리는 문제 
+* Bundle 구조화 (Gem 구조)
+
+== Bundling
+* Bundle의 마이그레이션을 Application으로 복사
+ bundle exec rake railties:install:migrations FROM=foo_engine

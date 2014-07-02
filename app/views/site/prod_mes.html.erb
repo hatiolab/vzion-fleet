@@ -1,0 +1,81 @@
+<% content_for :clazz do 'prod' end %>
+
+<% content_for :concept do %>
+<div class="subconcept mes">
+	<div class="title">
+		home > products > 生产管理系统
+		<label>生产管理系统</label>
+		<span>Manufacturing Execution System</span>
+	</div>
+	<div class="image">
+	</div>
+</div>
+<% end %>
+
+<%= render :partial => 'prod_sublink' %>
+
+<div class="subContentWrap mes">
+	<div>
+		<span class="prodImg"></span>
+		<span class="greenText">蔚森系统软件成长于实体经济制造环境，因此其生产管理系统MES（Manufacturing Execution System）是蔚森整体系统软件的核心系统，如同生产管理是制造企业的核心业务一般。</span>
+
+		蔚森生产管理系统取代了以往人工控制生产过程的方式，通过智能捕捉实时生产数据和控制制造过程，将生产线上所发生的各种事件与各个业务部门的具体业务紧密连接起来。
+		<%= image_tag("site/archMES.png", :alt => "MES Architecture") %>
+		软件的特色功能促使雇员以最简单的方式做最正确的事，使制造企业的员工生产力大幅提高。实时更新的生产信息可让您更好地以自己的方式随时随地处理自上而下的任何日常业务。整个生产车间每个角落无缝全覆盖，体验并获得质量、效率、追溯性、生产率以及盈利率的全面提升。
+		所有这些通过蔚森生产管理系统实现。
+	</div>
+	<div class="feature">
+		<div>
+			<label>设备管理</label>
+			<ul>
+				<li class="depth1">设备清单、台帐</li>
+				<li class="depth2">设备的信息，包括名称、代号、种类、设备能力、服役时间、当前状态等</li>
+				<li class="depth1">设备 BOM</li>
+				<li class="depth2">组件备件清单</li>
+				<li class="depth1">备件库存管理，与设备相关联</li>
+				<li class="depth1">设备维修</li>
+				<li class="depth2">故障及维修履历</li>
+				<li class="depth1">设备保养</li>
+				<li class="depth2">维护计划、时间、等级、内容、履历，维护提醒</li>
+			</ul>
+			
+			<label>工具管理</label>
+			<ul>
+				<li class="depth1">工具总单</li>
+				<li class="depth2">工装夹具、模具、消耗品等所有制造工具的清单。编号、描述、版本、材质、制造商、最低库存量、尺寸、状态等</li>
+				<li class="depth1">工装、夹具、模具养护</li>
+				<li class="depth2">制定计划、定义内容、记录实施状态</li>
+				<li class="depth1">工具 BOM</li>
+				<li class="depth2">模具、夹具的组件。区分专用工具和通用工具</li>
+				<li class="depth1">工具库存</li>
+				<li class="depth2">数量、存放、使用、当前状态的实时跟踪</li>
+			</ul>
+		</div>
+		
+		<div>
+			<label>生产计划</label>
+			<ul>
+				<li class="depth1">销售、发货计划查询</li>
+				<li class="depth1">原料和成品库存查询</li>
+				<li class="depth1">制定生产计划</li>
+				<li class="depth1">按产品、工序、时间、班组的计划</li>
+			</ul>
+			
+			<label>生产实绩</label>
+			<ul>
+				<li class="depth1">各工序生产实绩</li>
+				<li class="depth1">完成品生产实绩</li>
+				<li class="depth1">库存登记</li>
+				<li class="depth2">原料消耗及成品入库</li>
+				<li class="depth1">Lot Tracking</li>
+				<li class="depth2">批次跟踪</li>
+			</ul>
+			
+			<label>Bar Coding 标签</label>
+			<ul>
+				<li class="depth1">标签的设计和打印</li>
+				<li class="depth2">利用条码对产品、包装、周转箱、托盘、库位等做标识，用扫码器等可移动终端识别并输入系统</li>
+			</ul>
+		</div>
+	</div>
+</div>

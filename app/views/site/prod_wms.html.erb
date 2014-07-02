@@ -1,0 +1,63 @@
+<% content_for :clazz do 'prod' end %>
+
+<% content_for :concept do %>
+<div class="subconcept wms">
+	<div class="title">
+		home > products > 仓储管理系统
+		<label>仓储管理系统</label>
+		<span>Warehouse Management System</span>
+	</div>
+	<div class="image">
+	</div>
+</div>
+<% end %>
+
+<%= render :partial => 'prod_sublink' %>
+
+<div class="subContentWrap wms">
+	<div>
+		<span class="prodImg"></span>
+		<span class="greenText">先入先出、定置定位是库存管理的基本理念。</span>
+
+		蔚森仓储管理系统WMS（Warehouse Management System）统筹管理仓库内的所有物品、货位、履历等信息，让企业的仓储环境保持井然有序，出库入库信息实时更新，提高库存信息的准确性，使之避免积压不必要的过多库存。
+	</div>
+	<div class="feature">
+		<div>
+			<label>入库管理</label>
+			<ul>
+				<li class="depth1">实物检查</li>
+				<li class="depth2">入库过程的可视化统计管理</li>
+				<li class="depth1">账务处理 </li>
+				<li class="depth2">通过出入库信息的I/F，支持ERP账务核销</li>
+				<li class="depth1">产品数据</li>
+				<li class="depth2">实物数据信息收集、验证、记录</li>
+				<li class="depth1">成品检查</li>
+				<li class="depth2">检查提示及检查信息的自动传送、分析</li>
+			</ul>
+			
+			<label>库存管理</label>
+			<ul>
+				<li class="depth1">先进先出</li>
+				<li class="depth2">出库基准规则设定及遵守</li>
+				<li class="depth1">状态管理</li>
+				<li class="depth2">通过库存状态管理区分可用、不可用库存</li>
+				<li class="depth1">货位管理</li>
+				<li class="depth2">优化库存空间货位管理</li>
+				<li class="depth1">盘点管理</li>
+				<li class="depth2">通过盘点将实物和系统数据保持一致</li>
+			</ul>
+			
+			<label>出库管理</label>
+			<ul>
+				<li class="depth1">捡料包装</li>
+				<li class="depth2">拣料及包装流程可视化</li>
+				<li class="depth1">标签制作</li>
+				<li class="depth2">出库包装时制作相关信息及打印</li>
+				<li class="depth1">库龄管理</li>
+				<li class="depth2">通过库存周期来进行库存隔离</li>
+				<li class="depth1">出库确认</li>
+				<li class="depth2">出库表、装车、车辆准备等出库前准备事项</li>
+			</ul>
+		</div>
+	</div>
+</div>
