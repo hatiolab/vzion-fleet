@@ -1,8 +1,8 @@
 #source 'https://rubygems.org'
 source 'http://rubygems.org'
 
-gem 'rails', '4.0.2'
-gem 'arel', '4.0.1'
+gem 'rails', '4.1.2'
+gem 'arel'
 
 # Use postgresql as the database for ActiveRecord
 gem 'pg'

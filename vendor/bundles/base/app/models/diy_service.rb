@@ -6,8 +6,8 @@ class DiyService < ActiveRecord::Base
   strip_cols [:name, :description]
   removing_trackable
 
-	has_many :service_in_params, :as => :resource, :dependent => :destroy, :order => "rank asc"
-	has_many :service_out_params, :as => :resource, :dependent => :destroy, :order => "rank asc"
+	has_many :service_in_params, -> { order('rank asc') }, :as => :resource, :dependent => :destroy
+	has_many :service_out_params, -> { order('rank asc') }, :as => :resource, :dependent => :destroy
   
   validates_presence_of :name, :strict => true
   validates :name, length: { in: 2..60 }, :strict => true

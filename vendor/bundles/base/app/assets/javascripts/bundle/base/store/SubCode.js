@@ -1,9 +1,7 @@
 Ext.define('Base.store.SubCode', {
 	
 	extend : 'Ext.data.Store',
-	
-	requires: 'Base.model.CommonCode',
-	
+		
 	model : 'Base.model.SubCode',
 	
 	autoLoad : false,
@@ -12,18 +10,18 @@ Ext.define('Base.store.SubCode', {
 	
 	remoteSort : false,
 	
-	proxy: {
-		type: 'rest',
+	proxy : {
+		type : 'rest',
 		url : 'common_codes',
 		format : 'json',
-	    reader: {
-			type: 'json',
-			root: 'items',
+	    reader : {
+			type : 'json',
+			root : 'items',
 			successProperty : 'success',
 			totalProperty : 'total'
         },
-        writer: {
-			type: 'json'
+        writer : {
+			type : 'json'
         }
 	}
 	

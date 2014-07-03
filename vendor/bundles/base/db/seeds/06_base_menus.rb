@@ -20,5 +20,5 @@ Menu.setup :System, {:rank => 9000} do
   submenu :Infographic, {:rank => 160, :template => 'Base.view.infographic.Infographic'}
   submenu :Contact, {:rank => 170, :template => 'Base.view.contact.Contact'}
   submenu :Report, {:rank => 180, :template => 'Base.view.report.Report'}
-  submenu :RemTrace, {:rank => 100, :template => 'Base.view.rem_trace.RemTrace'}
+  submenu :RemTrace, {:rank => 190, :template => 'Base.view.rem_trace.RemTrace'}
 end
