@@ -16,7 +16,7 @@ RUN /etc/init.d/postgresql start &&\
     psql --command "CREATE USER root WITH SUPERUSER PASSWORD 'root';" &&\
     createdb -O root root
 
-VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql", "/vzionsys"]
+VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql", "/vzion-fleet"]
 
 USER root
 
@@ -43,10 +43,10 @@ RUN apt-get install -qy libpq-dev
 RUN apt-get install -qy git
 
 # Add rails project to project directory
-ADD ./ /vzionsys
+ADD ./ /vzion-fleet
 
 # set WORKDIR
-WORKDIR /vzionsys
+WORKDIR /vzion-fleet
 
 # bundle install
 RUN /bin/bash -l -c "bundle install"
