@@ -3,7 +3,7 @@
 # Start Database
 /etc/init.d/postgresql start
 
-cd /vzionsys
+cd /vzion-fleet
 source /etc/profile.d/rvm.sh
 
 # Reset database : generate database, table, seed data
