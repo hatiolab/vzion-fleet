@@ -10,7 +10,7 @@ Ext.define('Fleet.view.vehicle_consumable.VehicleConsumable', {
 	
 	columns : [
 		{ header : T('label.id'), dataIndex : 'id', hidden : true },
-		{ header : T('label.vehicle'), dataIndex : 'vehicle', xtype : 'entitycolumn' },
+		{ header : T('label.vehicle'), dataIndex : 'vehicle', xtype : 'entitycolumn', editor : { xtype: 'entitycolumneditor', storeClass: 'Fleet.store.Vehicle' } },
 		{ 
 			header : T('label.x_desc', {x : T('label.vehicle')}), dataIndex : 'vehicle', width : 150,
 			renderer : function(val) {

@@ -12,6 +12,8 @@ class Vehicle < ActiveRecord::Base
   validates_uniqueness_of :name, :strict => true, :scope => :domain_id
   validates :name, length: { in: 2..60 }, :strict => true
   validates :description, length: { maximum: 255 }, :strict => true
+  
+  has_many :repairs
 
   after_create do
     VehicleStatus.create!({:vehicle_id => self.id, :status => :None.to_s, :health_status => :None.to_s})

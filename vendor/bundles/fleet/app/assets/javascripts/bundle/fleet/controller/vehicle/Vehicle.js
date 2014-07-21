@@ -28,6 +28,10 @@ Ext.define('Fleet.controller.vehicle.Vehicle', {
 				click : this.onGotoItem
 			}
 		});
+	},
+	
+	onGotoItem : function(grid, td, rowIndex, colIndex, event, record, tr) {
+		HF.show(Ext.getClassName(grid.up()) + 'Item', {id : record.get('id'), domain_id : record.get('domain_id')})
 	}
 
 });

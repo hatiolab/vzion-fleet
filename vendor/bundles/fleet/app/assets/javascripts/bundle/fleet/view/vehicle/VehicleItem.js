@@ -3,7 +3,8 @@ Ext.define('Fleet.view.vehicle.VehicleItem', {
 	extend : 'Ext.tab.Panel',
 	
  	requires : [ 
-		'Fleet.view.vehicle.VehicleForm'
+		'Fleet.view.vehicle.VehicleForm',
+		'Fleet.view.vehicle.VehicleRepair'
 	],
 	
 	mixins : {
@@ -16,5 +17,7 @@ Ext.define('Fleet.view.vehicle.VehicleItem', {
 	
 	items : [ {
 		xtype : 'fleet_vehicle_form'
+	}, {
+		xtype : 'fleet_vehicle_repair'
 	} ]
 });

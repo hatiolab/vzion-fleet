@@ -8,25 +8,30 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 	requires : [ 
 		'Fleet.model.Vehicle', 
 		'Fleet.store.Vehicle', 
-		'Fleet.view.vehicle.VehicleItem'
+		'Fleet.view.vehicle.VehicleItem',
+		'Fleet.view.vehicle.VehicleRepair'
 	],
 	
 	mixins : [
-		'Frx.mixin.lifecycle.FormLifeCycle'
+		'Frx.mixin.lifecycle.FormLifeCycle',
+		'Frx.mixin.lifecycle.ListLifeCycle'
 	],
 	
-	models : ['Fleet.model.Vehicle'],
+	models : ['Fleet.model.Vehicle', 'Fleet.model.VehicleRepair'],
 			
-	stores: ['Fleet.store.Vehicle'],
+	stores: ['Fleet.store.Vehicle', 'Fleet.store.VehicleRepair'],
 	
-	views : ['Fleet.view.vehicle.VehicleItem'],
+	views : ['Fleet.view.vehicle.VehicleItem', 'Fleet.view.vehicle.VehicleRepair'],
 	
 	init: function() {
 		this.callParent(arguments);
 		
 		this.control({
 			'fleet_vehicle_item' : this.EntryPoint(),
-			'fleet_vehicle_form' : this.FormEventHandler()
+			'fleet_vehicle_form' : this.FormEventHandler(),
+			'fleet_vehicle_repair' : this.ListEventHandler({
+				after_load_item : this.onAfterLoadItemForRepair
+			})
 		});
 	},
 	
@@ -39,6 +44,56 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 	 ** 					Override 구현 						   **
 	 ****************************************************************/
 
+	onAfterLoadItemForRepair : function(view, record) {
+		var store = view.getStore();
+		store.proxy.url = "vehicles/" + record.get('id') + "/repairs.json";
+		store.load({
+			callbask : function(records, operation, success) {
+				if(success) {
+					view.fireEvent('after_load_list', view, records, operation);
+				}
+			}
+		});
+	},
+	
+	/**
+	 * multiple update url을 리턴 
+	 */
+	getUpdateListUrl : function(grid) {
+		var url = "vehicles/" + HF.current.resource().id + "/update_vehicle_repairs.json";
+		return url;
+	},
+
+	/**
+	 * after grid updated
+	 */
+	onAfterUpdateList : function(grid, updateType, response) {
+		grid.getStore().reload();
+	},	
+	
+	/**
+	 * 모델 생성
+	 *
+	 * @grid
+	 */
+	newRecord : function(grid) {
+		return Ext.create(grid.getStore().model, {
+			"id" : null,
+			"domain_id" : grid.up().getParams().domain_id,
+			"vehicle_id" : HF.current.resource().id,
+			"next_repair_date" : '',
+			"repair_date" : '',
+			"repair_man" : '',
+			"repair_mileage" : '',
+			"repair_shop" : '',
+			"repair_time" : '',
+			"cost" : '',
+			"content" : '',
+			"comment" : '',
+			"oos" : '',
+			"_cud_flag_" : "c"
+		});
+	}
 	
 	/****************************************************************
 	 ** 					abstract method, 필수 구현 				   **

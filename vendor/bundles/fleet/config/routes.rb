@@ -119,6 +119,10 @@ Fleet::Engine.routes.draw do
 			get :show_by_name
 			get :export
 		end
+    member do
+      get :repairs
+      post :update_vehicle_repairs
+    end
 	end
 
 	resources :drivers do
