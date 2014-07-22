@@ -23,7 +23,9 @@ Ext.define('Fleet.controller.vehicle.Vehicle', {
 		this.callParent(arguments);
 		
 		this.control({
-			'fleet_vehicle' : this.EntryPoint(),
+			'fleet_vehicle' : this.EntryPoint({
+				click_simulation : this.onSimulation
+			}),
 			'fleet_vehicle #goto_item' : {
 				click : this.onGotoItem
 			}
@@ -32,6 +34,17 @@ Ext.define('Fleet.controller.vehicle.Vehicle', {
 	
 	onGotoItem : function(grid, td, rowIndex, colIndex, event, record, tr) {
 		HF.show(Ext.getClassName(grid.up()) + 'Item', {id : record.get('id'), domain_id : record.get('domain_id')})
+	},
+	
+	onSimulation : function() {
+    	Ext.Ajax.request({
+		    url : 'vehicles/simulation_service.json',
+		    method : 'GET',
+		    success : function(response) {
+				HF.current.view().store.reload();
+			},
+			scope : this
+		});
 	}
 
 });

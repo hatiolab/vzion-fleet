@@ -118,6 +118,7 @@ Fleet::Engine.routes.draw do
 			post :update_multiple
 			get :show_by_name
 			get :export
+      get :simulation_service
 		end
     member do
       get :repairs

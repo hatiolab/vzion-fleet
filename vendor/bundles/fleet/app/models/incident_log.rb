@@ -4,7 +4,6 @@ class IncidentLog < ActiveRecord::Base
 
 	stampable
 	belongs_to :terminal
-	belongs_to :vehicle
-	belongs_to :driver
+	belongs_to :incident
 	
 end

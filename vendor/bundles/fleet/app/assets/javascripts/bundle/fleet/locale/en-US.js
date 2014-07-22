@@ -24,7 +24,8 @@ T({
 		'Alarm' : 'Alarm',
 		'Monitor' : 'Monitor',
 		'Information' : 'Information',
-		'Incident' : 'Abnormal Situation'
+		'Incident' : 'Abnormal Situation',
+		'VehicleRepair' : 'VehicleRepair'
 	},
 	title : {
 	},
