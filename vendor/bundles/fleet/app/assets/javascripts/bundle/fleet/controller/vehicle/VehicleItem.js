@@ -107,8 +107,8 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 	
 	onTabChange : function(tabPanel, newCard, oldCard, eOpts) {
 		if (newCard.xtype == 'fleet_vehicle_track') {
-			newCard.initMap(37.38,127.11);
-			newCard.refreshMap(new google.maps.LatLng(37.38, 127.11));
+			newCard.initMap(HF.defaultLat(), HF.defaultLng());
+			newCard.refreshMap(new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()));
 			// newCard.getMap();
 			// newCard.onInit();
 			// this.getVehicleTraceStore().proxy.extraParams = { "_q[vehicle_id-eq]" : HF.current.view().getParams().id, "_q[trace_time-gte]" : "", "_q[trace_time-lte]" : "" };

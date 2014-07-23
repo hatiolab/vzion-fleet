@@ -65,11 +65,9 @@ module Hatio
     #
     def convert_value_by_column_type(filter_value, entity_column)
       if(entity_column.column_type == 'time' || entity_column.column_type == 'datetime' || entity_column.column_type == 'timestamp')
-        # return parse_time(filter_value) 
-        return parse_time_to_db(filter_value) 
+        return (filter_value.size <= 10) ? parse_date(filter_value) : parse_time_to_db(filter_value) 
       elsif(entity_column.column_type == 'date')
         return parse_date(filter_value)
-        # return Date.parse(filter_value) 
       elsif(entity_column.column_type == 'boolean')
         return (filter_value.to_s =~ /^(t|true|on|y|yes)$/i) == 0 ? true : false
       else
@@ -147,6 +145,20 @@ module Hatio
         return " #{table_name}.#{column_name} < ?"
       when 'lte'          # less than equal
         return " #{table_name}.#{column_name} <= ?"
+        
+      when 'dt_eq'           # date equal
+        return " date(#{table_name}.#{column_name}) = ?"
+      when 'dt_noteq'        # date not equal
+        return " date(#{table_name}.#{column_name}) != ?"
+      when 'dt_gt'           # date greater than
+        return " date(#{table_name}.#{column_name}) > ?"
+      when 'dt_gte'          # date greater than equal
+        return " date(#{table_name}.#{column_name}) >= ?"
+      when 'dt_lt'           # date less than
+        return " date(#{table_name}.#{column_name}) < ?"
+      when 'dt_lte'          # date less than equal
+        return " date(#{table_name}.#{column_name}) <= ?"
+        
       when 'is_null'      # is null
         return " #{table_name}.#{column_name} is null"
       when 'is_not_null'  # is not null

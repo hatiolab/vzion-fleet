@@ -26,18 +26,31 @@ Ext.define('Fleet.controller.location.LocationItem', {
 		
 		this.control({
 			'fleet_location_item' : this.EntryPoint(),
-			'fleet_location_form' : this.FormEventHandler({
-				after_load_item : this.onAfterLoadItemLocationForm
-			})
+			'fleet_location_form' : this.FormEventHandler()
 		});
 	},
 	
-	onAfterLoadItemLocationForm : function(view, record, operation) {
+	/**
+	 * override
+	 */	
+	onAfterLoadItem : function(view, record, operation) {
 		view.loadRecord(record);
-		view.initMap(record.get('lat'), record.get('lng'));
-		
-		view.refreshMap(new google.maps.LatLng(record.get('lat'), record.get('lng')), record.get('radius'));
-		
-	}
+		var lat = record.get('lat') === 0 ? HF.defaultLat() : record.get('lat');
+		var lng = record.get('lng') === 0 ? HF.defaultLng() : record.get('lng');
+		view.initMap(lat, lng);
+		view.refreshMap(new google.maps.LatLng(lat, lng), record.get('radius'));
+	},
+	
+	/**
+	 * override
+	 */
+	onAfterSaveItem : function(view, record) {
+		if(view instanceof Ext.form.Panel) {
+			view.loadRecord(record);
+			if(record.get('radius') > 0) {
+				view.refreshCircle(record.get('radius'));
+			}
+		}
+	},
 
 });

@@ -35,7 +35,7 @@ Ext.define('Ctrl.view.monitor.Monitor', {
 			zoom : 10,
 			maxZoom : 19,
 			minZoom : 3,
-			center : new google.maps.LatLng(37.381, 127.11846),
+			center : new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()),
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		});
 	},
@@ -131,7 +131,7 @@ Ext.define('Ctrl.view.monitor.Monitor', {
 		}, this);
 		
 		if(!bounds) {
-			this.getMap().setCenter(new google.maps.LatLng(37.381, 127.11846));
+			this.getMap().setCenter(new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()));
 		} else if(bounds.isEmpty() || bounds.getNorthEast().equals(bounds.getSouthWest())) {
 			this.getMap().setCenter(bounds.getNorthEast());
 		} else if(autofit){ // 자동 스케일 조정 경우 

@@ -1,6 +1,20 @@
 Ext.define('Frx.mixin.Util', function() {
 
 	/**
+	 * default lat
+	 */
+	function defaultLat() {
+		return DEFAULT_LAT;
+	}
+	
+	/**
+	 * default lng
+	 */
+	function defaultLng() {
+		return DEFAULT_LNG;
+	}
+
+	/**
 	 * toDate와 fromDate의 차이의 일수 차이를 계산
 	 */
 	function calDateRange(fromDate, toDate) {
@@ -231,15 +245,17 @@ Ext.define('Frx.mixin.Util', function() {
 	}	
 	
 	return {
+		defaultLat : defaultLat,
+		defaultLng : defaultLng,
 		getClassName : getClassName,
-		calDateRange : calDateRange,		
+		calDateRange : calDateRange,
 		getCurrentShiftDate : getCurrentShiftDate,
 		getShiftDate : getShiftDate,
 		getDate : getDate,
 		getFormattedDate : getFormattedDate,
 		getFormattedTime : getFormattedTime,
 		formattedDate : formattedDate,
-		formattedTime : formattedTime,		
+		formattedTime : formattedTime,
 		camelize : camelize,
 		underscored : underscored,
 		humanize : humanize,

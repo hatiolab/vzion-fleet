@@ -12,7 +12,7 @@ Ext.define('Fleet.store.VehicleTrace', {
 	
 	remoteSort : true,
 	
-	pageSize : 30,
+	pageSize : 200,
 	
 	sorters : [ {
 		property : 'vehicle_id',

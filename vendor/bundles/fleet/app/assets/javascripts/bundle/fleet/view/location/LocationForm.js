@@ -8,11 +8,15 @@ Ext.define('Fleet.view.location.LocationForm', {
 		
 	autoScroll : true,
 	
+	layout : {
+		type : 'vbox',
+		align : 'stretch'
+	},
+	
 	defaults : { xtype : 'textfield', anchor : '100%' },
 	
 	items : [ {
 		xtype : 'container',
-		flex : 2,
 		layout : {
 			type : 'hbox',
 			align : 'stretch'
@@ -70,7 +74,7 @@ Ext.define('Fleet.view.location.LocationForm', {
 		title : T('menu.VehicleTrace'),
 		cls : 'paddingPanel backgroundGray borderLeftGray',
 		itemId : 'mapdiv',
-		height : 400,
+		flex : 1,
 		html : '<div class="map" style="height:100%"></div>'
 	}],
 	

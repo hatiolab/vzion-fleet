@@ -171,7 +171,7 @@ Ext.define('Ctrl.view.monitor.Information', {
 			zoom : 10,
 			maxZoom : 19,
 			minZoom : 3,
-			center : new google.maps.LatLng(37.381, 127.11846),
+			center : new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()),
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		});
 	},
@@ -183,11 +183,41 @@ Ext.define('Ctrl.view.monitor.Information', {
 		return this.map;
 	},
 	
+	getTrackLine : function() {
+		return this.trackline;
+	},
+
+	setTrackLine : function(trackline) {
+		if (this.trackline)
+			this.trackline.setMap(null);
+			
+		this.trackline = trackline;
+	},
+	
 	getMarkers : function() {
 		if(!this.markers)
 			this.markers = {};
 			
 		return this.markers;
+	},
+	
+	setMarkers : function(markers) {
+		if (this.markers) {
+			Ext.each(this.markers, function(marker) {
+				marker.setMap(null);
+			});
+		}
+
+		this.markers = markers;
+	},
+	
+	resetMarkers : function() {
+		for (var vehicle in this.markers) {
+			google.maps.event.clearListeners(this.markers[vehicle]);
+			this.markers[vehicle].setMap(null);
+		}
+		
+		this.markers = {};
 	},
 	
 	getLabels : function() {
@@ -204,15 +234,6 @@ Ext.define('Ctrl.view.monitor.Information', {
 		
 		this.labels = {};
 	},
-	
-	resetMarkers : function() {
-		for (var vehicle in this.markers) {
-			google.maps.event.clearListeners(this.markers[vehicle]);
-			this.markers[vehicle].setMap(null);
-		}
-		
-		this.markers = {};
-	},	
 	
 	resizeMap : function() {
 		google.maps.event.trigger(this.getMap(), 'resize');
@@ -233,15 +254,15 @@ Ext.define('Ctrl.view.monitor.Information', {
 		this.resetLabels();
 		var bounds = null;
 
-		var vehicle = record.get('vehicle');
-		var driver = record.get('driver');
-		var latlng = new google.maps.LatLng(record.get('lat'), record.get('lng'));
+		var vehicle = record.data.vehicle;
+		var driver = record.data.driver;
+		latlng = new google.maps.LatLng(record.data.lat, record.data.lng);
 		
 		var marker = new google.maps.Marker({
 			position : latlng,
 			map : this.getMap(),
-			status : record.get('status'),
-			icon : this.statusImages[record.get('status')],
+			status : record.data.status,
+			icon : this.statusImages[record.data.status],
 			title : driver ? driver.name : '',
 			tooltip : vehicle.name + (driver ? " (" + driver.description + ")" : "")
 		});
@@ -261,13 +282,77 @@ Ext.define('Ctrl.view.monitor.Information', {
 		this.getLabels()[vehicle.name] = label;
 		
 		if(!bounds) {
-			this.getMap().setCenter(new google.maps.LatLng(37.381, 127.11846));
+			this.getMap().setCenter(new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()));
 		} else if(bounds.isEmpty() || bounds.getNorthEast().equals(bounds.getSouthWest())) {
 			this.getMap().setCenter(bounds.getNorthEast());
 		} else if(autofit){ // 자동 스케일 조정 경우 
 			this.getMap().fitBounds(bounds);
 		} else { // 자동 스케일 조정이 아니어도, 센터에 맞추기를 한다면, 이렇게.
 			this.getMap().setCenter(bounds.getCenter());
+		}
+	},
+	
+	refreshTrack : function(records) {
+		this.setTrackLine(new google.maps.Polyline({
+			map : this.getMap(),
+			strokeColor : '#FF0000',
+			strokeOpacity : 1.0,
+			strokeWeight : 4
+		}));
+		this.setMarkers(null);
+
+		var path = this.getTrackLine().getPath();
+		var bounds = null, latlng = null;
+
+		Ext.Array.each(records, function(record) {
+			var lat = record.get('lat');
+			var lng = record.get('lng');
+
+			if(lat !== 0 || lng !== 0) {
+				latlng = new google.maps.LatLng(lat, lng);
+				path.push(latlng);
+				if (!bounds)
+					bounds = new google.maps.LatLngBounds(latlng, latlng);
+				else
+					bounds.extend(latlng);
+			}
+		});
+
+		if (path.getLength() === 0) {
+			var record = this.getForm().getRecord();
+			var lat = record.get('lat');
+			var lng = record.get('lng');
+			var defaultLatlng = null;
+			
+			if(lat === 0 && lng === 0) {
+				defaultLatlng = new google.maps.LatLng(HF.defaultLat(), HF.defaultLng());
+			} else {
+				defaultLatlng = new google.maps.LatLng(lat, lng);
+			}
+			path.push(defaultLatlng);
+			bounds = new google.maps.LatLngBounds(defaultLatlng, defaultLatlng);
+		}
+
+		if (bounds.isEmpty() || bounds.getNorthEast().equals(bounds.getSouthWest())) {
+			this.getMap().setCenter(bounds.getNorthEast());
+		} else {
+			this.getMap().fitBounds(bounds);
+		}
+		
+		var first = path.getAt(0);
+		if (first) {
+			var start = new google.maps.Marker({
+				position : new google.maps.LatLng(first.lat(), first.lng()),
+				map : this.getMap()
+			});
+
+			var last = path.getAt(path.getLength() - 1);
+			var end = new google.maps.Marker({
+				position : new google.maps.LatLng(last.lat(), last.lng()),
+				icon : '/assets/image/iconStartPoint.png',
+				map : this.getMap()
+			});
+			this.setMarkers([ start, end ]);
 		}
 	},
 	
@@ -302,7 +387,6 @@ Ext.define('Ctrl.view.monitor.Information', {
 	
 	incidentHandler : function(e, el, incident) {
 		HF.show('Ctrl.view.monitor.Incident', incident.data, {});
-		//GreenFleet.getMenu('monitor_incident').setIncident(incident, true);
 	},
 	
 	dockedItems : [ {

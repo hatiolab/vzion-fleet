@@ -13,3 +13,5 @@ time_format: '%H:%M'
 shift_time_format: '%H:%M'
 std_name : std
 ops_name : ops
+default_lat : 37.381
+default_lng : 127.11846

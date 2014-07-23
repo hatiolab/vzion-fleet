@@ -374,7 +374,7 @@ Ext.define('Ctrl.view.monitor.Incident', {
 			zoom : 10,
 			maxZoom : 19,
 			minZoom : 3,
-			center : new google.maps.LatLng(37.381, 127.11846),
+			center : new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()),
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		});
 	},

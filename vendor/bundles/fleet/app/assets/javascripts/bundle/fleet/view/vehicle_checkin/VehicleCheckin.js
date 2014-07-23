@@ -11,8 +11,8 @@ Ext.define('Fleet.view.vehicle_checkin.VehicleCheckin', {
 	columns : [
 		{ header : T('label.id'), dataIndex : 'id', hidden : true },
 		{ header : T('label.terminal'), dataIndex : 'terminal', xtype : 'entitycolumn' },
-		{ header : T('label.vehicle'), dataIndex : 'vehicle', xtype : 'entitycolumn' },
 		{ header : T('label.driver'), dataIndex : 'driver', xtype : 'entitycolumn' },
+		{ header : T('label.vehicle'), dataIndex : 'vehicle', xtype : 'entitycolumn' },
 		{ 
 			header : T('label.x_desc', {x : T('label.vehicle')}), 
 			dataIndex : 'vehicle', 
@@ -22,7 +22,7 @@ Ext.define('Fleet.view.vehicle_checkin.VehicleCheckin', {
 			} 
 		},
 		{ header : T('label.date'), dataIndex : 'run_date', xtype : 'datecolumn', format : T('format.date'), width : 80, editor : { xtype : 'datefield', format : T('format.date') } },
-		{ header : T('label.start_time'), dataIndex : 'start_time', editor : { xtype : 'datefield', format : T('format.datetime') } },
+		{ header : T('label.start_time'), dataIndex : 'start_time', width : 130, editor : { xtype : 'datefield', format : T('format.datetime') } },
 		{ header : T('label.run_dist'), dataIndex : 'run_dist', align : 'right', width : 80 , editor : { xtype : 'numberfield' } },
 		{ header : T('label.run_time'), dataIndex : 'run_time', align : 'right', width : 80 , editor : { xtype : 'numberfield' } },
 		{ header : T('label.idle_time'), dataIndex : 'idle_time', align : 'right', width : 80 , editor : { xtype : 'numberfield' } },

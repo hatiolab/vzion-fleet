@@ -2,7 +2,11 @@ Ext.define('Ctrl.controller.monitor.Information', {
 	
 	extend : 'Frx.controller.OpsController',
 	
-	requires : [ 'Fleet.store.VehicleTracking', 'Fleet.store.Vehicle', 'Fleet.store.Incident' ],
+	requires : [ 
+		'Fleet.store.VehicleTracking', 
+		'Fleet.store.Vehicle', 
+		'Fleet.store.Incident' 
+	],
 	
 	mixins : [ 'Frx.mixin.lifecycle.FormLifeCycle' ],
 	
@@ -36,8 +40,10 @@ Ext.define('Ctrl.controller.monitor.Information', {
 		
 		this.trackStore = this.getVehicleTraceStore();
 		this.trackStore.on('load', function(store, records, success, eOpts) {
-			if(records.length > 0) {
-				view.refreshMap(records[0], HF.setting.get('option-auto_fit'));
+			if(records.length == 0) {
+				view.refreshMap({data : params}, HF.setting.get('option-auto_fit'));
+			} else {
+				view.refreshTrack(records);
 			}
 		}, this);
 		
@@ -97,7 +103,7 @@ Ext.define('Ctrl.controller.monitor.Information', {
 	 */
 	getVehicleTraceStore : function() {
 		if(!this.trackStore) {
-			this.trackStore = Ext.create('Fleet.store.VehicleTracking');
+			this.trackStore = Ext.create('Fleet.store.VehicleTrace');
 		}
 		
 		return this.trackStore;
@@ -126,7 +132,10 @@ Ext.define('Ctrl.controller.monitor.Information', {
 	 */
 	setVehicle : function(vehicle) {
 		if(vehicle && vehicle.vehicle.id) {
-			this.getVehicleTraceStore().proxy.extraParams = { "_q[vehicle_id-eq]" : vehicle.vehicle.id };
+			this.getVehicleTraceStore().proxy.extraParams = { 
+				"_q[vehicle_id-eq]" : vehicle.vehicle.id,
+				"_q[trace_time-dt_eq]" : Ext.Date.format(new Date(), 'Y-m-d')
+			};
 			this.getVehicleTraceStore().load();
 			this.getIncidentStore().load();
 			

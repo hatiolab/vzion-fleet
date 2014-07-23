@@ -158,6 +158,7 @@ T({
 		'content' : 'Content'
 	},
 	button : {
+		'simulation' : 'Simulation'
 	},
 	text : {
 	}

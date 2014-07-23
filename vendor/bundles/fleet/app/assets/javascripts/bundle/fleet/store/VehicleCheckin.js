@@ -15,14 +15,14 @@ Ext.define('Fleet.store.VehicleCheckin', {
 	pageSize : 30,
 	
 	sorters : [ {
-		property : 'vehicle_id',
-		direction : 'ASC'
+		property : 'start_time',
+		direction : 'DESC'
 	}, {
 		property : 'run_date',
 		direction : 'DESC'
 	}, {
-		property : 'start_time',
-		direction : 'DESC'
+		property : 'vehicle_id',
+		direction : 'ASC'
 	} ],
 	
 	proxy : {
