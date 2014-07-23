@@ -9,7 +9,8 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 		'Fleet.model.Vehicle', 
 		'Fleet.store.Vehicle', 
 		'Fleet.view.vehicle.VehicleItem',
-		'Fleet.view.vehicle.VehicleRepair'
+		'Fleet.view.vehicle.VehicleRepair',
+		'Fleet.view.vehicle.VehicleTrack'
 	],
 	
 	mixins : [
@@ -19,7 +20,7 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 	
 	models : ['Fleet.model.Vehicle', 'Fleet.model.VehicleRepair'],
 			
-	stores: ['Fleet.store.Vehicle', 'Fleet.store.VehicleRepair'],
+	stores: ['Fleet.store.Vehicle', 'Fleet.store.VehicleRepair', 'Fleet.store.VehicleTrace'],
 	
 	views : ['Fleet.view.vehicle.VehicleItem', 'Fleet.view.vehicle.VehicleRepair'],
 	
@@ -27,10 +28,15 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 		this.callParent(arguments);
 		
 		this.control({
-			'fleet_vehicle_item' : this.EntryPoint(),
+			'fleet_vehicle_item' : this.EntryPoint({
+				tabchange : this.onTabChange
+			}),
 			'fleet_vehicle_form' : this.FormEventHandler(),
 			'fleet_vehicle_repair' : this.ListEventHandler({
 				after_load_item : this.onAfterLoadItemForRepair
+			}),
+			'fleet_vehicle_track' : this.FormEventHandler({
+				after_load_item : this.onAfterLoadItemTrack
 			})
 		});
 	},
@@ -93,7 +99,34 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 			"oos" : '',
 			"_cud_flag_" : "c"
 		});
-	}
+	},
+	
+	onAfterLoadItemTrack : function(view, record) {
+		
+	},
+	
+	onTabChange : function(tabPanel, newCard, oldCard, eOpts) {
+		if (newCard.xtype == 'fleet_vehicle_track') {
+			newCard.initMap(37.38,127.11);
+			newCard.refreshMap(new google.maps.LatLng(37.38, 127.11));
+			// newCard.getMap();
+			// newCard.onInit();
+			// this.getVehicleTraceStore().proxy.extraParams = { "_q[vehicle_id-eq]" : HF.current.view().getParams().id, "_q[trace_time-gte]" : "", "_q[trace_time-lte]" : "" };
+			// this.getVehicleTraceStore().on('load', function(records, operation, success) {
+			// 	if(success) {
+			// 		newCard.refreshMap(records);
+			// 	}
+			// });
+		}
+	},
+	
+	getVehicleTraceStore : function() {
+		if(!this.trackStore) {
+			this.trackStore = Ext.create('Fleet.store.VehicleTracking');
+		}
+		
+		return this.trackStore;
+	},
 	
 	/****************************************************************
 	 ** 					abstract method, 필수 구현 				   **

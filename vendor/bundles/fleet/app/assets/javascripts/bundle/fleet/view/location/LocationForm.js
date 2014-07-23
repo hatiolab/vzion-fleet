@@ -10,45 +10,89 @@ Ext.define('Fleet.view.location.LocationForm', {
 	
 	defaults : { xtype : 'textfield', anchor : '100%' },
 	
-	items : [
-		{ name : 'id', fieldLabel : T('label.id'), hidden : true },
-		{ name : 'domain_id', value : login.current_domain_id, hidden : true },
-		{ name : 'name', fieldLabel : T('label.name'), allowBlank : false, maxLength : 64 },
-		{ name : 'description', fieldLabel : T('label.description'), maxLength : 255 },
-		{ name : 'address', fieldLabel : T('label.address') },
-		{ name : 'radius', fieldLabel : T('label.radius'), xtype : 'numberfield' },
-		{ name : 'lat', fieldLabel : T('label.lat'), xtype : 'numberfield' },
-		{ name : 'lng', fieldLabel : T('label.lng'), xtype : 'numberfield' },
-		{ name : 'lat_hi', fieldLabel : T('label.lat_hi'), xtype : 'numberfield' },
-		{ name : 'lat_low', fieldLabel : T('label.lat_low'), xtype : 'numberfield' },
-		{ name : 'lng_hi', fieldLabel : T('label.lng_hi'), xtype : 'numberfield' },
-		{ name : 'lng_low', fieldLabel : T('label.lng_low'), xtype : 'numberfield' },
-		{ xtype : 'timestamp' },
-		{
-			xtype : 'panel',
-			title : T('menu.VehicleTrace'),
-			cls : 'paddingPanel backgroundGray borderLeftGray',
-			itemId : 'mapdiv',
-			flex : 1,
-			html : '<div class="map"></div>'
-		}
-	],
+	items : [ {
+		xtype : 'container',
+		flex : 2,
+		layout : {
+			type : 'hbox',
+			align : 'stretch'
+		},
+		items : [{
+			xtype : 'container',
+			flex : 1.9,
+			layout : {
+				type : 'vbox',
+				align : 'stretch'
+			},
+			items : [{
+				name : 'id', fieldLabel : T('label.id'), hidden : true
+			}, {
+				name : 'domain_id', value : login.current_domain_id, hidden : true
+			}, {
+				name : 'name', fieldLabel : T('label.name'), xtype : 'textfield', allowBlank : false, maxLength : 64
+			}, {
+				name : 'description', fieldLabel : T('label.description'), xtype : 'textfield', maxLength : 255
+			}, {
+				name : 'address', fieldLabel : T('label.address'), xtype : 'textfield', itemId : 'form_address'
+			}, {
+				name : 'radius', fieldLabel : T('label.radius'), xtype : 'numberfield', itemId : 'form_radius', minValue : 0, step : 100
+			}, {
+				name : 'lat', fieldLabel : T('label.lat'), xtype : 'numberfield', itemId : 'form_latitude'
+			}]
+		}, {
+			xtype : 'container',
+			flex : 0.2,
+			layout : {
+				type : 'vbox',
+				align : 'stretch'
+			}
+		}, {
+			xtype : 'container',
+			flex : 1.9,
+			layout : {
+				type : 'vbox',
+				align : 'stretch'
+			},
+			items : [{
+				name : 'lng', fieldLabel : T('label.lng'), xtype : 'numberfield', itemId : 'form_longitude'
+			}, {
+				name : 'lat_hi', fieldLabel : T('label.lat_hi'), xtype : 'numberfield', itemId : 'form_lat_hi',
+			}, {
+				name : 'lat_low', fieldLabel : T('label.lat_low'), xtype : 'numberfield', itemId : 'form_lat_lo'
+			}, {
+				name : 'lng_hi', fieldLabel : T('label.lng_hi'), xtype : 'numberfield', itemId : 'form_lng_hi'
+			}, {
+				name : 'lng_low', fieldLabel : T('label.lng_low'), xtype : 'numberfield', itemId : 'form_lng_lo'
+			}]
+		}]
+	}, {
+		xtype : 'panel',
+		title : T('menu.VehicleTrace'),
+		cls : 'paddingPanel backgroundGray borderLeftGray',
+		itemId : 'mapdiv',
+		height : 400,
+		html : '<div class="map" style="height:100%"></div>'
+	}],
 	
-	initMap : function() {
-		this.map = new google.maps.Map(this.down(' #mapdiv').getEl().down('.map').dom, {
+	initMap : function(lat, lng) {
+		this.map = new google.maps.Map(this.down('#mapdiv').getEl().down('.map').dom, {
 			zoom : 10,
 			maxZoom : 19,
 			minZoom : 3,
-			center : new google.maps.LatLng(37.381, 127.11846),
+			center : new google.maps.LatLng(lat, lng),
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		});
 	},
-	
+		
 	getMap : function() {
 		if(!this.map) {
 			this.initMap();
 		}
 		return this.map;
+	},
+	
+	setMap : function(map) {
+		this.map = map;
 	},
 	
 	getMarkers : function() {
@@ -58,84 +102,171 @@ Ext.define('Fleet.view.location.LocationForm', {
 		return this.markers;
 	},
 	
-	getLabels : function() {
-		if(!this.labels)
-			this.labels = {};
+	setMarker : function(marker) {
+		if (this.marker)
+			this.marker.setMap(null);
+	
+		this.marker = marker;
+	},
+	
+	getCircle : function() {
+		if(!this.circle)
+			this.circle = {};
 			
-		return this.labels;
+		return this.circle;
 	},
 	
-	resetLabels : function() {
-		for (var vehicle in this.labels) {
-			this.labels[vehicle].setMap(null);
-		}
-		
-		this.labels = {};
+	setCircle : function(circle) {	
+		if (this.circle)
+			this.circle.setMap(null);
+				
+		this.circle = circle;
 	},
 	
-	resetMarkers : function() {
-		for (var vehicle in this.markers) {
-			google.maps.event.clearListeners(this.markers[vehicle]);
-			this.markers[vehicle].setMap(null);
-		}
-		
-		this.markers = {};
-	},	
-	
-	resizeMap : function() {
-		google.maps.event.trigger(this.getMap(), 'resize');
-	},
-	
-	statusImages : {
-		'Running' : '/assets/image/statusDriving.png',
-		'Idle' : '/assets/image/statusStop.png',
-		'Incident' : '/assets/image/statusIncident.png',
-		'Maint' : '/assets/image/statusMaint.png'
-	},
-		
 	/*
 	 * refresh map
 	 */
-	refreshMap : function(record, autofit) {
-		this.resetMarkers();
-		this.resetLabels();
-		var bounds = null;
+	refreshMap : function(center, radius) {
+		if (!center)
+			return;
 
-		var vehicle = record.get('vehicle');
-		var driver = record.get('driver');
-		var latlng = new google.maps.LatLng(record.get('lat'), record.get('lng'));
+		// 지도 중심 이동
+		this.map.setCenter(center);
+
+		// 마커 표시 
+		this.setMarker(null);
+		this.setMarker(this.createMarker(center));
 		
+		if(!radius)
+			radius = this.down(' #form_radius').getValue();
+
+
+		// Circle Refresh
+		this.refreshCircle(radius);		
+	},
+	
+	refreshLocation : function(center, radius) {		
+		this.refreshMap(center, radius);
+		// 폼 위도, 경도에 추가	
+		this.down(' #form_latitude').setValue(center.lat());
+		this.down(' #form_longitude').setValue(center.lng());		
+	},	
+
+	refreshLocByAddr : function(address) {
+		if(!address){
+			Ext.Msg.alert(T('msg.address_notfound_title'), T('msg.address_empty'));
+			return;
+		}
+		var self = this;
+		// 주소로 위치 검색
+	    this.geocoder.geocode({'address': address}, function(results, status) {
+    	
+	    	if (status == google.maps.GeocoderStatus.OK) {	    		
+	    		var center = results[0].geometry.location;
+	    		self.refreshLocation(center);
+	      } else {
+	    	  	self.setMarker(null);
+	    	  	//Ext.Msg.alert("Failed to search!", "Address (" + address + ") Not Found!");
+	    	  	Ext.Msg.alert(T('msg.address_notfound_title'), T('msg.address_notfound', {x:address}));
+	      }
+	    });
+	},
+
+	moveMarker : function(marker) {		
+		var self = this;
+		this.geocoder = new google.maps.Geocoder();
+		var position = marker.getPosition();
+	
+		// 위치로 주소 검색
+		this.geocoder.geocode({'latLng': position}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				self.refreshLocation(position);
+				// 폼의 주소 필드에 주소값 업데이트
+				self.down(' #form_address').setValue(results[0].formatted_address);				
+			} else {
+				self.map.setCenter(position);
+				Ext.Msg.alert("Failed to search!", "Couldn't find address by position [" + position.lat() + ", " + position.lng() + "]!");
+			}
+		});
+	},
+
+	refreshCircle : function(radius) {
+	
+		if(!this.marker)
+			return;
+	
+		if(!radius)
+			radius = this.down(' #form_radius').getValue();
+	
+		this.setCircle(null);
+		if(radius) {
+			var map = this.map;
+			var marker = this.marker;
+			this.setCircle(this.createCircle(marker.getPosition(), radius));
+		
+			// North, West, South, East lat, lng를 구함
+			var bounds = this.circle.getBounds();
+			var northWest = bounds.getNorthEast();
+			var southEast = bounds.getSouthWest();
+		
+			this.down(' #form_radius').setValue(radius);
+			this.down(' #form_lat_hi').setValue(northWest.lat());
+			this.down(' #form_lng_hi').setValue(northWest.lng());
+			this.down(' #form_lat_lo').setValue(southEast.lat());
+			this.down(' #form_lng_lo').setValue(southEast.lng());
+		}
+	},
+
+	createMarker : function(center) {
+		var self = this;
 		var marker = new google.maps.Marker({
-			position : latlng,
-			map : this.getMap(),
-			status : record.get('status'),
-			icon : this.statusImages[record.get('status')],
-			title : driver ? driver.name : '',
-			tooltip : vehicle.name + (driver ? " (" + driver.description + ")" : "")
+			position : center,
+			map : self.map,
+			draggable : true
 		});
-
-		if(!bounds)
-			bounds = new google.maps.LatLngBounds(latlng, latlng);
-		else
-			bounds.extend(latlng);
-		
-		var label = HF.label.create({
-			map : this.getMap()
+	
+		if(this.marker && this.marker.dragend_listener) {
+			google.maps.event.removeListener(this.marker.dragend_listener);
+		}
+	
+		marker.dragend_listener = google.maps.event.addListener(marker, 'dragend', function() {
+			self.moveMarker(marker);
 		});
-		label.bindTo('position', marker, 'position');
-		label.bindTo('text', marker, 'tooltip');
+			
+		return marker;
+	},
 
-		this.getMarkers()[vehicle.name] = marker;
-		this.getLabels()[vehicle.name] = label;
-		
-		if(!bounds) {
-			this.getMap().setCenter(new google.maps.LatLng(37.381, 127.11846));
-		} else if(bounds.isEmpty() || bounds.getNorthEast().equals(bounds.getSouthWest())) {
-			this.getMap().setCenter(bounds.getNorthEast());
-		} else if(autofit){ // 자동 스케일 조정 경우 
-			this.getMap().fitBounds(bounds);
-		} else { // 자동 스케일 조정이 아니어도, 센터에 맞추기를 한다면, 이렇게.
-			this.getMap().setCenter(bounds.getCenter());
+	createCircle : function(center, radius) {
+	
+		if(!center)
+			return;
+	
+		if(!radius)
+			radius = this.down(' #form_radius').getValue();
+	
+		var self = this;
+		var circle = new google.maps.Circle({
+			map: this.map,
+			center : center,
+			radius: radius,
+			strokeColor : 'red',
+			editable : true
+  	  	});
+	
+		if(this.circle && this.circle.radius_change_listener) {
+			google.maps.event.removeListener(this.circle.radius_change_listener);
+		}
+	
+		circle.radius_change_listener = google.maps.event.addListener(circle, 'radius_changed', function() {
+			self.radiusChanged(circle.getRadius());
+		});
+	
+		return circle;
+	},
+
+	radiusChanged : function(radius) {		
+		if(this.marker) {
+			this.refreshCircle(radius);
 		}
 	},
 	

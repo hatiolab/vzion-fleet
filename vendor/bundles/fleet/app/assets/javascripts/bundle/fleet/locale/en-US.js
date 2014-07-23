@@ -25,7 +25,7 @@ T({
 		'Monitor' : 'Monitor',
 		'Information' : 'Information',
 		'Incident' : 'Abnormal Situation',
-		'VehicleRepair' : 'VehicleRepair'
+		'VehicleRepair' : 'Maintenance History'
 	},
 	title : {
 	},
@@ -144,7 +144,18 @@ T({
 		'video' : 'Video',
 		'auto_fit' : 'Auto Fit',
 		'refresh_interval' : 'Refresh Term',
-		'incident' : 'Abnormal Situation'
+		'incident' : 'Abnormal Situation',
+		'repair' : 'Maint.',
+		'repair_time' : 'Maint. Time',
+		'next_repair' : 'Next Maint.',
+		'repair_mileage' : 'Maint. Mileage',
+		'repair_man' : 'Maint. Man',
+		'repair_shop' : 'Maint. Shop',
+		'cost' : 'Cost',
+		'oos' : 'Oos',
+		'run_date' : 'Run Date',
+		'track' : 'Track',
+		'content' : 'Content'
 	},
 	button : {
 	},
