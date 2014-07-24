@@ -7,7 +7,7 @@ Ext.define('Base.view.favorite.Favorite', {
 		spotlink : 'Frx.mixin.view.SpotLink'
 	},
 	
-	title: T('title.favorite'),
+	title: T('button.favorite'),
 	
 	layout : 'card',
 	cls : 'favorite',
@@ -35,7 +35,7 @@ Ext.define('Base.view.favorite.Favorite', {
 				xtype : 'toolbar',
 				items : [ {
 					xtype : 'label',
-					text : T('title.favorite')
+					text : T('button.favorite')
 				}, '->', {
 					itemId : 'movedown',
 					cls : 'movedown'

@@ -5,6 +5,7 @@ public
   # GET vehicles/:id/repairs
   #
   def repairs
+    # TODO Pagination
     vehicle = Vehicle.find(params[:id])
     @collection = vehicle.repairs
     @total_count = @collection.size
@@ -23,10 +24,15 @@ public
       # 3. create
       self.create_multiple_data(Repair, create_list, false, 'id', [], {})
     end
-  
-    respond_to do |format|
-      format.xml { render :xml => {:success => true, :msg => :success} } 
-      format.json { render :json => {:success => true, :msg => :success} }
+
+    # TODO Pagination
+    vehicle = Vehicle.find(params[:id])
+    @collection = vehicle.repairs
+    @total_count = @collection.size
+    
+    respond_with(resource) do |format|
+      format.xml  { render 'repairs' }
+      format.json { render 'repairs' }
     end
   end
   
@@ -83,6 +89,6 @@ public
   
 private
   def resource_params
-    [ params.require(:vehicle).permit(:name, :description) ]
+    [ params.require(:vehicle).permit(:name,:description,:model,:vendor,:classicfication,:fuel_type,:ownership,:birth_year,:seat_size) ]
   end
 end

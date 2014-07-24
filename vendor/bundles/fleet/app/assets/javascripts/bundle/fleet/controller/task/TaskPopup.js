@@ -29,36 +29,7 @@ Ext.define('Fleet.controller.task.TaskPopup', {
 	},
 	
 	/**
-	 * callback on after loadItem for each Sub View.
-	 * 
-	 * @view
-	 * @record - data of model
-	 */
-	// onAfterLoadItem : function(view, record, operation) {
-	// 	view.loadRecord(record);
-	//
-	// 	if(!record.data.id) {
-	// 		view.up('prod_pm_popup').setHeight(360);
-	// 		view.down('codefield[name=status]').hide();
-	// 		view.down('datefield[name=check_date]').hide();
-	// 		view.down('textfield[name=check_actual]').hide();
-	// 		view.down('datefield[name=check_start_time]').hide();
-	// 		view.down('datefield[name=check_end_time]').hide();
-	// 		view.down('datefield[name=created_at]').hide();
-	// 		view.down('datefield[name=updated_at]').hide();
-	// 	} else {
-	// 		view.down('codefield[name=status]').hide();
-	// 		view.down('entityfield[name=machine]').setReadOnly(true);
-	// 		view.down('datefield[name=plan_date]').setReadOnly(true);
-	// 		view.down('datefield[name=due_date]').setReadOnly(true);
-	// 	}
-	// },
-	
-	/**
-	 * callback on after save item
-	 * 
-	 * @view
-	 * @record
+	 * override
 	 */
 	onAfterSaveItem : function(view, record) {
 		this.reloadListPopup(view);

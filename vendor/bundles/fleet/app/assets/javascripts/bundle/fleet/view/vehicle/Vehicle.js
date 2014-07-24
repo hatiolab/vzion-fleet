@@ -33,8 +33,7 @@ Ext.define('Fleet.view.vehicle.Vehicle', {
 			{ fieldLabel : T('label.classicfication'), name : 'classicfication-eq', xtype : 'codesearchcombo', commonCode : 'V_CLASS', valueField : 'name', displayField : 'name' },
 			{ fieldLabel : T('label.fuel_type'), name : 'fuel_type-eq', xtype : 'codesearchcombo', commonCode : 'V_FUEL', valueField : 'name', displayField : 'name' },
 			{ fieldLabel : T('label.ownership'), name : 'ownership-eq', xtype : 'codesearchcombo', commonCode : 'V_OWNERSHIP', valueField : 'name', displayField : 'name' },
-			{ fieldLabel : T('label.birth_year'), name : 'birth_year-eq', xtype : 'numberfield', minValue : 1900, maxValue : 2100 },
-			{ fieldLabel : T('label.seat_size'), name : 'seat_size-eq', xtype : 'numberfield', minValue : 1, maxValue : 100 }
+			{ fieldLabel : T('label.birth_year'), name : 'birth_year-eq', xtype : 'numberfield', minValue : 1900, maxValue : 2100 }
 		]
 	}, {
 		xtype: 'controlbar',

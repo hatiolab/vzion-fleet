@@ -49,14 +49,7 @@ Ext.define('Fleet.view.task.TaskCalendar', {
 		        showHeader : true,
 		        showWeekLinks : false,
 		        showWeekNumbers : true
-		    }/*,
-			
-			weekViewCfg : {
-				weekCount : 1,
-				showHeader : true,
-				showWeekNumbers : true,
-				showToday : true
-			}*/
+		    }
 		} ];
 		
 		this.callParent();

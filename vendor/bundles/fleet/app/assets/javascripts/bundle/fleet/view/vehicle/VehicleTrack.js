@@ -1,6 +1,6 @@
 Ext.define('Fleet.view.vehicle.VehicleTrack', {
 	
-	extend : 'Ext.form.Panel',
+	extend : 'Ext.panel.Panel',
 	
 	xtype : 'fleet_vehicle_track',
 	
@@ -8,14 +8,19 @@ Ext.define('Fleet.view.vehicle.VehicleTrack', {
 		
 	autoScroll : true,
 	
+	layout : {
+		type : 'vbox',
+		align : 'stretch'
+	},
+	
 	items : [ {
 		xtype : 'panel',
 		title : T('menu.VehicleTrace'),
 		cls : 'paddingPanel backgroundGray borderLeftGray',
 		itemId : 'mapdiv',
-		height : 400,
+		flex : 1,
 		html : '<div class="map" style="height:100%"></div>'
-	}],
+	} ],
 	
 	initMap : function() {
 		this.map = new google.maps.Map(this.down('#mapdiv').getEl().down('.map').dom, {
@@ -90,11 +95,6 @@ Ext.define('Fleet.view.vehicle.VehicleTrack', {
 
 		latlng = new google.maps.LatLng(HF.defaultLat(), HF.defaultLng());
 		
-		// var marker = new google.maps.Marker({
-		// 	position : latlng,
-		// 	map : this.getMap(),
-		// });
-
 		if(!bounds)
 			bounds = new google.maps.LatLngBounds(latlng, latlng);
 		else
@@ -180,7 +180,7 @@ Ext.define('Fleet.view.vehicle.VehicleTrack', {
 	dockedItems: [ {
 		xtype : 'searchform',
 		items : [
-			{ fieldLabel : T('label.date'), name : 'work_date-eq', xtype : 'datefield', format : T('format.date'), submitFormat : T('format.submitDate') }
+			{ fieldLabel : T('label.date'), name : 'trace_time-dt_eq', xtype : 'datefield', format : T('format.date'), submitFormat : T('format.submitDate') }
 		]
 	}, {
 		xtype: 'controlbar',
