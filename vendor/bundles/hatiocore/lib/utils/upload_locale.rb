@@ -1,4 +1,4 @@
-def upload_locale
+def upload_locale(upload_bundle = nil)
   require 'v8'
 
   def traverse_terms terms, category, cxt
@@ -38,6 +38,8 @@ def upload_locale
 
     Hatio::Bundle.ordered_bundle_list.each do |bundle|
       bundle_name = bundle.name
+      
+      next if(upload_bundle && upload_bundle != bundle_name)
   
       spec = Gem::Specification.find_by_name(bundle_name)
       gem_root = spec.gem_dir

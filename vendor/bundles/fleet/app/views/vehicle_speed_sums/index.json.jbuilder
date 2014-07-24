@@ -5,7 +5,7 @@ json.items do |json|
 		json.vehicle do
 			json.id vehicle_speed_sum.vehicle_id
 			json.name vehicle_speed_sum.vehicle ? vehicle_speed_sum.vehicle.name : ''
-			json.description vehicle_run_sum.vehicle ? vehicle_run_sum.vehicle.description : ''
+			json.description vehicle_speed_sum.vehicle ? vehicle_speed_sum.vehicle.description : ''
 		end
 	end
 end

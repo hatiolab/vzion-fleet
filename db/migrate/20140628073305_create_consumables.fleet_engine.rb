@@ -6,11 +6,11 @@ class CreateConsumables < ActiveRecord::Migration
 			t.references :domain, :null => false
 			t.string :name, :null => false, :limit => 64
 			t.string :description, :limit => 255
-			t.string :unit, :limit => 20
-			t.integer :initial_mileage
-			t.integer :inital_duration
-			t.integer :last_mileage
-			t.integer :last_duration
+			t.string :unit, :limit => 10
+			t.integer :init_repl_mile, :default => 0
+			t.integer :init_repl_duration, :default => 0
+			t.integer :repl_mile, :default => 0
+			t.integer :repl_duration, :default => 0
 			t.userstamps
 			t.timestamps
 		end

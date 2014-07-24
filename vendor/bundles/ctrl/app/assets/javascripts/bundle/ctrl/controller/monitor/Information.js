@@ -34,15 +34,14 @@ Ext.define('Ctrl.controller.monitor.Information', {
 		
 		this.onAutoFitChange(HF.setting.get('option-auto_fit'));
 		this.onRefreshTermChange(HF.setting.get('option-refresh_interval'));
+		//infoView.refreshMap({data : vehicle}, HF.setting.get('option-auto_fit'));
 		
 		HF.setting.on('option-auto_fit', this.onAutoFitChange, this);
 		HF.setting.on('option-refresh_interval', this.onRefreshTermChange, this);
 		
 		this.trackStore = this.getVehicleTraceStore();
 		this.trackStore.on('load', function(store, records, success, eOpts) {
-			if(records.length == 0) {
-				view.refreshMap({data : params}, HF.setting.get('option-auto_fit'));
-			} else {
+			if(records.length > 0) {
 				view.refreshTrack(records);
 			}
 		}, this);

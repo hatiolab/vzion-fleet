@@ -2,15 +2,15 @@
 
 CommonCode.setup :HEALTH_STATUS, {:description => 'Vehicle Health Status'} do
   code 'Overdue' => 'Overdue'
-  code 'Health' => 'Health'
+  code 'Health' => 'Healthy'
   code 'Impending' => 'Impending'
   code 'None' => 'None'
 end
 
 CommonCode.setup :RUN_STATUS, {:description => 'Vehicle Running Status'} do
   code 'Idle' => 'Overdue'
-  code 'Incident' => 'Health'
-  code 'Maint' => 'Impending'
+  code 'Incident' => 'Incident'
+  code 'Maint' => 'Maintenance'
   code 'None' => 'None'
   code 'Running' => 'Running'
 end

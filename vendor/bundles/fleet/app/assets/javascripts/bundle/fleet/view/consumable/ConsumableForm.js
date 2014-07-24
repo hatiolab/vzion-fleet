@@ -15,11 +15,11 @@ Ext.define('Fleet.view.consumable.ConsumableForm', {
 		{ name : 'domain_id', value : login.current_domain_id, hidden : true },
 		{ name : 'name', fieldLabel : T('label.code'), allowBlank : false, maxLength : 64 },
 		{ name : 'description', fieldLabel : T('label.description'), maxLength : 255 },
-		{ fieldLabel : T('label.unit'), name : 'unit', xtype : 'codefield', commonCode : 'REPLACE_UNIT' },
-		{ name : 'initial_mileage', fieldLabel : T('label.initial_mileage'), xtype : 'numberfield' },
-		{ name : 'inital_duration', fieldLabel : T('label.inital_duration'), xtype : 'numberfield' },
-		{ name : 'last_mileage', fieldLabel : T('label.last_mileage'), xtype : 'numberfield' },
-		{ name : 'last_duration', fieldLabel : T('label.last_duration'), xtype : 'numberfield' },
+		{ name : 'unit', fieldLabel : T('label.unit'), xtype : 'codefield', commonCode : 'REPLACE_UNIT' },
+		{ name : 'init_repl_mile', fieldLabel : T('label.init_repl_mile'), xtype : 'numberfield', minValue : 0 },
+		{ name : 'init_repl_duration', fieldLabel : T('label.init_repl_duration'), xtype : 'numberfield', minValue : 0, maxValue : 1000 },
+		{ name : 'repl_mile', fieldLabel : T('label.repl_mile'), xtype : 'numberfield', minValue : 0 },
+		{ name : 'repl_duration', fieldLabel : T('label.repl_duration'), xtype : 'numberfield', minValue : 0, maxValue : 1000 },
 		{ xtype : 'timestamp' }
 	],
 	

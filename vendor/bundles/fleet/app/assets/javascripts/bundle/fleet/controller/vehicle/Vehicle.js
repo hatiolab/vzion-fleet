@@ -24,7 +24,8 @@ Ext.define('Fleet.controller.vehicle.Vehicle', {
 		
 		this.control({
 			'fleet_vehicle' : this.EntryPoint({
-				click_simulation : this.onSimulation
+				click_simulation : this.onSimulation,
+				click_summary : this.onSummary
 			}),
 			'fleet_vehicle #goto_item' : {
 				click : this.onGotoItem
@@ -38,10 +39,21 @@ Ext.define('Fleet.controller.vehicle.Vehicle', {
 	
 	onSimulation : function() {
     	Ext.Ajax.request({
-		    url : 'vehicles/simulation_service.json',
-		    method : 'GET',
+		    url : 'diy_services/FleetSimulation/shoot.json',
+		    method : 'POST',
 		    success : function(response) {
-				HF.current.view().store.reload();
+				HF.msg.notice(T('text.Success to Create'));
+			},
+			scope : this
+		});
+	},
+	
+	onSummary : function() {
+    	Ext.Ajax.request({
+		    url : 'diy_services/FleetSummary/shoot.json',
+		    method : 'POST',
+		    success : function(response) {
+				HF.msg.notice(T('text.Success to Create'));
 			},
 			scope : this
 		});

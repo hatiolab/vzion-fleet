@@ -5,14 +5,13 @@ namespace :hatio do
     require 'utils/detect_mismatch_tags'
 
     unless ENV.include?("tags")
-      raise "usage: rake hatio:detect_mismatch_tags tags='{,[,('" 
+      raise "usage: rake hatio:detect_mismatch_tags tags='{,[,(' dir='vendor/bundles/wms/app/assets/javascripts/bundle/wms'"
     end
 
-    tags = ENV['tags']
-
-    puts "tags : #{tags}"
+    dir, tags = ENV['dir'], ENV['tags']
+    puts "dir : #{dir}, tags : #{tags}"
     
-    find_mismatches tags
+    find_mismatches dir, tags
   end
   
   desc "Reset database, tables and data!"
@@ -27,6 +26,20 @@ namespace :hatio do
   desc "Migrate db and data"
   task :migrate => [:environment, 'db:migrate', 'db:seed']
   
+  desc "Load Seed - rake hatio:load_seed[bundle, src_file_name]"
+  
+  task :load_seed, [:bundle, :src_file_name] => :environment do |t, args|
+    src_file_name = args.src_file_name
+    bundle = args.bundle
+    
+    Domain.current_domain = Domain.find_by(name: ENV['domain'] || 'System')
+    User.current_user = User.find_by(name: ENV['user'] || 'admin')
+    
+    puts "Start to load #{bundle}, #{src_file_name} file ...."
+    load "#{Rails.root}/vendor/bundles/#{bundle}/db/seeds/#{src_file_name}"
+    puts "Completed to load seed!"
+  end
+  
   desc "Upload locale files to Database"
   task :upload_locale => :environment do
     require 'utils/upload_locale'
@@ -34,7 +47,19 @@ namespace :hatio do
     Domain.current_domain = Domain.find_by(name: ENV['domain'] || 'System')
     User.current_user = User.find_by(name: ENV['user'] || 'admin')
     
-    upload_locale
+    upload_locale(nil)
+  end
+  
+  desc "Upload locale files of bundle to Database"
+  task :upload_bundle_locale => :environment do
+    require 'utils/upload_locale'
+
+    Domain.current_domain = Domain.find_by(name: ENV['domain'] || 'System')
+    User.current_user = User.find_by(name: ENV['user'] || 'admin')
+    puts "bundle : #{ENV['bundle']}"
+    bundle = ENV['bundle']
+    
+    upload_locale(bundle)
   end
   
   desc "Create domain data to Database"

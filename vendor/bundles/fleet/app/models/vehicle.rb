@@ -5,7 +5,7 @@ class Vehicle < ActiveRecord::Base
   include PropertyKeepable
 
 	stampable
-  strip_cols [:name, :description]
+  strip_cols [:name]
   removing_trackable
   
   validates_presence_of :name, :strict => true
@@ -13,6 +13,8 @@ class Vehicle < ActiveRecord::Base
   validates :name, length: { in: 2..60 }, :strict => true
   validates :description, length: { maximum: 255 }, :strict => true
   
+  has_one :vehicle_status
+  has_many :vehicle_consumables
   has_many :repairs
 
   after_create do

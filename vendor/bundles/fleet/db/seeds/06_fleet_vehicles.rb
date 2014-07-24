@@ -2,8 +2,8 @@
 
 Vehicle.create! :name => '18고 1298', :description => 'V-001', :vendor => 'Hyundai', :model => '아반떼', :ownership => 'Company', :fuel_type => 'GAS', :classicfication => 'Sedan', :seat_size => 5, :birth_year => 2012
 Vehicle.create! :name => '26다 9204', :description => 'V-002', :vendor => 'Kia', :model => '프라이드', :ownership => 'Personal', :fuel_type => 'GAS', :classicfication => 'Hatchback', :seat_size => 4, :birth_year => 2014
-Vehicle.create! :name => '76허 1938', :description => 'V-010', :vendor => 'GM', :model => '크루즈', :ownership => 'Rent', :fuel_type => 'LPG', :classicfication => 'Sedan', :seat_size => 5, :birth_year => 2010
-Vehicle.create! :name => '31파 7102', :description => 'V-003', :vendor => 'Kia', :model => '모닝', :ownership => 'Company', :fuel_type => 'GAS', :classicfication => 'Sedan', :seat_size => 4, :birth_year => 2008
+Vehicle.create! :name => '76허 1938', :description => 'V-003', :vendor => 'GM', :model => '크루즈', :ownership => 'Rent', :fuel_type => 'LPG', :classicfication => 'Sedan', :seat_size => 5, :birth_year => 2010
+Vehicle.create! :name => '31파 7102', :description => 'V-004', :vendor => 'Kia', :model => '모닝', :ownership => 'Company', :fuel_type => 'GAS', :classicfication => 'Sedan', :seat_size => 4, :birth_year => 2008
 
 VehicleGroup.create! :name => "Group A", :description => "그룹 A"
 VehicleGroup.create! :name => "Group B", :description => "그룹 B"

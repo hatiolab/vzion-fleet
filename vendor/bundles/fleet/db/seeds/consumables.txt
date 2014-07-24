@@ -1,0 +1,12 @@
+name,			unit,	init_repl_mile,	init_repl_duration,	repl_mile,	repl_duration,	description
+AirconFilter,	Duration,			0,				0,	0,				6,			AirconFilter
+Antifreeze,		Duration,			0,				0,	0,				24,			Antifreeze
+Battery,		Both,				0,				0,	30000,			36,			Battery
+BrakeOil,		Both,				0,				0,	40000,			24,			BrakeOil
+BrakePad,		Mileage,			0,				0,	35000,			0,			BrakePad
+EngineOil,		Mileage,			0,				0,	5000,			0,			EngineOil
+IgniterPlug,	Both,				0,				0,	40000,			24,			IgniterPlug
+MissionOil,		Both,				0,				0,	35000,			24,			MissionOil
+TimingBelt,		Mileage,			0,				0,	80000,			0,			TimingBelt
+Tire,			Both,				0,				0,	55000,			36,			Tire
+WheeAlignment,	Mileage,			0,				0,	30000,			0,			WheeAlignment
