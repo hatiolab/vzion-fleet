@@ -25,7 +25,8 @@ T({
 		'Monitor' : 'Monitor',
 		'Information' : 'Information',
 		'Incident' : 'Abnormal Situation',
-		'VehicleRepair' : 'Maintenance History'
+		'VehicleRepair' : 'Maintenance History',
+		'TaskCalendar' : 'Schedule'
 	},
 	title : {
 	},
@@ -155,7 +156,11 @@ T({
 		'oos' : 'Oos',
 		'run_date' : 'Run Date',
 		'track' : 'Track',
-		'content' : 'Content'
+		'content' : 'Content',
+		'all_day' : 'All Day?',
+		'reminder' : 'Reminder',
+		'notes' : 'Notes',
+		'loc' : 'Location'
 	},
 	button : {
 		'simulation' : 'Simulation'

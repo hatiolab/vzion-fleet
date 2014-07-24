@@ -17,12 +17,12 @@ Ext.define('Fleet.view.vehicle.VehicleTrack', {
 		html : '<div class="map" style="height:100%"></div>'
 	}],
 	
-	initMap : function(lat, lng) {
+	initMap : function() {
 		this.map = new google.maps.Map(this.down('#mapdiv').getEl().down('.map').dom, {
 			zoom : 10,
 			maxZoom : 19,
 			minZoom : 3,
-			center : new google.maps.LatLng(lat, lng),
+			center : new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()),
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		});
 	},
@@ -38,6 +38,17 @@ Ext.define('Fleet.view.vehicle.VehicleTrack', {
 		this.map = map;
 	},
 	
+	getTrackLine : function() {
+		return this.trackline;
+	},
+
+	setTrackLine : function(trackline) {
+		if (this.trackline)
+			this.trackline.setMap(null);
+			
+		this.trackline = trackline;
+	},
+	
 	getMarkers : function() {
 		if(!this.markers)
 			this.markers = {};
@@ -45,96 +56,134 @@ Ext.define('Fleet.view.vehicle.VehicleTrack', {
 		return this.markers;
 	},
 	
-	setMarker : function(marker) {
-		if (this.marker)
-			this.marker.setMap(null);
+	setMarkers : function(markers) {
+		if (this.markers) {
+			Ext.each(this.markers, function(marker) {
+				marker.setMap(null);
+			});
+		}
+
+		this.markers = markers;
+	},
 	
-		this.marker = marker;
+	statusImages : {
+		'Running' : '/assets/image/statusDriving.png',
+		'Idle' : '/assets/image/statusStop.png',
+		'Incident' : '/assets/image/statusIncident.png',
+		'Maint' : '/assets/image/statusMaint.png'
 	},
 	
 	/*
 	 * refresh map
 	 */
-	refreshMap : function(center) {
-		if (!center)
-			return;
+	refreshMap : function() {
+		this.setTrackLine(new google.maps.Polyline({
+			map : this.getMap(),
+			strokeColor : '#FF0000',
+			strokeOpacity : 1.0,
+			strokeWeight : 4
+		}));
+		
+		this.setMarkers(null);
+				
+		var bounds = null;
 
-		// 지도 중심 이동
-		this.map.setCenter(center);
+		latlng = new google.maps.LatLng(HF.defaultLat(), HF.defaultLng());
+		
+		// var marker = new google.maps.Marker({
+		// 	position : latlng,
+		// 	map : this.getMap(),
+		// });
 
-		// 마커 표시 
-		this.setMarker(null);
-		this.setMarker(this.createMarker(center));
-	},
-	
-	refreshLocation : function(center, radius) {		
-		this.refreshMap(center);	
-	},	
+		if(!bounds)
+			bounds = new google.maps.LatLngBounds(latlng, latlng);
+		else
+			bounds.extend(latlng);
+		
 
-	refreshLocByAddr : function(address) {
-		if(!address){
-			Ext.Msg.alert(T('msg.address_notfound_title'), T('msg.address_empty'));
-			return;
+		if(!bounds) {
+			this.getMap().setCenter(new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()));
+		} else if(bounds.isEmpty() || bounds.getNorthEast().equals(bounds.getSouthWest())) {
+			this.getMap().setCenter(bounds.getNorthEast());
+		} else if(autofit){ // 자동 스케일 조정 경우 
+			this.getMap().fitBounds(bounds);
+		} else { // 자동 스케일 조정이 아니어도, 센터에 맞추기를 한다면, 이렇게.
+			this.getMap().setCenter(bounds.getCenter());
 		}
-		var self = this;
-		// 주소로 위치 검색
-	    this.geocoder.geocode({'address': address}, function(results, status) {
-    	
-	    	if (status == google.maps.GeocoderStatus.OK) {	    		
-	    		var center = results[0].geometry.location;
-	    		self.refreshLocation(center);
-	      } else {
-	    	  	self.setMarker(null);
-	    	  	//Ext.Msg.alert("Failed to search!", "Address (" + address + ") Not Found!");
-	    	  	Ext.Msg.alert(T('msg.address_notfound_title'), T('msg.address_notfound', {x:address}));
-	      }
-	    });
 	},
-
-	moveMarker : function(marker) {		
-		var self = this;
-		this.geocoder = new google.maps.Geocoder();
-		var position = marker.getPosition();
 	
-		// 위치로 주소 검색
-		this.geocoder.geocode({'latLng': position}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				self.refreshLocation(position);
-				// 폼의 주소 필드에 주소값 업데이트
-				self.down(' #form_address').setValue(results[0].formatted_address);				
-			} else {
-				self.map.setCenter(position);
-				Ext.Msg.alert("Failed to search!", "Couldn't find address by position [" + position.lat() + ", " + position.lng() + "]!");
+	refreshTrack : function(records) {
+		this.setTrackLine(new google.maps.Polyline({
+			map : this.getMap(),
+			strokeColor : '#FF0000',
+			strokeOpacity : 1.0,
+			strokeWeight : 4
+		}));
+		
+		this.setMarkers(null);
+
+		var path = this.getTrackLine().getPath();
+		var bounds = null, latlng = null;
+
+		Ext.Array.each(records, function(record) {
+			var lat = record.get('lat');
+			var lng = record.get('lng');
+
+			if(lat !== 0 || lng !== 0) {
+				latlng = new google.maps.LatLng(lat, lng);
+				path.push(latlng);
+				if (!bounds)
+					bounds = new google.maps.LatLngBounds(latlng, latlng);
+				else
+					bounds.extend(latlng);
 			}
 		});
-	},
 
-	createMarker : function(center) {
-		var self = this;
-		var marker = new google.maps.Marker({
-			position : center,
-			map : self.map,
-			draggable : true
-		});
-	
-		if(this.marker && this.marker.dragend_listener) {
-			google.maps.event.removeListener(this.marker.dragend_listener);
-		}
-	
-		marker.dragend_listener = google.maps.event.addListener(marker, 'dragend', function() {
-			self.moveMarker(marker);
-		});
+		if (path.getLength() === 0) {
+			var record = this.getForm().getRecord();
+			var lat = record.get('lat');
+			var lng = record.get('lng');
+			var defaultLatlng = null;
 			
-		return marker;
+			if(lat === 0 && lng === 0) {
+				defaultLatlng = new google.maps.LatLng(HF.defaultLat(), HF.defaultLng());
+			} else {
+				defaultLatlng = new google.maps.LatLng(lat, lng);
+			}
+			path.push(defaultLatlng);
+			bounds = new google.maps.LatLngBounds(defaultLatlng, defaultLatlng);
+		}
+
+		if (bounds.isEmpty() || bounds.getNorthEast().equals(bounds.getSouthWest())) {
+			this.getMap().setCenter(bounds.getNorthEast());
+		} else {
+			this.getMap().fitBounds(bounds);
+		}
+		
+		var first = path.getAt(0);
+		if (first) {
+			var start = new google.maps.Marker({
+				position : new google.maps.LatLng(first.lat(), first.lng()),
+				map : this.getMap()
+			});
+
+			var last = path.getAt(path.getLength() - 1);
+			var end = new google.maps.Marker({
+				position : new google.maps.LatLng(last.lat(), last.lng()),
+				icon : '/assets/image/iconStartPoint.png',
+				map : this.getMap()
+			});
+			this.setMarkers([ start, end ]);
+		}
 	},
 	
 	dockedItems: [ {
 		xtype : 'searchform',
 		items : [
-			{ fieldLabel : T('label.date'), name : 'trace_time', xtype : 'daterange', format : T('format.date') },
+			{ fieldLabel : T('label.date'), name : 'work_date-eq', xtype : 'datefield', format : T('format.date'), submitFormat : T('format.submitDate') }
 		]
 	}, {
 		xtype: 'controlbar',
-		items: ['->', 'list', 'save', 'delete']
+		items: ['->', 'list']
 	} ]
 });

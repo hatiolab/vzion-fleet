@@ -118,3 +118,10 @@ Entity.setup Incident, {:bundle =>'fleet'} do
   @sort_columns = ['created_at']
   @editable_columns = ['confirm','lat','lng','velocity','impulse_x','impulse_y','impulse_z','impulse_abs','impulse_threshold','engine_temp','engine_temp_threshold','obd_connected']
 end
+
+Entity.setup Task, {:bundle =>'fleet'} do
+  @list_columns = ['title', 'start_date', 'end_date', 'updater_id', 'updated_at']
+  @search_columns = ['title']
+  @sort_columns = ['title']
+  @editable_columns = ['title', 'start_date', 'end_date']
+end

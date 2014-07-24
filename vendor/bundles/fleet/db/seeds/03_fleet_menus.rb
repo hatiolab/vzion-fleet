@@ -33,6 +33,7 @@ Menu.setup :Maintenance, {:rank => 5000} do
 end
 
 Menu.setup :Schedule, {:rank => 6000} do
+  submenu :TaskCalendar, {:rank => 6100, :template => 'Fleet.view.task.TaskCalendar'}
 end
 
 Menu.setup :Dashboard, {:rank => 7000} do

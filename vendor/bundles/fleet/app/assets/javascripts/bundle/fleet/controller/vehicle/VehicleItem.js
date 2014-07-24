@@ -22,7 +22,7 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 			
 	stores: ['Fleet.store.Vehicle', 'Fleet.store.VehicleRepair', 'Fleet.store.VehicleTrace'],
 	
-	views : ['Fleet.view.vehicle.VehicleItem', 'Fleet.view.vehicle.VehicleRepair'],
+	views : ['Fleet.view.vehicle.VehicleItem', 'Fleet.view.vehicle.VehicleRepair', 'Fleet.view.vehicle.VehicleTrack'],
 	
 	init: function() {
 		this.callParent(arguments);
@@ -36,7 +36,7 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 				after_load_item : this.onAfterLoadItemForRepair
 			}),
 			'fleet_vehicle_track' : this.FormEventHandler({
-				after_load_item : this.onAfterLoadItemTrack
+				after_load_item : this.onAfterLoadItemForTrack
 			})
 		});
 	},
@@ -49,6 +49,15 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 	/****************************************************************
 	 ** 					Override 구현 						   **
 	 ****************************************************************/
+	
+	onParamsChange : function(view, params) {
+		if(params.id) {
+			this.callParent(arguments);
+		} else {
+			var trackView = HF.current.view().child('fleet_vehicle_track');
+			this.reloadTrack(trackView);
+		}
+	},
 
 	onAfterLoadItemForRepair : function(view, record) {
 		var store = view.getStore();
@@ -70,12 +79,6 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 		return url;
 	},
 
-	/**
-	 * after grid updated
-	 */
-	onAfterUpdateList : function(grid, updateType, response) {
-		grid.getStore().reload();
-	},	
 	
 	/**
 	 * 모델 생성
@@ -101,32 +104,54 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 		});
 	},
 	
-	onAfterLoadItemTrack : function(view, record) {
-		
-	},
-	
 	onTabChange : function(tabPanel, newCard, oldCard, eOpts) {
 		if (newCard.xtype == 'fleet_vehicle_track') {
-			newCard.initMap(HF.defaultLat(), HF.defaultLng());
-			newCard.refreshMap(new google.maps.LatLng(HF.defaultLat(), HF.defaultLng()));
-			// newCard.getMap();
-			// newCard.onInit();
-			// this.getVehicleTraceStore().proxy.extraParams = { "_q[vehicle_id-eq]" : HF.current.view().getParams().id, "_q[trace_time-gte]" : "", "_q[trace_time-lte]" : "" };
-			// this.getVehicleTraceStore().on('load', function(records, operation, success) {
-			// 	if(success) {
-			// 		newCard.refreshMap(records);
-			// 	}
-			// });
+			newCard.initMap();
+			this.reloadTrack(newCard);
 		}
 	},
 	
-	getVehicleTraceStore : function() {
-		if(!this.trackStore) {
-			this.trackStore = Ext.create('Fleet.store.VehicleTracking');
-		}
-		
-		return this.trackStore;
+	onAfterLoadItemForTrack : function(view, record) {
+		this.record = record;
 	},
+	
+	reloadTrack : function(view) {
+		work_date = view.down('form').getValues()['work_date-eq']
+		if(work_date == '' || work_date == null) {
+			work_date = Ext.Date.format(new Date(), 'Y-m-d')
+		}
+		var store = Ext.create('Fleet.store.VehicleTrace');
+		store.load({
+			params : {
+				'_q[vehicle_id-eq]' : this.record.get('id'),
+				'_q[trace_time-dt_eq]' : work_date
+			},
+			callback : function(records, operation, success) {
+				if(success) {
+					if(records.length == 0) {
+						view.refreshMap();
+					} else {
+						view.refreshTrack(records);
+					}
+				}
+			}
+		})
+		
+		// this.getVehicleTraceStore().proxy.extraParams = {
+		// 	"_q[vehicle_id-eq]" : this.record.get('id'),
+		// 	"_q[trace_time-dt_eq]" : work_date
+		// };
+		// this.getVehicleTraceStore().load();
+		// console.log('out');
+		// this.getVehicleTraceStore().on('load', function(store, records, success, eOpts) {
+		// 	if(records.length == 0) {
+		// 		view.refreshMap();
+		// 	} else {
+		// 		console.log('on');
+		// 		view.refreshTrack(records);
+		// 	}
+		// });
+	}
 	
 	/****************************************************************
 	 ** 					abstract method, 필수 구현 				   **
