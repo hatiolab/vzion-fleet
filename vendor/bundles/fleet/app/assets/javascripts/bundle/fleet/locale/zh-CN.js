@@ -52,10 +52,10 @@ T({
 		'driver_speed_sum' : 'Speed Summary',
 		'vehicle_consumable' : 'Consumables',
 		'reservation' : 'Reservation',
-		'initial_mileage' : 'Initial Mileage',
-		'inital_duration' : 'Inital Duration',
-		'last_mileage' : 'Last Mileage',
-		'last_duration' : 'Last Duration',
+		'init_repl_mile' : 'Initial Replace Miles',
+		'init_repl_duration' : 'Initial Replace Duration',
+		'repl_mile' : 'Replace Miles',
+		'repl_duration' : 'Replace Duration',
 		'address' : 'Address',
 		'radius' : 'Radius',
 		'lat' : 'Latitude',
@@ -163,7 +163,8 @@ T({
 		'loc' : 'Location'
 	},
 	button : {
-		'simulation' : 'Simulation'
+		'simulation' : 'Simulation',
+		'summary' : 'Summary'
 	},
 	text : {
 	}
