@@ -24,10 +24,11 @@ end
 
 lat, lng = 37.42, 127.16
 vehicle_statuses.each do |vehicle_status|
-  vehicle_status.status = 'Running'
-  vehicle_status.health_status = 'Healthy'
+  vehicle_status.status = VehicleStatus::STATUS_RUN
+  vehicle_status.health_status = VehicleStatus::HEALTH_HEALTHY
   vehicle_status.driver_id = vehicle_status.vehicle.id
   vehicle_status.terminal_id = vehicle_status.vehicle.id
+  vehicle_status.official_effcc = 15
   vehicle_status.total_dist = rand(1000) * 100
   vehicle_status.total_runtime = rand(1000) * 100
   vehicle_status.lat = lat

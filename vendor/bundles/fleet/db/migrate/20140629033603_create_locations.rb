@@ -6,13 +6,13 @@ class CreateLocations < ActiveRecord::Migration
 			t.string :name, :null => false, :limit => 128
 			t.string :description, :limit => 255
 			t.string :address, :limit => 255
-			t.float :radius
-			t.float :lat
-			t.float :lng
-			t.float :lat_hi
-			t.float :lat_low
-			t.float :lng_hi
-			t.float :lng_low
+			t.float :radius, :default => 0
+			t.float :lat, :default => 0
+			t.float :lng, :default => 0
+			t.float :lat_hi, :default => 0
+			t.float :lat_low, :default => 0
+			t.float :lng_hi, :default => 0
+			t.float :lng_low, :default => 0
 			t.userstamps
 			t.timestamps
 		end

@@ -19,29 +19,31 @@ Ext.define('Fleet.view.vehicle_run_sum.VehicleRunSum', {
 				return val ? val.description : '';
 			} 
 		},
-		{ header : T('label.date'), dataIndex : 'run_date', xtype : 'datecolumn', format : T('format.date'), width : 80 },
-		{ header : T('label.run_time'), dataIndex : 'run_time', width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.run_dist'), dataIndex : 'run_dist', width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.consmpt'), dataIndex : 'consmpt', align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.co2_emss'), dataIndex : 'co2_emss', align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.effcc'), dataIndex : 'effcc', width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.year'), dataIndex : 'run_year', width : 55, align : 'right' },
+		{ header : T('label.month'), dataIndex : 'run_month', width : 60, align : 'right' },
+		{ header : T('label.run_time'), dataIndex : 'run_time', xtype : 'numbercolumn', format : T('format.number'), width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.run_dist'), dataIndex : 'run_dist', xtype : 'numbercolumn', format : T('format.number'), width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.consmpt'), dataIndex : 'consmpt', xtype : 'numbercolumn', format : T('format.number'), align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.co2_emss'), dataIndex : 'co2_emss', xtype : 'numbercolumn', format : T('format.number'), align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.effcc'), dataIndex : 'effcc', xtype : 'numbercolumn', format : '0.00', align : 'right', width : 80, editor : { xtype : 'numberfield' } },
 		{ header : T('label.eco_index'), dataIndex : 'eco_index', width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.sud_accel_cnt'), dataIndex : 'sud_accel_cnt', width : 140, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.sud_brake_cnt'), dataIndex : 'sud_brake_cnt', width : 145, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.eco_drv_time'), dataIndex : 'eco_drv_time', width : 120, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.ovr_spd_time'), dataIndex : 'ovr_spd_time', width : 120, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.idle_time'), dataIndex : 'idle_time', width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.inc_cnt'), dataIndex : 'inc_cnt', width : 110, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.oos_cnt'), dataIndex : 'oos_cnt', width : 125, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.mnt_cnt'), dataIndex : 'mnt_cnt', width : 100, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.mnt_time'), dataIndex : 'mnt_time', align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-
-		],	
+		{ header : T('label.sud_accel_cnt'), dataIndex : 'sud_accel_cnt', xtype : 'numbercolumn', format : T('format.number'), width : 140, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.sud_brake_cnt'), dataIndex : 'sud_brake_cnt', xtype : 'numbercolumn', format : T('format.number'), width : 145, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.eco_drv_time'), dataIndex : 'eco_drv_time', xtype : 'numbercolumn', format : T('format.number'), width : 120, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.ovr_spd_time'), dataIndex : 'ovr_spd_time', xtype : 'numbercolumn', format : T('format.number'), width : 120, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.idle_time'), dataIndex : 'idle_time', xtype : 'numbercolumn', format : T('format.number'), width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.inc_cnt'), dataIndex : 'inc_cnt', xtype : 'numbercolumn', format : T('format.number'), width : 110, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.oos_cnt'), dataIndex : 'oos_cnt', xtype : 'numbercolumn', format : T('format.number'), width : 125, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.mnt_cnt'), dataIndex : 'mnt_cnt', xtype : 'numbercolumn', format : T('format.number'), width : 100, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.mnt_time'), dataIndex : 'mnt_time', xtype : 'numbercolumn', format : T('format.number'), width : 95, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.updated_at'), dataIndex : 'updated_at', xtype : 'datecolumn', format : T('format.datetime'), width : 120 }
+	],
 	
 	dockedItems: [ {
 		xtype : 'searchform',
 		items : [
-			{ fieldLabel : T('label.date'), name : 'run_date', xtype : 'daterange' },
+			{ fieldLabel : T('label.year'), name : 'run_year', xtype : 'numberfield', minValue : 2010, maxValue : 2100 },
+			{ fieldLabel : T('label.month'), name : 'run_month', xtype : 'numberfield', minValue : 1, maxValue : 12 },
 			{ fieldLabel : T('label.vehicle'), name : 'vehicle.name-eq', xtype : 'entitysearchcombo', storeClass : 'Fleet.store.Vehicle', valueField : 'name' }
 		]
 	}, {

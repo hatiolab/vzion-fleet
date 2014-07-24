@@ -3,8 +3,8 @@ Ext.define('Fleet.model.DriverStatus', {
 	extend : 'Ext.data.Model',
     
 	fields : [
-		{ name : 'id', type : 'integer' },
-		{ name : 'driver_id', type : 'integer' },
+		{ name : 'id', type : 'string' },
+		{ name : 'driver_id', type : 'string' },
 		{ name : 'driver', type : 'auto' },
 		{ name : 'status', type : 'string' },
 		{ name : 'total_dist', type : 'float' },

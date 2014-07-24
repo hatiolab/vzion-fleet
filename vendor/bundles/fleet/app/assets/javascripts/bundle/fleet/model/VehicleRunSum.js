@@ -3,13 +3,11 @@ Ext.define('Fleet.model.VehicleRunSum', {
 	extend : 'Ext.data.Model',
     
 	fields : [
-		{ name : 'id', type : 'integer' },
-		{ name : 'vehicle_id', type : 'integer' },
+		{ name : 'id', type : 'string' },
+		{ name : 'vehicle_id', type : 'string' },
 		{ name : 'vehicle', type : 'auto' },
 		{ name : 'run_year', type : 'integer' },
 		{ name : 'run_month', type : 'integer' },
-		{ name : 'run_day', type : 'integer' },
-		{ name : 'run_date', type : 'date' },
 		{ name : 'run_time', type : 'integer' },
 		{ name : 'run_dist', type : 'integer' },
 		{ name : 'consmpt', type : 'float' },
@@ -25,6 +23,7 @@ Ext.define('Fleet.model.VehicleRunSum', {
 		{ name : 'oos_cnt', type : 'integer' },
 		{ name : 'mnt_cnt', type : 'integer' },
 		{ name : 'mnt_time', type : 'integer' },
+		{ name : 'updated_at', type : 'date' },
 		{ name : '_cud_flag_', type : 'string' }
 	],
 	

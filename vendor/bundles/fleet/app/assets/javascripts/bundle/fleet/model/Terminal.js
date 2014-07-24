@@ -3,8 +3,8 @@ Ext.define('Fleet.model.Terminal', {
 	extend : 'Ext.data.Model',
     
 	fields : [
-		{ name : 'id', type : 'integer' },
-		{ name : 'domain_id', type : 'integer' },
+		{ name : 'id', type : 'string' },
+		{ name : 'domain_id', type : 'string' },
 		{ name : 'name', type : 'string' },
 		{ name : 'description', type : 'string' },
 		{ name : 'purchase_date', type : 'date' },
@@ -12,9 +12,9 @@ Ext.define('Fleet.model.Terminal', {
 		{ name : 'vehicle', type : 'auto' },
 		{ name : 'driver_id', type : 'string' },
 		{ name : 'driver', type : 'auto' },
-		{ name : 'creator_id', type : 'integer' },
+		{ name : 'creator_id', type : 'string' },
 		{ name : 'creator', type : 'auto' },
-		{ name : 'updater_id', type : 'integer' },
+		{ name : 'updater_id', type : 'string' },
 		{ name : 'updater', type : 'auto' },
 		{ name : 'created_at', type : 'date' },
 		{ name : 'updated_at', type : 'date' },

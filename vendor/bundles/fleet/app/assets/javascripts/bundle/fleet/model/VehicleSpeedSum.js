@@ -3,13 +3,11 @@ Ext.define('Fleet.model.VehicleSpeedSum', {
 	extend : 'Ext.data.Model',
     
 	fields : [
-		{ name : 'id', type : 'integer' },
-		{ name : 'vehicle_id', type : 'integer' },
+		{ name : 'id', type : 'string' },
+		{ name : 'vehicle_id', type : 'string' },
 		{ name : 'vehicle', type : 'auto' },
 		{ name : 'run_year', type : 'integer' },
 		{ name : 'run_month', type : 'integer' },
-		{ name : 'run_day', type : 'integer' },
-		{ name : 'run_date', type : 'date' },
 		{ name : 'spd_lt_10', type : 'integer' },
 		{ name : 'spd_lt_20', type : 'integer' },
 		{ name : 'spd_lt_30', type : 'integer' },
@@ -26,6 +24,7 @@ Ext.define('Fleet.model.VehicleSpeedSum', {
 		{ name : 'spd_lt_140', type : 'integer' },
 		{ name : 'spd_lt_150', type : 'integer' },
 		{ name : 'spd_lt_160', type : 'integer' },
+		{ name : 'updated_at', type : 'date' },
 		{ name : '_cud_flag_', type : 'string' }
 	],
 	

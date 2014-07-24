@@ -12,8 +12,9 @@ Ext.define('Fleet.view.vehicle_run_sum.VehicleRunSumForm', {
 	
 	items : [
 		{ name : 'id', fieldLabel : T('label.id'), hidden : true },
-		{ fieldLabel : T('label.vehicle'), name : 'vehicle', xtype : 'entityfield', storeClass : 'Fleet.store.Vehicle' },
-		{ xtype : 'datefield', name : 'run_date', fieldLabel : T('label.date'), format : T('format.date') },
+		{ fieldLabel : T('label.vehicle'), name : 'vehicle', xtype : 'entityfield', storeClass : 'Fleet.store.Vehicle', readOnly : true },
+		{ name : 'run_year', fieldLabel : T('label.year'), readOnly : true },
+		{ name : 'run_month', fieldLabel : T('label.month'), readOnly : true },
 		{ name : 'run_time', fieldLabel : T('label.run_time'), xtype : 'numberfield' },
 		{ name : 'run_dist', fieldLabel : T('label.run_dist'), xtype : 'numberfield' },
 		{ name : 'consmpt', fieldLabel : T('label.consmpt'), xtype : 'numberfield' },
@@ -28,8 +29,7 @@ Ext.define('Fleet.view.vehicle_run_sum.VehicleRunSumForm', {
 		{ name : 'inc_cnt', fieldLabel : T('label.inc_cnt'), xtype : 'numberfield' },
 		{ name : 'oos_cnt', fieldLabel : T('label.oos_cnt'), xtype : 'numberfield' },
 		{ name : 'mnt_cnt', fieldLabel : T('label.mnt_cnt'), xtype : 'numberfield' },
-		{ name : 'mnt_time', fieldLabel : T('label.mnt_time'), xtype : 'numberfield' },
-		{ xtype : 'timestamp' }
+		{ name : 'mnt_time', fieldLabel : T('label.mnt_time'), xtype : 'numberfield' }
 	],
 	
 	dockedItems: [ {

@@ -4,7 +4,7 @@ Ext.define('Fleet.model.VehicleConsumable', {
     
 	fields : [
 		{ name : 'id', type : 'string' },
-		{ name : 'domain_id', type : 'integer' },
+		{ name : 'domain_id', type : 'string' },
 		{ name : 'vehicle_id', type : 'string' },
 		{ name : 'vehicle', type : 'auto' },
 		{ name : 'name', type : 'string' },

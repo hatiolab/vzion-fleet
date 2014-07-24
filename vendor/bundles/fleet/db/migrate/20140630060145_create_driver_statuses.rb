@@ -5,11 +5,11 @@ class CreateDriverStatuses < ActiveRecord::Migration
 			t.references :domain, :null => false
 			t.references :driver, :null => false
 			t.string :status, :limit => 10
-			t.float :total_dist
-			t.float :total_runtime
-			t.float :avg_effcc
-			t.integer :eco_index
-			t.integer :eco_run_rate
+			t.float :total_dist, :default => 0
+			t.float :total_runtime, :default => 0
+			t.float :avg_effcc, :default => 0
+			t.integer :eco_index, :default => 0
+			t.integer :eco_run_rate, :default => 0
 			t.userstamps
 			t.timestamps
 		end

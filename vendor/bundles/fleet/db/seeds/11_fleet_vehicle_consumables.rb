@@ -7,7 +7,7 @@ vehicles.each do |vehicle|
       vehicle_id: vehicle.id,
       name: consumable.name,
       description: consumable.description,
-      status: VehicleStatus::HEALTHY,
+      status: VehicleStatus::HEALTH_HEALTHY,
       health_rate: 0,
       cycle_repl_mile: consumable.repl_mile,
       cycle_repl_duration: consumable.repl_duration,

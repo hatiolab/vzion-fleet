@@ -6,9 +6,9 @@ class CreateVehicleTraces < ActiveRecord::Migration
 			t.references :terminal, :null => false
 			t.references :vehicle
 			t.references :driver
-			t.float :lng
-			t.float :lat
-			t.float :velocity
+			t.float :lng, :default => 0
+			t.float :lat, :default => 0
+			t.float :velocity, :default => 0
 			t.datetime :trace_time
 		end
 

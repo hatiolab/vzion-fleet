@@ -15,12 +15,15 @@ Ext.define('Fleet.store.DriverRunSum', {
 	pageSize : 30,
 	
 	sorters : [ {
+		property : 'run_year',
+		direction : 'DESC'
+	}, {
+		property : 'run_month',
+		direction : 'DESC'
+	}, {
 		property : 'driver_id',
 		direction : 'ASC'
-	}, {
-		property : 'run_date',
-		direction : 'DESC'
-	} ],	
+	} ],
 	
 	proxy : {
 		type : 'rest',

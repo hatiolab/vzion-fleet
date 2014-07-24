@@ -98,17 +98,16 @@ checkin_summaries = VehicleCheckin.connection.select_all(sql)
 # Vehicle & Driver Summary By Checkin Data
 checkin_summaries.each do |checkin|
     vehicle_id = checkin['vehicle_id']
-    vehicle = Vehicle.find(vehicle_id)
+    vehicle_status = VehicleStatus.where("vehicle_id = ?", vehicle_id).first
     
     vehicle_run_sum = VehicleRunSum.where("vehicle_id = ? and run_year = ? and run_month = ?", vehicle_id, year, month).first
-    vehicle_run_sum = VehicleRunSum.new(vehicle_id: vehicle_id, run_year: year, run_month: month, run_day: today, run_date: today) unless vehicle_run_sum
-    
+    vehicle_run_sum = VehicleRunSum.new(vehicle_id: vehicle_id, run_year: year, run_month: month) unless vehicle_run_sum
     vehicle_run_sum.run_time = checkin['run_time'].to_i
     vehicle_run_sum.run_dist = checkin['run_dist'].to_i
     vehicle_run_sum.consmpt = checkin['fuel_consmpt'].to_i
     vehicle_run_sum.co2_emss = checkin['co2_emss'].to_f
     vehicle_run_sum.effcc = (vehicle_run_sum.run_dist.to_f / vehicle_run_sum.consmpt.to_f)
-    vehicle_run_sum.eco_index = (vehicle_run_sum.effcc.to_f / vehicle.vehicle_status.official_effcc.to_f).to_i * 100
+    vehicle_run_sum.eco_index = (vehicle_run_sum.effcc.to_f / vehicle_status.official_effcc.to_f).to_i * 100
     vehicle_run_sum.sud_accel_cnt = checkin['sud_accel_cnt'].to_i
     vehicle_run_sum.sud_brake_cnt = checkin['sud_brake_cnt'].to_i
     vehicle_run_sum.eco_drv_time = checkin['eco_drv_time'].to_i
@@ -117,7 +116,7 @@ checkin_summaries.each do |checkin|
     vehicle_run_sum.save!
     
     vehicle_spd_sum = VehicleSpeedSum.where("vehicle_id = ? and run_year = ? and run_month = ?", vehicle_id, year, month).first
-    vehicle_spd_sum = VehicleSpeedSum.new(vehicle_id: vehicle_id, run_year: year, run_month: month, run_day: today, run_date: today) unless vehicle_spd_sum
+    vehicle_spd_sum = VehicleSpeedSum.new(vehicle_id: vehicle_id, run_year: year, run_month: month) unless vehicle_spd_sum
     vehicle_spd_sum.spd_lt_10  = checkin['spd_lt_10'].to_i
     vehicle_spd_sum.spd_lt_20  = checkin['spd_lt_20'].to_i
     vehicle_spd_sum.spd_lt_30  = checkin['spd_lt_30'].to_i
@@ -135,8 +134,74 @@ checkin_summaries.each do |checkin|
     vehicle_spd_sum.spd_lt_150 = checkin['spd_lt_150'].to_i
     vehicle_spd_sum.spd_lt_160 = checkin['spd_lt_160'].to_i
     vehicle_spd_sum.save!
-	
-	# TODO Driver Summary
+end
+
+# Driver Summary
+
+sql = "
+    SELECT
+        DRIVER_ID,
+        SUM(RUN_TIME) RUN_TIME, SUM(RUN_DIST) RUN_DIST, SUM(IDLE_TIME) IDLE_TIME, 
+        SUM(ECO_DRV_TIME) ECO_DRV_TIME, AVG(AVG_SPEED) AVG_SPEED, MAX(MAX_SPEED),
+        SUM(FUEL_CONSMPT) FUEL_CONSMPT, AVG(FUEL_EFFCC) FUEL_EFFCC, 
+        SUM(SUD_ACCEL_CNT) SUD_ACCEL_CNT, SUM(SUD_BRAKE_CNT) SUD_BRAKE_CNT,
+        SUM(OVR_SPD_TIME) OVR_SPD_TIME, SUM(CO2_EMSS) CO2_EMSS, 
+        SUM(SPD_LT_10) SPD_LT_10, SUM(SPD_LT_20) SPD_LT_20, 
+        SUM(SPD_LT_30) SPD_LT_30, SUM(SPD_LT_40) SPD_LT_40, 
+        SUM(SPD_LT_50) SPD_LT_50, SUM(SPD_LT_60) SPD_LT_60,
+        SUM(SPD_LT_70) SPD_LT_70, SUM(SPD_LT_80) SPD_LT_80, 
+        SUM(SPD_LT_90) SPD_LT_90, SUM(SPD_LT_100) SPD_LT_100, 
+        SUM(SPD_LT_110) SPD_LT_110, SUM(SPD_LT_120) SPD_LT_120, 
+        SUM(SPD_LT_130) SPD_LT_130, SUM(SPD_LT_140) SPD_LT_140, 
+        SUM(SPD_LT_150) SPD_LT_150, SUM(SPD_LT_160) SPD_LT_160
+    FROM
+        VEHICLE_CHECKINS
+    WHERE
+        RUN_DATE >= '\#{from_date}' AND RUN_DATE <= '\#{to_date}'
+    GROUP BY
+        DRIVER_ID
+    ORDER BY
+        DRIVER_ID"
+
+checkin_summaries = VehicleCheckin.connection.select_all(sql)
+
+# Driver Summary By Checkin Data
+checkin_summaries.each do |checkin|
+    driver_id = checkin['driver_id']
+    driver_run_sum = DriverRunSum.where("driver_id = ? and run_year = ? and run_month = ?", driver_id, year, month).first
+    driver_run_sum = DriverRunSum.new(driver_id: driver_id, run_year: year, run_month: month) unless driver_run_sum
+    
+    driver_run_sum.run_time = checkin['run_time'].to_i
+    driver_run_sum.run_dist = checkin['run_dist'].to_i
+    driver_run_sum.consmpt = checkin['fuel_consmpt'].to_i
+    driver_run_sum.co2_emss = checkin['co2_emss'].to_f
+    driver_run_sum.effcc = (driver_run_sum.run_dist.to_f / driver_run_sum.consmpt.to_f)
+    driver_run_sum.sud_accel_cnt = checkin['sud_accel_cnt'].to_i
+    driver_run_sum.sud_brake_cnt = checkin['sud_brake_cnt'].to_i
+    driver_run_sum.eco_drv_time = checkin['eco_drv_time'].to_i
+    driver_run_sum.ovr_spd_time = checkin['eco_drv_time'].to_i
+    driver_run_sum.idle_time = checkin['idle_time'].to_i
+    driver_run_sum.save!
+    
+    driver_spd_sum = DriverSpeedSum.where("driver_id = ? and run_year = ? and run_month = ?", driver_id, year, month).first
+    driver_spd_sum = DriverSpeedSum.new(driver_id: driver_id, run_year: year, run_month: month) unless driver_spd_sum
+    driver_spd_sum.spd_lt_10  = checkin['spd_lt_10'].to_i
+    driver_spd_sum.spd_lt_20  = checkin['spd_lt_20'].to_i
+    driver_spd_sum.spd_lt_30  = checkin['spd_lt_30'].to_i
+    driver_spd_sum.spd_lt_40  = checkin['spd_lt_40'].to_i
+    driver_spd_sum.spd_lt_50  = checkin['spd_lt_50'].to_i
+    driver_spd_sum.spd_lt_60  = checkin['spd_lt_60'].to_i
+    driver_spd_sum.spd_lt_70  = checkin['spd_lt_70'].to_i
+    driver_spd_sum.spd_lt_80  = checkin['spd_lt_80'].to_i
+    driver_spd_sum.spd_lt_90  = checkin['spd_lt_90'].to_i
+    driver_spd_sum.spd_lt_100 = checkin['spd_lt_100'].to_i
+    driver_spd_sum.spd_lt_110 = checkin['spd_lt_110'].to_i
+    driver_spd_sum.spd_lt_120 = checkin['spd_lt_120'].to_i
+    driver_spd_sum.spd_lt_130 = checkin['spd_lt_130'].to_i
+    driver_spd_sum.spd_lt_140 = checkin['spd_lt_140'].to_i
+    driver_spd_sum.spd_lt_150 = checkin['spd_lt_150'].to_i
+    driver_spd_sum.spd_lt_160 = checkin['spd_lt_160'].to_i
+    driver_spd_sum.save!
 end
 
 [ {:success => true, :msg => :success} ]

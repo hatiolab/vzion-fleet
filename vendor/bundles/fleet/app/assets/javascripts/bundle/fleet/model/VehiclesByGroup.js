@@ -3,7 +3,7 @@ Ext.define('Fleet.model.VehiclesByGroup', {
 	extend : 'Ext.data.Model',
 	
 	fields : [
-		{ name : 'id', type : 'integer' },
+		{ name : 'id', type : 'string' },
 		{ name : 'vehicle', type : 'auto' },
 		{ name : 'name', type : 'string' },
 		{ name : 'description', type : 'string' },

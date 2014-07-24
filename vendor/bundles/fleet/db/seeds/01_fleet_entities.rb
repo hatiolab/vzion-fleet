@@ -8,10 +8,10 @@ Entity.setup Location, {:bundle =>'fleet'} do
 end
 
 Entity.setup Consumable, {:bundle =>'fleet'} do
-  @list_columns = ['name', 'description', 'unit', 'initial_mileage', 'initial_duration', 'last_mileage', 'last_duration', 'updater_id', 'updated_at']
+  @list_columns = ['name', 'description', 'unit', 'init_repl_mile', 'init_repl_duration', 'repl_mile', 'repl_duration', 'updater_id', 'updated_at']
   @search_columns = ['name', 'description']
   @sort_columns = ['name']
-  @editable_columns = ['name', 'description', 'unit', 'initial_mileage', 'initial_duration', 'last_mileage', 'last_duration']
+  @editable_columns = ['name', 'description', 'unit', 'init_repl_mile', 'init_repl_duration', 'repl_mile', 'repl_duration']
 end
 
 Entity.setup VehicleGroup, {:bundle =>'fleet'} do
@@ -50,17 +50,17 @@ Entity.setup VehicleConsumable, {:bundle =>'fleet'} do
 end
 
 Entity.setup VehicleRunSum, {:bundle =>'fleet'} do
-  @list_columns = ['vehicle_id','run_date','run_time','run_dist','consmpt','co2_emss','effcc','eco_index','sud_accel_cnt','sud_break_cnt','eco_drv_time' ,'ovr_spd_time','idle_time','inc_cnt','oos_cnt','mnt_cnt','mnt_time']
-  @search_columns = ['vehicle_id','run_date','run_time']
-  @sort_columns = ['run_time']
+  @list_columns = ['vehicle_id','run_year','run_month','run_time','run_dist','consmpt','co2_emss','effcc','eco_index','sud_accel_cnt','sud_break_cnt','eco_drv_time' ,'ovr_spd_time','idle_time','inc_cnt','oos_cnt','mnt_cnt','mnt_time']
+  @search_columns = ['vehicle_id','run_year']
+  @sort_columns = ['run_year','run_month','vehicle_id']
   @editable_columns = ['run_time','run_dist','consmpt','co2_emss','effcc','eco_index','sud_accel_cnt','sud_break_cnt','eco_drv_time' ,'ovr_spd_time','idle_time','inc_cnt','oos_cnt','mnt_cnt','mnt_time']
 end
 
 Entity.setup VehicleSpeedSum, {:bundle =>'fleet'} do
-  @list_columns = ['vehicle_id','run_date','spd_lt_10','spd_lt_20','spd_lt_30','spd_lt_40','spd_lt_50','spd_lt_60','spd_lt_70','spd_lt_80','spd_lt_90','spd_lt_100','spd_lt_110','spd_lt_120','spd_lt_130','spd_lt_140','spd_lt_150','spd_lt_160']
-  @search_columns = ['vehicle_id','run_date']
-  @sort_columns = ['run_date', 'vehicle_id']
-  @editable_columns = ['vehicle_id','run_date','spd_lt_10','spd_lt_20','spd_lt_30','spd_lt_40','spd_lt_50','spd_lt_60','spd_lt_70','spd_lt_80','spd_lt_90','spd_lt_100','spd_lt_110','spd_lt_120','spd_lt_130','spd_lt_140','spd_lt_150','spd_lt_160']
+  @list_columns = ['vehicle_id','run_year','run_month','spd_lt_10','spd_lt_20','spd_lt_30','spd_lt_40','spd_lt_50','spd_lt_60','spd_lt_70','spd_lt_80','spd_lt_90','spd_lt_100','spd_lt_110','spd_lt_120','spd_lt_130','spd_lt_140','spd_lt_150','spd_lt_160']
+  @search_columns = ['vehicle_id','run_year']
+  @sort_columns = ['vehicle_id','run_year','run_month']
+  @editable_columns = ['spd_lt_10','spd_lt_20','spd_lt_30','spd_lt_40','spd_lt_50','spd_lt_60','spd_lt_70','spd_lt_80','spd_lt_90','spd_lt_100','spd_lt_110','spd_lt_120','spd_lt_130','spd_lt_140','spd_lt_150','spd_lt_160']
 end
 
 Entity.setup VehicleTrace, {:bundle =>'fleet'} do
@@ -92,17 +92,17 @@ Entity.setup DriverStatus, {:bundle =>'fleet'} do
 end
 
 Entity.setup DriverRunSum, {:bundle =>'fleet'} do
-  @list_columns = ['driver_id','run_date','run_time','run_dist','consmpt','co2_emss','effcc','eco_index','sud_accel_cnt','sud_break_cnt','eco_drv_time' ,'ovr_spd_time','idle_time','inc_cnt']
-  @search_columns = ['driver_id','run_date','run_time']
-  @sort_columns = ['run_time']
+  @list_columns = ['driver_id','run_year','run_month','run_time','run_dist','consmpt','co2_emss','effcc','eco_index','sud_accel_cnt','sud_break_cnt','eco_drv_time' ,'ovr_spd_time','idle_time','inc_cnt']
+  @search_columns = ['driver_id','run_year','run_month']
+  @sort_columns = ['driver_id','run_year','run_month']
   @editable_columns = ['run_time','run_dist','consmpt','co2_emss','effcc','eco_index','sud_accel_cnt','sud_break_cnt','eco_drv_time' ,'ovr_spd_time','idle_time','inc_cnt']
 end
 
 Entity.setup DriverSpeedSum, {:bundle =>'fleet'} do
-  @list_columns = ['driver_id','run_date','spd_lt_10','spd_lt_20','spd_lt_30','spd_lt_40','spd_lt_50','spd_lt_60','spd_lt_70','spd_lt_80','spd_lt_90','spd_lt_100','spd_lt_110','spd_lt_120','spd_lt_130','spd_lt_140','spd_lt_150','spd_lt_160']
-  @search_columns = ['driver_id','run_date']
-  @sort_columns = ['run_date', 'driver_id']
-  @editable_columns = ['driver_id','run_date','spd_lt_10','spd_lt_20','spd_lt_30','spd_lt_40','spd_lt_50','spd_lt_60','spd_lt_70','spd_lt_80','spd_lt_90','spd_lt_100','spd_lt_110','spd_lt_120','spd_lt_130','spd_lt_140','spd_lt_150','spd_lt_160']
+  @list_columns = ['driver_id','run_year','run_month','spd_lt_10','spd_lt_20','spd_lt_30','spd_lt_40','spd_lt_50','spd_lt_60','spd_lt_70','spd_lt_80','spd_lt_90','spd_lt_100','spd_lt_110','spd_lt_120','spd_lt_130','spd_lt_140','spd_lt_150','spd_lt_160']
+  @search_columns = ['driver_id','run_year','run_month']
+  @sort_columns = ['driver_id','run_year','run_month']
+  @editable_columns = ['spd_lt_10','spd_lt_20','spd_lt_30','spd_lt_40','spd_lt_50','spd_lt_60','spd_lt_70','spd_lt_80','spd_lt_90','spd_lt_100','spd_lt_110','spd_lt_120','spd_lt_130','spd_lt_140','spd_lt_150','spd_lt_160']
 end
 
 Entity.setup Terminal, {:bundle =>'fleet'} do

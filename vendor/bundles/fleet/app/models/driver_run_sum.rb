@@ -2,6 +2,6 @@ class DriverRunSum < ActiveRecord::Base
 
   include Multitenant
   
-	belongs_to :vehicle
+	belongs_to :driver
 	
 end

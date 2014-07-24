@@ -3,12 +3,12 @@ Ext.define('Fleet.model.VehicleCheckin', {
 	extend : 'Ext.data.Model',
     
 	fields : [
-		{ name : 'id', type : 'integer' },
-		{ name : 'terminal_id', type : 'integer' },
+		{ name : 'id', type : 'string' },
+		{ name : 'terminal_id', type : 'string' },
 		{ name : 'terminal', type : 'auto' },
-		{ name : 'vehicle_id', type : 'integer' },
+		{ name : 'vehicle_id', type : 'string' },
 		{ name : 'vehicle', type : 'auto' },
-		{ name : 'driver_id', type : 'integer' },
+		{ name : 'driver_id', type : 'string' },
 		{ name : 'driver', type : 'auto' },
 		{ name : 'run_date', type : 'date' },
 		{ name : 'start_time', type : 'date' },

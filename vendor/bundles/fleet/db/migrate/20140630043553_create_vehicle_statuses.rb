@@ -8,13 +8,13 @@ class CreateVehicleStatuses < ActiveRecord::Migration
 			t.references :terminal
 			t.string :status, :limit => 10
 			t.string :health_status, :limit => 10
-			t.float :total_dist
-			t.float :total_runtime
-			t.float :remain_fuel
-			t.float :official_effcc
-			t.float :avg_effcc
-			t.integer :eco_index
-			t.integer :eco_run_rate
+			t.float :total_dist, :default => 0
+			t.float :total_runtime, :default => 0
+			t.float :remain_fuel, :default => 0
+			t.float :official_effcc, :default => 0
+			t.float :avg_effcc, :default => 0
+			t.integer :eco_index, :default => 0
+			t.integer :eco_run_rate, :default => 0
 			t.float :lat
 			t.float :lng
 			t.userstamps

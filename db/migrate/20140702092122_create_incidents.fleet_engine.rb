@@ -7,18 +7,18 @@ class CreateIncidents < ActiveRecord::Migration
 			t.references :terminal, :null => false
 			t.references :vehicle
 			t.references :driver
-			t.float :lat
-			t.float :lng
-			t.float :velocity
-			t.float :impulse_x
-			t.float :impulse_y
-			t.float :impulse_z
-			t.float :impulse_abs
-			t.float :impulse_threshold
-			t.float :engine_temp
-			t.float :engine_temp_threshold
-			t.boolean :obd_connected
-			t.boolean :confirm
+			t.float :lat, :default => 0
+			t.float :lng, :default => 0
+			t.float :velocity, :default => 0
+			t.float :impulse_x, :default => 0
+			t.float :impulse_y, :default => 0
+			t.float :impulse_z, :default => 0
+			t.float :impulse_abs, :default => 0
+			t.float :impulse_threshold, :default => 0
+			t.float :engine_temp, :default => 0
+			t.float :engine_temp_threshold, :default => 0
+			t.boolean :obd_connected, :default => false
+			t.boolean :confirm, :default => false
 			t.string :video_clip, :limit => 255
 			t.userstamps
 			t.timestamps
@@ -32,3 +32,4 @@ class CreateIncidents < ActiveRecord::Migration
 	end
 
 end
+

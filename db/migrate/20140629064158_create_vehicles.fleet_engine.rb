@@ -11,8 +11,8 @@ class CreateVehicles < ActiveRecord::Migration
 			t.string :classicfication, :limit => 32
 			t.string :fuel_type, :limit => 15
 			t.string :ownership, :limit => 15
-			t.integer :birth_year
-			t.integer :seat_size
+			t.integer :birth_year, :default => 0
+			t.integer :seat_size, :default => 0
 			t.userstamps
 			t.timestamps
 		end
@@ -23,7 +23,6 @@ class CreateVehicles < ActiveRecord::Migration
 		add_index :vehicles, [:domain_id, :fuel_type], :name => :ix_vehicle_3
 		add_index :vehicles, [:domain_id, :ownership], :name => :ix_vehicle_4
 		add_index :vehicles, [:domain_id, :birth_year], :name => :ix_vehicle_5
-		add_index :vehicles, [:domain_id, :seat_size], :name => :ix_vehicle_6
 	end
 
 end

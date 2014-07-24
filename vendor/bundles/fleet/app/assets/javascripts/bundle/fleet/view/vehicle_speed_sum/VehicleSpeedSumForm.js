@@ -12,11 +12,9 @@ Ext.define('Fleet.view.vehicle_speed_sum.VehicleSpeedSumForm', {
 	
 	items : [
 		{ name : 'id', fieldLabel : T('label.id'), hidden : true },
-		{ fieldLabel : T('label.vehicle'), name : 'vehicle', xtype : 'entityfield', storeClass : 'Fleet.store.Vehicle' },
-		{ name : 'run_year', fieldLabel : T('label.run_year'), xtype : 'numberfield' },
-		{ name : 'run_month', fieldLabel : T('label.run_month'), xtype : 'numberfield' },
-		{ name : 'run_day', fieldLabel : T('label.run_day'), xtype : 'numberfield' },
-		{ xtype : 'datefield', name : 'run_date', fieldLabel : T('label.run_date'), format : T('format.date') },
+		{ fieldLabel : T('label.vehicle'), name : 'vehicle', xtype : 'entityfield', storeClass : 'Fleet.store.Vehicle', readOnly : true },
+		{ name : 'run_year', fieldLabel : T('label.year'), readOnly : true },
+		{ name : 'run_month', fieldLabel : T('label.month'), readOnly : true },
 		{ name : 'spd_lt_10', fieldLabel : T('label.spd_lt_10'), xtype : 'numberfield' },
 		{ name : 'spd_lt_20', fieldLabel : T('label.spd_lt_20'), xtype : 'numberfield' },
 		{ name : 'spd_lt_30', fieldLabel : T('label.spd_lt_30'), xtype : 'numberfield' },
@@ -32,8 +30,7 @@ Ext.define('Fleet.view.vehicle_speed_sum.VehicleSpeedSumForm', {
 		{ name : 'spd_lt_130', fieldLabel : T('label.spd_lt_130'), xtype : 'numberfield' },
 		{ name : 'spd_lt_140', fieldLabel : T('label.spd_lt_140'), xtype : 'numberfield' },
 		{ name : 'spd_lt_150', fieldLabel : T('label.spd_lt_150'), xtype : 'numberfield' },
-		{ name : 'spd_lt_160', fieldLabel : T('label.spd_lt_160'), xtype : 'numberfield' },
-		{ xtype : 'timestamp' }
+		{ name : 'spd_lt_160', fieldLabel : T('label.spd_lt_160'), xtype : 'numberfield' }
 	],
 	
 	dockedItems: [ {

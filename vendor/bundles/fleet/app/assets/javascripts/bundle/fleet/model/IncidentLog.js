@@ -3,12 +3,12 @@ Ext.define('Fleet.model.IncidentLog', {
 	extend : 'Ext.data.Model',
     
 	fields : [
-		{ name : 'id', type : 'integer' },
-		{ name : 'domain_id', type : 'integer' },
-		{ name : 'incident_id', type : 'integer' },
-		{ name : 'terminal_id', type : 'integer' },
-		{ name : 'vehicle_id', type : 'integer' },
-		{ name : 'driver_id', type : 'integer' },
+		{ name : 'id', type : 'string' },
+		{ name : 'domain_id', type : 'string' },
+		{ name : 'incident_id', type : 'string' },
+		{ name : 'terminal_id', type : 'string' },
+		{ name : 'vehicle_id', type : 'string' },
+		{ name : 'driver_id', type : 'string' },
 		{ name : 'lat', type : 'float' },
 		{ name : 'lng', type : 'float' },
 		{ name : 'velocity', type : 'integer' },
