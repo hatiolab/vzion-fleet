@@ -15,7 +15,7 @@ class Vehicle < ActiveRecord::Base
   
   has_one :vehicle_status
   has_many :vehicle_consumables
-  has_many :repairs
+  has_many :repairs, -> { order('created_at desc') }
 
   after_create do
     VehicleStatus.create!({:vehicle_id => self.id, :status => :None.to_s, :health_status => :None.to_s})
