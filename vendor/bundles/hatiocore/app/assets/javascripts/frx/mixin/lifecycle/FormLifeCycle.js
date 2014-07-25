@@ -89,9 +89,6 @@ Ext.define('Frx.mixin.lifecycle.FormLifeCycle', {
 				
 					if(errors.isValid()) {
 						var recId = record.get("id");
-						if(recId == '' || recId == '0' || recId == 0) {
-							record.data.id = null;
-						}
 						
 						record.save({
 							success : function(record, operation) {
