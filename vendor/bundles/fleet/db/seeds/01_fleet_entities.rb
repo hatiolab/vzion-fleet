@@ -125,3 +125,10 @@ Entity.setup Task, {:bundle =>'fleet'} do
   @sort_columns = ['title']
   @editable_columns = ['title', 'start_date', 'end_date']
 end
+
+Entity.setup LocationAlarm, {:bundle =>'fleet'} do
+  @list_columns = ['name', 'transfer_type', 'evt_type', 'evt_name', 'evt_trg', 'always', 'enabled', 'from_date', 'to_date']
+  @search_columns = ['name']
+  @sort_columns = ['name']
+  @editable_columns = ['name', 'transfer_type', 'evt_type', 'evt_name', 'evt_trg', 'always', 'enabled', 'from_date', 'to_date']
+end

@@ -26,7 +26,9 @@ T({
 		'Information' : 'Information',
 		'Incident' : 'Abnormal Situation',
 		'VehicleRepair' : 'Maintenance History',
-		'TaskCalendar' : 'Schedule'
+		'TaskCalendar' : 'Schedule',
+		'LocationAlarm' : 'Location Alarm',
+		'LocationAlarmVehicle' : 'Vehicle List'
 	},
 	title : {
 	},
@@ -160,7 +162,15 @@ T({
 		'all_day' : 'All Day?',
 		'reminder' : 'Reminder',
 		'notes' : 'Notes',
-		'loc' : 'Location'
+		'loc' : 'Location',
+		'evt_type' : 'Event Type',
+		'evt_name' : 'Event',
+		'evt_trg' : 'Event Trigger',
+		'always' : 'Period Always',
+		'enabled' : 'Enabled',
+		'from_date' : 'From Date',
+		'to_date' : 'To Date',
+		'alarm_name' : 'Alarm Name'
 	},
 	button : {
 		'simulation' : 'Simulation',

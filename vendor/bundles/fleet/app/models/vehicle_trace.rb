@@ -8,12 +8,73 @@ class VehicleTrace < ActiveRecord::Base
   
   after_create do
     if(self.vehicle)
+      lat_hist = self.changes['lat']
+      lng_hist = self.changes['lng']
+      
+      prev_vehicle_lat = lat_hist[0].nil? ? 0 : lat_hist[0]
+      current_vehicle_lat = lat_hist[1].nil? ? 0 : lat_hist[1]
+      
+      prev_vehicle_lng = lng_hist[0].nil? ? 0 : lng_hist[0]
+      current_vehicle_lng = lng_hist[1].nil? ? 0 : lng_hist[1]
+      
+      
       vehicle_status = self.vehicle.vehicle_status
       vehicle_status.lat = self.lat
       vehicle_status.lng = self.lng
       vehicle_status.status = VehicleStatus::STATUS_RUN
       vehicle_status.save!
+      
+      location_alarm = self.check_location_based_alarm(self.vehicle.id, prev_vehicle_lat, current_vehicle_lat, prev_vehicle_lng, current_vehicle_lng)
+      
+      if(!location_alarm.blank?)
+        location_alarm['vehicle'] = self.vehicle
+        begin
+          LocationAlarmMailer.location(location_alarm).deliver
+        rescue
+          logger.error "Failed to sending mail!"
+        end
+      end
     end
+  end
+  
+  def check_location_based_alarm(vehicle_id, prev_vehicle_lat, current_vehicle_lat, prev_vehicle_lng, current_vehicle_lng)
+    sql = "
+    select
+      alarm_name,
+      loc_name,
+      event_type
+    from (
+        select
+          a.name alarm_name,
+          l.name loc_name,
+          case
+          when
+            (a.evt_trg ='In' or a.evt_trg = 'In-Out') and
+            (l.lat_low <= '#{current_vehicle_lat}' and l.lat_hi >= '#{current_vehicle_lat}' and l.lng_low <= '#{current_vehicle_lng}' and l.lng_hi >= '#{current_vehicle_lng}') and
+            not (l.lat_low <= '#{prev_vehicle_lat}' and l.lat_hi >= '#{prev_vehicle_lat}' and l.lng_low <= '#{prev_vehicle_lng}' and l.lng_hi >= '#{prev_vehicle_lng}')
+          then
+            'in'
+          when
+            (a.evt_trg = 'Out' or a.evt_trg = 'In-Out') and
+            not (l.lat_low <= '#{current_vehicle_lat}' and l.lat_hi >= '#{current_vehicle_lat}' and l.lng_low <= '#{current_vehicle_lng}' and l.lng_hi >= '#{current_vehicle_lng}') and
+            (l.lat_low <= '#{prev_vehicle_lat}' and l.lat_hi >= '#{prev_vehicle_lat}' and l.lng_low <= '#{prev_vehicle_lng}' and l.lng_hi >= '#{prev_vehicle_lng}')
+          then
+            'out'
+          else
+            'no'
+          end event_type
+      from
+          location_alarms a,
+          location_alarm_vehicles avr,
+          locations l
+        where
+          avr.vehicle_id = '#{vehicle_id}'
+    )tbl
+  where
+      tbl.event_type != 'no'"
+    
+    results = VehicleTrace.connection.select_all(sql).first
+    results
   end
 	
 end

@@ -1,5 +1,17 @@
 Fleet::Engine.routes.draw do
   # RESOURCES BEGIN BLOCK DON'T REMOVE
+	resources :location_alarms do
+		collection do
+			post :update_multiple
+			get :show_by_name
+			get :export
+		end
+    member do
+      get :location_alarm_vehicles
+      post :update_location_alarm_vehicles
+    end
+	end
+
 	resources :tasks do
 		collection do
 			post :update_multiple

@@ -3,6 +3,7 @@
 Menu.setup :Company, {:rank => 1000} do
   submenu :Location, {:rank => 1100, :template => 'Fleet.view.location.Location'}
   submenu :Consumable, {:rank => 1200, :template => 'Fleet.view.consumable.Consumable'}
+  submenu :LocationAlarm, {:rank => 1300, :template => 'Fleet.view.location_alarm.LocationAlarm'}
 end
 
 Menu.setup :Vehicle, {:rank => 2000} do

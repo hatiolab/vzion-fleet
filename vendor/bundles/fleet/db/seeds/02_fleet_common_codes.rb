@@ -59,3 +59,20 @@ CommonCode.setup :REPLACE_UNIT, {:description => 'Consumable Replacement Unit'} 
   code 'Mileage' => 'Mileage'
   code 'Both' => 'Mileage & Duration'
 end
+
+CommonCode.setup :EVENT_TRIGGER, {:description => 'Event Trigger'} do
+  code 'In' => 'In'
+  code 'In-Out' => 'In-Out'
+  code 'Out' => 'Out'
+end
+
+CommonCode.setup :EVENT_TYPE, {:description => 'Event Type'} do
+  code 'Location' => 'Location'
+end
+
+CommonCode.setup :TRANSFER_TYPE, {:description => 'Transfer Type'} do
+  code 'Mail' => 'Mail'
+end
+
+CommonCode.setup :LOCATION_ALARM_MAILING, {:description => 'jyp@hatiolab.com'} do
+end

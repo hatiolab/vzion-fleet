@@ -90,6 +90,10 @@ Ext.define('Frx.mixin.lifecycle.FormLifeCycle', {
 					if(errors.isValid()) {
 						var recId = record.get("id");
 						
+						if(recId == '' || recId == '0' || recId == 0) {
+							record.data.id = null;
+						}
+						
 						record.save({
 							success : function(record, operation) {
 								// 저장을 성공하면, 그 결과로 변경된 데이타를 다시 넘겨주기로 약정한다.
