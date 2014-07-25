@@ -32,10 +32,13 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 				tabchange : this.onTabChange
 			}),
 			'fleet_vehicle_form' : this.FormEventHandler(),
-			'fleet_vehicle_repair' : this.ListEventHandler({
-				after_load_item : this.onAfterLoadItemForRepair
-			}),
-			'fleet_vehicle_track' : this.FormEventHandler()
+			'fleet_vehicle_repair' : this.ListEventHandler(),
+			'fleet_vehicle_track' : this.FormEventHandler(),
+			'fleet_vehicle_consumable' : this.ListEventHandler(),
+			'fleet_vehicle_consumable #item_grid' : {
+				itemclick : this.onConsumableItemClick,
+				cellclick : this.onConsumableCellClick
+			}
 		});
 	},
 
@@ -51,15 +54,12 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 			this.loadTrack(trackView, params);
 		}
 	},
-
+	
 	/**
-	 * after load item event fired to repair tab 
+	 * 현재 선택된 vehicle record 정보를 리턴한다.
 	 */
-	onAfterLoadItemForRepair : function(view, record) {
-		this.record = record;
-		var store = view.getStore();
-		store.proxy.url = "vehicles/" + this.record.get('id') + "/repairs.json";
-		store.load();
+	getRecord : function() {
+		return HF.current.view().child('fleet_vehicle_form').getRecord();
 	},
 	
 	/**
@@ -79,7 +79,6 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 	newRecord : function(grid) {
 		return Ext.create(grid.getStore().model, {
 			id : null,
-			domain_id : grid.up().getParams().domain_id,
 			vehicle_id : HF.current.resource().id,
 			next_repair_date : '',
 			repair_date : '',
@@ -99,12 +98,26 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 	 * tab 변경시
 	 */
 	onTabChange : function(tabPanel, newCard, oldCard, eOpts) {
+		
+		// 1. track tab
 		if (newCard.xtype == 'fleet_vehicle_track') {
 			var params = { 'trace_time-dt_eq' : Ext.Date.format(new Date(), 'Y-m-d') };
 			var searchForm = newCard.down('searchform');
 			searchForm.getForm().setValues(params);
 			newCard.initMap();
 			this.loadTrack(newCard, params);
+			
+		// 2. consumable tab
+		} else if (newCard.xtype == 'fleet_vehicle_consumable') {
+			var store = newCard.child(' #item_grid').getStore();
+			store.proxy.extraParams = { '_q[vehicle_id-eq]' : this.getRecord().get('id') };
+			store.load();
+			
+		// 3. repair tab
+		} else if (newCard.xtype == 'fleet_vehicle_repair') {
+			var store = newCard.getStore();
+			store.proxy.url = "vehicles/" + this.getRecord().get('id') + "/repairs.json";
+			store.load();
 		}
 	},
 	
@@ -115,7 +128,7 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 		var store = Ext.create('Fleet.store.VehicleTrace');
 		store.load({
 			params : {
-				'_q[vehicle_id-eq]' : this.record.get('id'),
+				'_q[vehicle_id-eq]' : this.getRecord().get('id'),
 				'_q[trace_time-dt_eq]' : params['trace_time-dt_eq']
 			},
 			callback : function(records, operation, success) {
@@ -124,5 +137,55 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 				}
 			}
 		})
+	},
+	
+	/**
+	 * consumable item grid click시 
+	 */
+	onConsumableItemClick : function(row, record, item, index, e, eOpts) {
+		var consumableView = HF.current.view().child('fleet_vehicle_consumable');
+		consumableView.down('form').loadRecord(record);
+		var histStore = consumableView.child('#consumable_hist_grid').getStore();
+		histStore.proxy.url = "vehicle_consumables/" + record.get('id') + "/consumable_hists";
+		histStore.load();
+	},
+	
+	/**
+	 * consumable cell click시 
+	 */
+	onConsumableCellClick : function(table, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+		if(cellIndex == 4) {
+		} else if(cellIndex == 5) {
+			HF.msg.confirm({
+				msg : T('text.Sure to Save'),
+				fn : function(btn) {
+					if(btn == 'yes') {
+						this.doTransaction('vehicle_consumables/transaction.json', 'model', 'replace_consumable', 'instance', record.get('id'), this.refreshVehicleConsumable);
+					}
+				},
+				scope: this
+			});
+		}
+	},
+	
+	refreshVehicleConsumable : function() {
+		var store = HF.current.view().child(' #item_grid').getStore();
+		store.proxy.extraParams = { '_q[vehicle_id-eq]' : this.getRecord().get('id') };
+		store.load();
+	},
+	
+	doTransaction : function(url, callType, tranName, logicType, instanceId, callbackFunc) {
+    	Ext.Ajax.request({
+		    url : url,
+		    method : 'POST',
+			params : { 
+				call_type : callType,
+				tran_name : tranName, 
+				logic_type : logicType, 
+				instance_id : instanceId
+			},
+		    success : callbackFunc,
+			scope : this
+		});
 	}
 });

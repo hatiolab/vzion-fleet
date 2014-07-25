@@ -5,7 +5,8 @@ Ext.define('Fleet.view.vehicle.VehicleItem', {
  	requires : [ 
 		'Fleet.view.vehicle.VehicleForm',
 		'Fleet.view.vehicle.VehicleRepair',
-		'Fleet.view.vehicle.VehicleTrack'
+		'Fleet.view.vehicle.VehicleTrack',
+		'Fleet.view.vehicle.VehicleConsumable'
 	],
 	
 	mixins : {
@@ -19,8 +20,10 @@ Ext.define('Fleet.view.vehicle.VehicleItem', {
 	items : [ {
 		xtype : 'fleet_vehicle_form'
 	}, {
-		xtype : 'fleet_vehicle_repair'
-	}, {
 		xtype : 'fleet_vehicle_track'
+	}, {
+		xtype : 'fleet_vehicle_consumable'
+	}, {
+		xtype : 'fleet_vehicle_repair'
 	} ]
 });

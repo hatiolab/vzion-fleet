@@ -1,4 +1,32 @@
 class VehicleConsumablesController < ResourceMultiUpdateController
+
+public
+  #
+  # GET vehicle_consumables/:id/consumable_hists
+  #
+  def consumable_hists
+    @collection = ConsumableHist.where("vehicle_consumable_id = ?", params[:id]).limit(30)
+    @total_count = @collection.size
+  end
+  
+  #
+  # POST resources/transaction
+  #
+  def transaction
+    call_type, result = 'model', nil
+    
+    if('instance' == params[:logic_type])
+      resource = resource_class.find(params[:instance_id])
+      result = resource.send(params[:tran_name], params)
+    else
+      result = resource_class.send(params[:tran_name], params);
+    end
+    
+    respond_to do |format|
+      format.xml  { render :xml => { :success => true, :msg => :success, :result => result } }
+      format.json { render :json => { :success => true, :msg => :success, :result => result } }
+    end
+  end
   
 private
   def resource_params

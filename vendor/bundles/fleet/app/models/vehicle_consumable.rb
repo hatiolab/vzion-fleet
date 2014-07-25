@@ -28,6 +28,9 @@ class VehicleConsumable < ActiveRecord::Base
     self.description = params[:description] if(params && !params[:description].blank?)
     self.cumulative_cost += params[:cost].to_i if(params && !params[:cost].blank?)
     self.save!
+    
+    # 소모품 교체 이력 추가 
+    ConsumableHist.add_history(self)
   end
   
   #
@@ -43,21 +46,23 @@ class VehicleConsumable < ActiveRecord::Base
   # 소모품 교체 단위가 Mileage일 경우 impending rate 계산, 현재 차량 주행거리에서 마지막 교체 주행거리를 빼서 그 값과 교체 주행거리와의 비율을 계산
   #
   def calc_impending_rate_by_miles
-    return -1 if(self.cycle_repl_mile < 0)
+    return -1 if(self.cycle_repl_mile <= 0)
     current_miles = self.vehicle.vehicle_status.total_dist
     miles_after_repl = current_miles - self.last_repl_mile
-    return (miles_after_repl <= 0) ? 0 : (miles_after_repl.to_f / self.cycle_repl_mile.to_f);
+    val = (miles_after_repl <= 0) ? 0 : (miles_after_repl.to_f / self.cycle_repl_mile.to_f);
+    return val * 100
   end
   
   #
   # 소모품 교체 단위가 Duration일 경우 health rate 계산, 오늘 날짜에서 마지막 교체일을 빼서 그 값과 교체일의 비율을 계산
   #
   def calc_impending_rate_by_duration
-    return -1 if(self.cycle_repl_duration < 0)
+    return -1 if(self.cycle_repl_duration <= 0)
     self.last_repl_date = Date.today unless self.last_repl_date
     repl_days = self.cycle_repl_duration * 30       # 교체일수
     fast_days = Date.today - self.last_repl_date    # 마지막 교체 후 지나온 일수
-    return (fast_days.to_f / repl_days.to_f)
+    val = (fast_days.to_f / repl_days.to_f)
+    return val * 100
   end
   
   #
