@@ -37,7 +37,7 @@ class VehicleStatus < ActiveRecord::Base
       end
     end
     
-    self.status = state
+    self.health_status = state
     self.save!
   end
   

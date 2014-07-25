@@ -23,7 +23,9 @@ Ext.define('Fleet.controller.vehicle_trace.VehicleTrace', {
 		this.callParent(arguments);
 		
 		this.control({
-			'fleet_vehicle_trace' : this.EntryPoint(),
+			'fleet_vehicle_trace' : this.EntryPoint({
+				click_simulation : this.onSimulation
+			}),
 			'fleet_vehicle_trace #goto_item' : {
 				click : this.onGotoItem
 			}
@@ -35,19 +37,22 @@ Ext.define('Fleet.controller.vehicle_trace.VehicleTrace', {
 	 */
 	beforeParamsChange : function(grid, params) {
 		params = params ? params : {};
-		var today = new Date();
-		
-		if(!params['trace_time-lte']) {
-			params['trace_time-lte'] = today;
+		if(!params['trace_time-dt_eq']) {
+			params['trace_time-dt_eq'] = new Date();
 		}
-		
-		if(!params['trace_time-gte']) {
-			var yesterDay = new Date();
-			yesterDay.setDate(yesterDay.getDate() - 1);
-			params['trace_time-gte'] = yesterDay;
-		}
-		
 		return params;
+	},
+	
+	onSimulation : function() {
+    	Ext.Ajax.request({
+		    url : 'diy_services/FleetTraceSimulation/shoot.json',
+		    method : 'POST',
+		    success : function(response) {
+				HF.current.view().getStore().reload();
+				HF.msg.notice(T('text.Success to Create'));
+			},
+			scope : this
+		});
 	}
 
 });

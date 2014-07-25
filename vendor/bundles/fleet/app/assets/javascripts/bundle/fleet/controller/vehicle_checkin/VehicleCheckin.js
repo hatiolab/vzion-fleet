@@ -23,7 +23,10 @@ Ext.define('Fleet.controller.vehicle_checkin.VehicleCheckin', {
 		this.callParent(arguments);
 		
 		this.control({
-			'fleet_vehicle_checkin' : this.EntryPoint(),
+			'fleet_vehicle_checkin' : this.EntryPoint({
+				click_simulation : this.onSimulation,
+				click_summary : this.onSummary
+			}),
 			'fleet_vehicle_checkin #goto_item' : {
 				click : this.onGotoItem
 			}
@@ -31,22 +34,42 @@ Ext.define('Fleet.controller.vehicle_checkin.VehicleCheckin', {
 	},
 	
 	/**
-	 * override : grid reload전에 처리 할 것 처리
+	 * override
 	 */
 	beforeParamsChange : function(grid, params) {
 		params = params ? params : {};
-		var today = new Date();
-		
-		if(!params['run_date-lte']) {
-			params['run_date-lte'] = today;
+		if(!params['run_date-eq']) {
+			params['run_date-eq'] = new Date();
 		}
-		
-		if(!params['run_date-gte']) {
-			var beforeDay = new Date();
-			beforeDay.setDate(beforeDay.getDate() - 5);
-			params['run_date-gte'] = beforeDay;
-		}
-		
 		return params;
+	},
+	
+	/**
+	 * checkin data generation
+	 */
+	onSimulation : function() {
+    	Ext.Ajax.request({
+		    url : 'diy_services/FleetCheckinSimulation/shoot.json',
+		    method : 'POST',
+		    success : function(response) {
+				HF.current.view().getStore().reload();
+				HF.msg.notice(T('text.Success to Create'));
+			},
+			scope : this
+		});
+	},
+	
+	/**
+	 * summary data generation
+	 */
+	onSummary : function() {
+    	Ext.Ajax.request({
+		    url : 'diy_services/FleetSummary/shoot.json',
+		    method : 'POST',
+		    success : function(response) {
+				HF.msg.notice(T('text.Success to Create'));
+			},
+			scope : this
+		});
 	}
 });

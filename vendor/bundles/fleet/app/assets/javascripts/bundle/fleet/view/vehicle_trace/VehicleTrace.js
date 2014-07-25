@@ -31,11 +31,11 @@ Ext.define('Fleet.view.vehicle_trace.VehicleTrace', {
 	dockedItems: [ {
 		xtype : 'searchform',
 		items : [
-			{ fieldLabel : T('label.date'), name : 'trace_time', xtype : 'daterange', format : T('format.date') },
+			{ fieldLabel : T('label.date'), name : 'trace_time-dt_eq', xtype : 'datefield', format : T('format.date'), submitFormat : 'Y-m-d' },
 			{ fieldLabel : T('label.vehicle'), name : 'vehicle.name-eq', xtype : 'entitysearchcombo', storeClass : 'Fleet.store.Vehicle', valueField : 'name' }
 		]
 	}, {
 		xtype: 'controlbar',
-		items: ['->', 'import', 'export', 'add', 'save', 'delete']
+		items: ['simulation', '->', 'import', 'export', 'add', 'save', 'delete']
 	} ]
 });

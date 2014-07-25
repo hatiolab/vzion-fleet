@@ -31,20 +31,19 @@ Ext.define('Fleet.controller.driver_run_sum.DriverRunSum', {
 	},
 	
 	/**
-	 * override : grid reload전에 처리 할 것 처리
+	 * override
 	 */
 	beforeParamsChange : function(grid, params) {
 		params = params ? params : {};
-		var today = new Date();
 		
-		if(!params['run_date-lte']) {
-			params['run_date-lte'] = today;
-		}
-		
-		if(!params['run_date-gte']) {
-			var beforeDay = new Date();
-			beforeDay.setDate(beforeDay.getDate() - 5);
-			params['run_date-gte'] = beforeDay;
+		if(!params['run_year-eq'] || !params['run_month-eq']) {
+			var today = new Date();
+			
+			if(!params['run_year-eq'])
+				params['run_year-eq'] = today.getFullYear();
+				
+			if(!params['run_month-eq'])
+				params['run_month-eq'] = today.getMonth() + 1;
 		}
 		
 		return params;

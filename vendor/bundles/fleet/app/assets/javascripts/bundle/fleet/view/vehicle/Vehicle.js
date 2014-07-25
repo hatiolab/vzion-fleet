@@ -37,6 +37,6 @@ Ext.define('Fleet.view.vehicle.Vehicle', {
 		]
 	}, {
 		xtype: 'controlbar',
-		items: ['simulation', 'summary', '->', 'import', 'export', 'add', 'save', 'delete']
+		items: ['->', 'import', 'export', 'add', 'save', 'delete']
 	} ]
 });

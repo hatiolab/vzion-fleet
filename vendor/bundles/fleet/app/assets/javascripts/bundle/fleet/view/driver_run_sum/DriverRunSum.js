@@ -39,8 +39,8 @@ Ext.define('Fleet.view.driver_run_sum.DriverRunSum', {
 	dockedItems: [ {
 		xtype : 'searchform',
 		items : [
-			{ fieldLabel : T('label.year'), name : 'run_year', xtype : 'numberfield', minValue : 2010, maxValue : 2100 },
-			{ fieldLabel : T('label.month'), name : 'run_month', xtype : 'numberfield', minValue : 1, maxValue : 12 },
+			{ fieldLabel : T('label.year'), name : 'run_year-eq', xtype : 'numberfield', minValue : 2010, maxValue : 2100 },
+			{ fieldLabel : T('label.month'), name : 'run_month-eq', xtype : 'numberfield', minValue : 1, maxValue : 12 },
 			{ fieldLabel : T('label.driver'), name : 'driver.name-eq', xtype : 'entitysearchcombo', storeClass : 'Fleet.store.Vehicle', valueField : 'name' },
 		]
 	}, {

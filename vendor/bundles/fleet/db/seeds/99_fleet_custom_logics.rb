@@ -1,9 +1,8 @@
 #encoding: utf-8 
 
-fleet_simulation = DiyService.create!(:name => 'FleetSimulation', :description => 'Vehicle Checkin & Trace Simulation', :script_type => 'DSL', :active_flag => true, :atomic_flag => true)
-fleet_simulation.service_logic = <<-END
+trace_simulation = DiyService.create!(:name => 'FleetTraceSimulation', :description => 'Vehicle Trace Simulation', :script_type => 'DSL', :active_flag => true, :atomic_flag => true)
+trace_simulation.service_logic = <<-END
 vehicles = Vehicle.all
-today = Time.now.strftime("%Y-%m-%d")
 
 lat = [
   37.420367, 37.419796, 37.419367, 37.418781, 37.418768, 37.416783, 37.416842, 37.418146, 37.418751, 
@@ -38,17 +37,93 @@ lng = [
   127.006562, 126.995479, 126.993247, 126.992636, 126.983570, 126.979171, 126.978613
 ]
 
-VehicleTrace.transaction do
-  vehicles.each do |vehicle|
-    VehicleTrace.moveVehicle(vehicle, lat, lng)
-    VehicleCheckin.randomGenCheckinData(vehicle, today)
-  end
+vehicles.each do |vehicle|
+    vehicle_status = vehicle.vehicle_status
+    terminal_id = vehicle_status.terminal_id
+    vehicle_id = vehicle.id
+    driver_id = vehicle_status.driver_id
+    datetime = Time.now - 1.hours
+    
+    1.upto(lat.length) do |idx|
+      trace_time = datetime + (idx -1)
+      velocity = 25 + rand(35)
+      
+      VehicleTrace.create!({
+        :terminal_id => terminal_id,
+        :vehicle_id => vehicle_id,
+        :driver_id => driver_id,
+        :lng => lng[idx-1],
+        :lat => lat[idx-1],
+        :velocity => velocity,
+        :trace_time => trace_time
+      })
+    end
+    
+    # 0.upto(count) do |idx|
+    #   addLng = (rand(100) * 0.0001)
+    #   addLat = (rand(100) * 0.0001)
+    #   lng += addLng
+    #   lat += addLat
+    #   trace_time = datetime + idx
+    #   velocity = 25 + rand(35)
+    #
+    #   VehicleTrace.create!({
+    #     :terminal_id => terminal_id,
+    #     :vehicle_id => vehicle_id,
+    #     :driver_id => driver_id,
+    #     :lng => lng,
+    #     :lat => lat,
+    #     :velocity => velocity,
+    #     :trace_time => trace_time
+    #   })
+    # end
 end
 
 [ {:success => true, :msg => :ok } ]
 END
 
-fleet_simulation.save!
+trace_simulation.save!
+
+checkin_simulation = DiyService.create!(:name => 'FleetCheckinSimulation', :description => 'Vehicle Checkin Simulation', :script_type => 'DSL', :active_flag => true, :atomic_flag => true)
+checkin_simulation.service_logic = <<-END
+vehicles = Vehicle.all
+today = Time.now.strftime("%Y-%m-%d")
+
+vehicles.each do |vehicle|
+	engineStartTime = today + " 09:30:00"
+    vehicle_status = vehicle.vehicle_status
+    
+    data = {"terminal_id" => vehicle_status.terminal_id}
+    data["vehicle_id"] = vehicle.id
+    data["driver_id"] = vehicle_status.driver_id
+    data["run_date"] = today
+    data["start_time"] = Time.parse(engineStartTime)
+    data["run_dist"] = 175 + rand(35)
+    data["run_time"] = 250 + rand(35)
+    data["idle_time"] = 25 + rand(15)
+    data["eco_drv_time"] = 25 + rand(15)
+    data["avg_speed"] = 18 + rand(20)
+    data["max_speed"] = 120 + rand(30)
+    data["fuel_consmpt"] = 10 + rand(8)
+    data["fuel_effcc"] = 8 + rand(7)
+    data["sud_accel_cnt"] = 17 + rand(15)
+    data["sud_brake_cnt"] = 17 + rand(15)
+    data["ovr_spd_time"] = 18 + rand(20)
+    data["co2_emss"] = 79 + rand(13)
+    data["max_cool_water_temp"] = 30 + rand(23)
+    data["avg_battery_volt"] = 34 + rand(21)
+    
+    1.upto(16) do |idx|
+      data["spd_lt_\#{idx}0"] = rand(40)
+    end
+    
+    VehicleCheckin.create! data
+end
+
+[ {:success => true, :msg => :ok } ]
+END
+
+checkin_simulation.save!
 
 fleet_summary = DiyService.create!(:name => 'FleetSummary', :description => 'Daily Summaries', :script_type => 'DSL', :active_flag => true, :atomic_flag => true)
 fleet_summary.service_logic = <<-END

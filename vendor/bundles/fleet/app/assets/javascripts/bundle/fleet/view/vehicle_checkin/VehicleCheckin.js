@@ -59,13 +59,13 @@ Ext.define('Fleet.view.vehicle_checkin.VehicleCheckin', {
 	dockedItems: [ {
 		xtype : 'searchform',
 		items : [
-			{ fieldLabel : T('label.date'), name : 'run_date', xtype : 'daterange' },
+			{ fieldLabel : T('label.date'), name : 'run_date-eq', xtype : 'datefield', format : T('format.date'), submitFormat : 'Y-m-d' },
 			{ fieldLabel : T('label.terminal'), name : 'terminal.name-eq', xtype : 'entitysearchcombo', storeClass : 'Fleet.store.Terminal', valueField : 'name' },
 			{ fieldLabel : T('label.vehicle'), name : 'vehicle.name-eq', xtype : 'entitysearchcombo', storeClass : 'Fleet.store.Vehicle', valueField : 'name' },
 			{ fieldLabel : T('label.driver'), name : 'driver.name-eq', xtype : 'entitysearchcombo', storeClass : 'Fleet.store.Driver', valueField : 'name' }
 		]
 	}, {
 		xtype: 'controlbar',
-		items: ['->', 'import', 'export', 'add', 'save', 'delete']
+		items: ['simulation', 'summary', '->', 'import', 'export', 'add', 'save', 'delete']
 	} ]
 });
