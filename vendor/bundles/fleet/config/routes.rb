@@ -35,7 +35,11 @@ Fleet::Engine.routes.draw do
 			post :update_multiple
 			get :show_by_name
 			get :export
+      post :transaction
 		end
+    member do
+      get :consumable_hists
+    end
 	end
 
 	resources :vehicle_checkins do
