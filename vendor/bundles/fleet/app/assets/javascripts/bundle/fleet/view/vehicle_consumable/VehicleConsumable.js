@@ -17,7 +17,7 @@ Ext.define('Fleet.view.vehicle_consumable.VehicleConsumable', {
 				return val ? val.description : '';
 			}
 		},
-		{ header : T('label.code'), dataIndex : 'name', width: 120, editor : { xtype : 'textfield' } },
+		{ header : T('label.item'), dataIndex : 'name', width: 120, editor : { xtype : 'textfield' } },
 		{ 
 			header : T('label.health_rate'), dataIndex : 'health_rate', width : 150,
 			renderer : function(value, meta, record) {
@@ -95,13 +95,13 @@ Ext.define('Fleet.view.vehicle_consumable.VehicleConsumable', {
 				return value + ' : ' + Ext.util.Format.number(record.get('health_rate'), '0.0') + ' (%)';
 			}
 		},
-		{ header : T('label.cycle_repl_mile'), dataIndex : 'cycle_repl_mile', xtype : 'numbercolumn', width : 115, format : T('format.number'), align : 'right', editor : { xtype : 'numberfield' } },
-		{ header : T('label.cycle_repl_duration'), dataIndex : 'cycle_repl_duration', width : 140, align : 'right' , editor : { xtype : 'numberfield' } },
-		{ header : T('label.last_repl_date'), dataIndex : 'last_repl_date', xtype : 'datecolumn', format : T('format.date'), width : 110, align : 'center', editor : { xtype : 'datefield', format : T('format.date') } },
-		{ header : T('label.last_repl_mile'), dataIndex : 'last_repl_mile', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 130, editor : { xtype : 'numberfield' } },
-		{ header : T('label.next_repl_date'), dataIndex : 'next_repl_date', xtype : 'datecolumn', format : T('format.date'), width : 115, align : 'center', editor : { xtype : 'datefield', format : T('format.date') } },
-		{ header : T('label.next_repl_mile'), dataIndex : 'next_repl_mile', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 135, editor : { xtype : 'numberfield' } },
-		{ header : T('label.repl_unit'), dataIndex : 'repl_unit', width : 90, editor : { xtype : 'codecombo', commonCode : 'REPLACE_UNIT' } },		
+		{ header : T('label.repl_unit'), dataIndex : 'repl_unit', width : 90, editor : { xtype : 'codecombo', commonCode : 'REPLACE_UNIT' } },
+		{ header : T('label.x_repl_cycle_y', {x : '', y : T('label.mile')}), dataIndex : 'cycle_repl_mile', xtype : 'numbercolumn', width : 120, format : T('format.number'), align : 'right', editor : { xtype : 'numberfield' } },
+		{ header : T('label.x_repl_cycle_y', {x : '', y : T('label.month')}), dataIndex : 'cycle_repl_duration', width : 140, align : 'right' , editor : { xtype : 'numberfield' } },
+		{ header : T('label.x_repl_date', {x : T('label.last')}), dataIndex : 'last_repl_date', xtype : 'datecolumn', format : T('format.date'), width : 110, align : 'center', editor : { xtype : 'datefield', format : T('format.date') } },
+		{ header : T('label.x_repl_mile', {x : T('label.last')}), dataIndex : 'last_repl_mile', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 115, editor : { xtype : 'numberfield' } },
+		{ header : T('label.x_repl_date', {x : T('label.next')}), dataIndex : 'next_repl_date', xtype : 'datecolumn', format : T('format.date'), width : 115, align : 'center', editor : { xtype : 'datefield', format : T('format.date') } },
+		{ header : T('label.x_repl_mile', {x : T('label.next')}), dataIndex : 'next_repl_mile', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 115, editor : { xtype : 'numberfield' } },
 		{ header : T('label.cumulative_cost'), dataIndex : 'cumulative_cost', align : 'right', width : 120, editor : { xtype : 'numberfield' } },
 		{ header : T('label.updater'), dataIndex : 'updater', xtype : 'entitycolumn' },
 		{ header : T('label.updated_at'), dataIndex : 'updated_at', xtype : 'datecolumn', format : T('format.datetime'), width : 120 },
@@ -112,7 +112,7 @@ Ext.define('Fleet.view.vehicle_consumable.VehicleConsumable', {
 		xtype : 'searchform',
 		items : [
 			{ fieldLabel : T('label.vehicle'), name : 'vehicle.name-eq', xtype : 'entitysearchcombo', storeClass : 'Fleet.store.Vehicle', valueField : 'name' },
-			{ fieldLabel : T('label.code'), name : 'name-like' }
+			{ fieldLabel : T('label.item'), name : 'name-like' }
 		]
 	}, {
 		xtype: 'controlbar',

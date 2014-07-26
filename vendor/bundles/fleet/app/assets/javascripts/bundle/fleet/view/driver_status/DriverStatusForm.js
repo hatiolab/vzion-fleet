@@ -8,11 +8,15 @@ Ext.define('Fleet.view.driver_status.DriverStatusForm', {
 		
 	autoScroll : true,
 	
-	defaults : { xtype : 'textfield', anchor : '100%' },
+	defaults : { 
+		xtype : 'textfield', 
+		anchor : '100%',
+		labelWidth : 150
+	},
 	
 	items : [
 		{ name : 'id', fieldLabel : T('label.id'), hidden : true },
-		{ fieldLabel : T('label.driver'), name : 'driver', xtype : 'entityfield', storeClass : 'Fleet.store.Driver' },
+		{ name : 'driver', fieldLabel : T('label.driver'), xtype : 'entityfield', storeClass : 'Fleet.store.Driver' },
 		{ name : 'status', fieldLabel : T('label.status') },
 		{ name : 'total_dist', fieldLabel : T('label.total_dist'), xtype : 'numberfield' },
 		{ name : 'total_runtime', fieldLabel : T('label.total_runtime'), xtype : 'numberfield' },

@@ -8,7 +8,11 @@ Ext.define('Fleet.view.vehicle_run_sum.VehicleRunSumForm', {
 		
 	autoScroll : true,
 	
-	defaults : { xtype : 'textfield', anchor : '100%' },
+	defaults : { 
+		xtype : 'textfield', 
+		anchor : '100%',
+		labelWidth : 170
+	},
 	
 	items : [
 		{ name : 'id', fieldLabel : T('label.id'), hidden : true },

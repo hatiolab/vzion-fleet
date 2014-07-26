@@ -10,13 +10,13 @@ Ext.define('Fleet.view.consumable.Consumable', {
 	
 	columns : [
 		{ header : T('label.id'), dataIndex : 'id', hidden : true },
-		{ header : T('label.code'), dataIndex : 'name' , editor : { xtype : 'textfield' } },
+		{ header : T('label.item'), dataIndex : 'name' , editor : { xtype : 'textfield' } },
 		{ header : T('label.description'), dataIndex : 'description', width : 150 , editor : { xtype : 'textfield' } },
 		{ header : T('label.unit'), dataIndex : 'unit', width : 80, editor : { xtype : 'codecombo', commonCode : 'REPLACE_UNIT' } },
-		{ header : T('label.init_repl_mile'), dataIndex : 'init_repl_mile', width : 145, align : 'right' , editor : { xtype : 'numberfield' } },
-		{ header : T('label.init_repl_duration'), dataIndex : 'init_repl_duration', width : 165, align : 'right' , editor : { xtype : 'numberfield' } },
-		{ header : T('label.repl_mile'), dataIndex : 'repl_mile', width : 105, align : 'right' , editor : { xtype : 'numberfield' } },
-		{ header : T('label.repl_duration'), dataIndex : 'repl_duration', width : 125, align : 'right' , editor : { xtype : 'numberfield' } },
+		{ header : T('label.x_repl_cycle_y', {x : T('label.initial'), y : T('label.mile')}), dataIndex : 'init_repl_mile', xtype : 'numbercolumn', format : T('format.number'), width : 160, align : 'right' , editor : { xtype : 'numberfield' } },
+		{ header : T('label.x_repl_cycle_y', {x : T('label.initial'), y : T('label.month')}), dataIndex : 'init_repl_duration', width : 180, align : 'right' , editor : { xtype : 'numberfield' } },
+		{ header : T('label.x_repl_cycle_y', {x : '', y : T('label.mile')}), dataIndex : 'repl_mile', xtype : 'numbercolumn', format : T('format.number'), width : 120, align : 'right' , editor : { xtype : 'numberfield' } },
+		{ header : T('label.x_repl_cycle_y', {x : '', y : T('label.month')}), dataIndex : 'repl_duration', width : 140, align : 'right', editor : { xtype : 'numberfield' } },
 		{ header : T('label.updater'), dataIndex : 'updater', xtype : 'entitycolumn' },
 		{ header : T('label.updated_at'), dataIndex : 'updated_at', xtype : 'datecolumn', format : T('format.datetime'), width : 120 },
 
@@ -25,7 +25,7 @@ Ext.define('Fleet.view.consumable.Consumable', {
 	dockedItems: [ {
 		xtype : 'searchform',
 		items : [
-			{ fieldLabel : T('label.code'), name : 'name-like' },
+			{ fieldLabel : T('label.item'), name : 'name-like' },
 			{ fieldLabel : T('label.description'), name : 'description-like' },
 			{ fieldLabel : T('label.unit'), name : 'unit-eq', xtype : 'codesearchcombo', commonCode : 'REPLACE_UNIT', valueField : 'name', displayField : 'name' }
 		]

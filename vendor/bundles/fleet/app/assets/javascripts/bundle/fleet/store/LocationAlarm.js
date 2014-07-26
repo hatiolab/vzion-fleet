@@ -14,6 +14,11 @@ Ext.define('Fleet.store.LocationAlarm', {
 	
 	pageSize : 30,
 	
+	sorters : [ {
+		property : 'name',
+		direction : 'ASC'
+	} ],
+	
 	proxy : {
 		type : 'rest',
 		url : 'location_alarms',

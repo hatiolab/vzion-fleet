@@ -165,12 +165,12 @@ Ext.define('Fleet.view.vehicle.VehicleConsumable', {
 				{ name : 'repl_unit', fieldLabel : T('label.repl_unit'), xtype : 'textfield', readOnly : true },
 				{ name : 'status', fieldLabel : T('label.status'), xtype : 'textfield' },
 				{ name : 'health_rate', fieldLabel : T('label.health_rate'), xtype : 'textfield' },
-				{ name : 'cycle_repl_mile', fieldLabel : T('label.cycle_repl_mile'), xtype : 'numberfield' },
-				{ name : 'cycle_repl_duration', fieldLabel : T('label.cycle_repl_duration'), xtype : 'numberfield' },
-				{ name : 'last_repl_date', xtype : 'datefield', fieldLabel : T('label.last_repl_date'), format : T('format.date') },
-				{ name : 'last_repl_mile', xtype : 'numberfield', fieldLabel : T('label.last_repl_mile') },
-				{ name : 'next_repl_date', xtype : 'datefield', fieldLabel : T('label.next_repl_date'), format : T('format.date') },
-				{ name : 'next_repl_mile', xtype : 'numberfield', fieldLabel : T('label.next_repl_mile') }
+				{ name : 'cycle_repl_mile', fieldLabel : T('label.x_repl_cycle_y', {x : '', y : T('label.mile')}), xtype : 'numberfield' },
+				{ name : 'cycle_repl_duration', fieldLabel : T('label.x_repl_cycle_y', {x : '', y : T('label.month')}), xtype : 'numberfield' },
+				{ name : 'last_repl_date', fieldLabel : T('label.x_repl_date', {x : T('label.last')}), xtype : 'datefield', format : T('format.date') },
+				{ name : 'last_repl_mile', fieldLabel : T('label.x_repl_mile', {x : T('label.last')}), xtype : 'numberfield' },
+				{ name : 'next_repl_date', fieldLabel : T('label.x_repl_date', {x : T('label.next')}), xtype : 'datefield', format : T('format.date') },
+				{ name : 'next_repl_mile', fieldLabel : T('label.x_repl_mile', {x : T('label.next')}), xtype : 'numberfield' }
 			]
 		};
 	},
@@ -215,8 +215,8 @@ Ext.define('Fleet.view.vehicle.VehicleConsumable', {
 				{ dataIndex : 'id', hidden : true },
 				{ header : T('label.time'), dataIndex : 'created_at', width : 120 },
 				{ header : T('label.item'), dataIndex : 'name', width : 100 },
-				{ header : T('label.last_repl_date'), dataIndex : 'last_repl_date', xtype : 'datecolumn', format : T('format.date'), width : 115 },
-				{ header : T('label.last_repl_mile'), dataIndex : 'last_repl_mile', xtype : 'numbercolumn', format : T('format.number'), width : 135, align : 'right' },
+				{ header : T('label.x_repl_date', {x : T('label.last')}), dataIndex : 'last_repl_date', xtype : 'datecolumn', format : T('format.date'), width : 115 },
+				{ header : T('label.x_repl_mile', {x : T('label.last')}), dataIndex : 'last_repl_mile', xtype : 'numbercolumn', format : T('format.number'), width : 115, align : 'right' },
 				{ header : T('label.worker'), dataIndex : 'worker', width : 100 },
 				{ header : T('label.component'), dataIndex : 'component', width : 120 },
 				{ header : T('label.cost'), dataIndex : 'repl_cost', xtype : 'numbercolumn', format : T('format.number'), width : 80 },

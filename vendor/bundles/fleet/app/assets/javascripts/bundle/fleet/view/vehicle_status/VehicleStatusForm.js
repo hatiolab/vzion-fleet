@@ -8,15 +8,19 @@ Ext.define('Fleet.view.vehicle_status.VehicleStatusForm', {
 		
 	autoScroll : true,
 	
-	defaults : { xtype : 'textfield', anchor : '100%' },
+	defaults : { 
+		xtype : 'textfield', 
+		anchor : '100%',
+		labelWidth : 150
+	},
 	
 	items : [
 		{ name : 'id', fieldLabel : T('label.id'), hidden : true },
-		{ fieldLabel : T('label.vehicle'), name : 'vehicle', xtype : 'entityfield', storeClass : 'Fleet.store.Vehicle' },
-		{ fieldLabel : T('label.driver'), name : 'driver', xtype : 'entityfield', storeClass : 'Fleet.store.Driver' },
-		{ fieldLabel : T('label.terminal'), name : 'terminal', xtype : 'entityfield', storeClass : 'Fleet.store.Terminal' },
-		{ fieldLabel : T('label.status'), name : 'status', xtype : 'codefield', commonCode : 'RUN_STATUS' },
-		{ fieldLabel : T('label.health_status'), name : 'health_status', xtype : 'codefield', commonCode : 'HEALTH_STATUS' },
+		{ name : 'vehicle', fieldLabel : T('label.vehicle'), xtype : 'entityfield', storeClass : 'Fleet.store.Vehicle' },
+		{ name : 'driver', fieldLabel : T('label.driver'), xtype : 'entityfield', storeClass : 'Fleet.store.Driver' },
+		{ name : 'terminal', fieldLabel : T('label.terminal'), xtype : 'entityfield', storeClass : 'Fleet.store.Terminal' },
+		{ name : 'status', fieldLabel : T('label.status'), xtype : 'codefield', commonCode : 'RUN_STATUS' },
+		{ name : 'health_status', fieldLabel : T('label.health_status'), xtype : 'codefield', commonCode : 'HEALTH_STATUS' },
 		{ name : 'total_dist', fieldLabel : T('label.total_dist'), xtype : 'numberfield' },
 		{ name : 'total_runtime', fieldLabel : T('label.total_runtime'), xtype : 'numberfield' },
 		{ name : 'remain_fuel', fieldLabel : T('label.remain_fuel'), xtype : 'numberfield' },

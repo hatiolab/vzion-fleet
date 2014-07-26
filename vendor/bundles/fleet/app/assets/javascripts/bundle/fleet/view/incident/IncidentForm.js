@@ -8,8 +8,11 @@ Ext.define('Fleet.view.incident.IncidentForm', {
 		
 	autoScroll : true,
 	
-	defaults : { xtype : 'textfield', anchor : '100%' },
-	
+	defaults : { 
+		xtype : 'textfield', 
+		anchor : '100%',
+		labelWidth : 150
+	},	
 	items : [
 		{ name : 'id', fieldLabel : T('label.id'), hidden : true },
 		{ name : 'domain_id', value : login.current_domain_id, hidden : true },

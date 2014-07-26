@@ -20,11 +20,11 @@ Ext.define('Fleet.view.driver_status.DriverStatus', {
 			} 
 		},
 		{ header : T('label.status'), dataIndex : 'status', width : 80 , editor : { xtype : 'textfield' } },
-		{ header : T('label.total_dist'), dataIndex : 'total_dist', align : 'right', width : 80, editor : { xtype : 'numberfield' } },
-		{ header : T('label.total_runtime'), dataIndex : 'total_runtime', align : 'right', width : 105, editor : { xtype : 'numberfield' } },
-		{ header : T('label.avg_effcc'), dataIndex : 'avg_effcc', align : 'right', width : 85, editor : { xtype : 'numberfield' } },
-		{ header : T('label.eco_index'), dataIndex : 'eco_index', align : 'right', width : 85 , editor : { xtype : 'numberfield' } },
-		{ header : T('label.eco_run_rate'), dataIndex : 'eco_run_rate', align : 'right' , editor : { xtype : 'numberfield' } }
+		{ header : T('label.total_dist'), dataIndex : 'total_dist', align : 'right', width : 110, editor : { xtype : 'numberfield' } },
+		{ header : T('label.total_runtime'), dataIndex : 'total_runtime', align : 'right', width : 145, editor : { xtype : 'numberfield' } },
+		{ header : T('label.avg_effcc'), dataIndex : 'avg_effcc', align : 'right', width : 120, editor : { xtype : 'numberfield' } },
+		{ header : T('label.eco_index'), dataIndex : 'eco_index', align : 'right', width : 80, editor : { xtype : 'numberfield' } },
+		{ header : T('label.eco_run_rate'), dataIndex : 'eco_run_rate', align : 'right', width : 125, editor : { xtype : 'numberfield' } }
 	],
 	
 	dockedItems: [ {
