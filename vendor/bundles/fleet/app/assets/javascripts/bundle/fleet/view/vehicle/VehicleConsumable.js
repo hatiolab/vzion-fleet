@@ -51,9 +51,9 @@ Ext.define('Fleet.view.vehicle.VehicleConsumable', {
 				dataIndex : 'id', 
 				hidden : true
 			}, { 
-				text: T('label.item'),
-				sortable: true,
-				dataIndex: 'name',
+				text : T('label.item'),
+				sortable : true,
+				dataIndex : 'name',
 				flex : 1
 			}, {  
 				text : T('label.health_rate'),
@@ -158,7 +158,7 @@ Ext.define('Fleet.view.vehicle.VehicleConsumable', {
 				align : 'stretch'
 			},
 			defaults : {
-				labelWidth : 180
+				labelWidth : 130
 			},
 			items : [ 
 				{ name : 'name', fieldLabel : T('label.item'), xtype : 'textfield', readOnly : true },
@@ -184,13 +184,14 @@ Ext.define('Fleet.view.vehicle.VehicleConsumable', {
 			store : Ext.create('Ext.data.Store', {
 				fields : [ 
 					{ name : 'id', type : 'string' },
+					{ name : 'vehicle_consumable_id', type : 'string' },
 					{ name : 'name', type : 'string' }, 
 					{ name : 'last_repl_date', type : 'date' }, 
 					{ name : 'last_repl_mile', type : 'integer' }, 
 					{ name : 'worker', type : 'string' }, 
 					{ name : 'component', type : 'string' }, 
-					{ name : 'repl_cost', type : 'integer' },
-					{ name : 'worker_comment', type : 'integer' },
+					{ name : 'repl_cost', type : 'string' },
+					{ name : 'work_comment', type : 'string' },
 					{ name : 'created_at', type : 'date' }
 				],
 				 
@@ -214,13 +215,13 @@ Ext.define('Fleet.view.vehicle.VehicleConsumable', {
 			columns : [ 
 				{ dataIndex : 'id', hidden : true },
 				{ header : T('label.time'), dataIndex : 'created_at', width : 120 },
-				{ header : T('label.item'), dataIndex : 'name', width : 100 },
+				{ header : T('label.item'), dataIndex : 'name', width : 110 },
 				{ header : T('label.x_repl_date', {x : T('label.last')}), dataIndex : 'last_repl_date', xtype : 'datecolumn', format : T('format.date'), width : 115 },
 				{ header : T('label.x_repl_mile', {x : T('label.last')}), dataIndex : 'last_repl_mile', xtype : 'numbercolumn', format : T('format.number'), width : 115, align : 'right' },
 				{ header : T('label.worker'), dataIndex : 'worker', width : 100 },
 				{ header : T('label.component'), dataIndex : 'component', width : 120 },
-				{ header : T('label.cost'), dataIndex : 'repl_cost', xtype : 'numbercolumn', format : T('format.number'), width : 80 },
-				{ header : T('label.comment'), dataIndex : 'worker_comment', width : 200 },
+				{ header : T('label.cost'), dataIndex : 'repl_cost', xtype : 'numbercolumn', format : T('format.number'), width : 80, align : 'right' },
+				{ header : T('label.comment'), dataIndex : 'work_comment', width : 200 },
 				{ xtype : 'actioncolumn', align : 'center', icon: 'assets/image/btn_close.png', width : 40 }
 			]
 		};

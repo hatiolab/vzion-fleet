@@ -13,21 +13,21 @@ Ext.define('Fleet.view.incident.Incident', {
 		{ header : T('label.confirm'), dataIndex : 'confirm', xtype : 'checkcolumn', width : 70 },
 		{ header : T('label.terminal'), dataIndex : 'terminal', xtype : 'entitycolumn' },
 		{ 
-			header : T('label.x_desc', {x : T('label.terminal')}), dataIndex : 'terminal', width : 150,
+			header : T('label.x_desc', {x : T('label.terminal')}), dataIndex : 'terminal', width : 120,
 			renderer : function(val) {
 				return val ? val.description : '';
 			}
 		},
 		{ header : T('label.vehicle'), dataIndex : 'vehicle', xtype : 'entitycolumn' },
 		{ 
-			header : T('label.x_desc', {x : T('label.vehicle')}), dataIndex : 'vehicle',
+			header : T('label.x_desc', {x : T('label.vehicle')}), dataIndex : 'vehicle', width : 120,
 			renderer : function(val) {
 				return val ? val.description : '';
 			}
 		},
 		{ header : T('label.driver'), dataIndex : 'driver', xtype : 'entitycolumn' },
 		{ 
-			header : T('label.x_desc', {x : T('label.driver')}), dataIndex : 'driver',
+			header : T('label.x_desc', {x : T('label.driver')}), dataIndex : 'driver', width : 120,
 			renderer : function(val) {
 				return val ? val.description : '';
 			}

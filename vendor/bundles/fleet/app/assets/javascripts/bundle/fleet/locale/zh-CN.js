@@ -158,6 +158,7 @@ T({
 		'alarm_name' : 'Alarm Name'
 	},
 	button : {
+		'ok' : 'OK',
 		'simulation' : 'Simulation',
 		'summary' : 'Summary'
 	},

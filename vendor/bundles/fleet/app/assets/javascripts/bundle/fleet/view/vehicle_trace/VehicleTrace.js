@@ -24,9 +24,8 @@ Ext.define('Fleet.view.vehicle_trace.VehicleTrace', {
 		{ header : T('label.lat'), dataIndex : 'lat', width : 75, align : 'right' , editor : { xtype : 'numberfield' } },
 		{ header : T('label.lng'), dataIndex : 'lng', width : 85, align : 'right' , editor : { xtype : 'numberfield' } },
 		{ header : T('label.velocity'), dataIndex : 'velocity', width : 70, align : 'right' , editor : { xtype : 'numberfield' } },
-		{ header : T('label.trace_time'), dataIndex : 'trace_time', width : 120, editor : { xtype : 'datefield', format : T('format.datetime') } , sortOption : { sortSeq : 10, sortDirection : 'desc' } },
-
-		],	
+		{ header : T('label.trace_time'), dataIndex : 'trace_time', width : 120, editor : { xtype : 'datefield', format : T('format.datetime') } },
+	],	
 	
 	dockedItems: [ {
 		xtype : 'searchform',

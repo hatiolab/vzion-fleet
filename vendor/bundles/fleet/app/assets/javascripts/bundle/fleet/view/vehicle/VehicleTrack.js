@@ -4,7 +4,7 @@ Ext.define('Fleet.view.vehicle.VehicleTrack', {
 	
 	xtype : 'fleet_vehicle_track',
 	
-	title : T('label.track'),
+	title : T('menu.VehicleTrace'),
 		
 	autoScroll : true,
 	

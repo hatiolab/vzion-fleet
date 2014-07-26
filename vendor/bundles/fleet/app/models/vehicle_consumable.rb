@@ -8,29 +8,59 @@ class VehicleConsumable < ActiveRecord::Base
   #
   # 소모품을 교체한다. 소모품의 최근 교체일, 최근 교체 주행거리, 다음 교체일, 다음 교체 주행거리, 건강율, 상태 등의 정보를 업데이트한다. 
   #
-  def replace_consumable(params = nil)
+  def reset_consumable(params = nil)
     current_miles = self.vehicle.vehicle_status.total_dist
     
-		# 다음 교체일 계산
+    # 다음 교체일 계산
     if(self.repl_unit == Consumable::REPL_UNIT_BOTH || self.repl_unit == Consumable::REPL_UNIT_DURATION)
       self.last_repl_date = Date.today
       self.next_repl_date = Date.today + (self.cycle_repl_duration * 30)
     end
     
-		# 다음 교체 주행거리 계산
+    # 다음 교체 주행거리 계산
     if(self.repl_unit == Consumable::REPL_UNIT_BOTH || self.repl_unit == Consumable::REPL_UNIT_MILEAGE)
       self.last_repl_mile = current_miles
       self.next_repl_mile = current_miles + self.cycle_repl_mile
     end
     
-    self.health_rate = 0
-    self.status = VehicleStatus::HEALTH_HEALTHY
     self.description = params[:description] if(params && !params[:description].blank?)
     self.cumulative_cost += params[:cost].to_i if(params && !params[:cost].blank?)
-    self.save!
     
     # 소모품 교체 이력 추가 
     ConsumableHist.add_history(self)
+    
+    self.health_rate = 0
+    self.status = VehicleStatus::HEALTH_HEALTHY
+    self.save!
+  end
+  
+  #
+  # 소모품을 교체한다. 소모품의 최근 교체일, 최근 교체 주행거리, 다음 교체일, 다음 교체 주행거리, 건강율, 상태 등의 정보를 업데이트한다. 
+  #
+  def replace_consumable(params)
+    current_miles = self.vehicle.vehicle_status.total_dist
+    
+    # 다음 교체일 계산
+    if(self.repl_unit == Consumable::REPL_UNIT_BOTH || self.repl_unit == Consumable::REPL_UNIT_DURATION)
+      self.last_repl_date = (params && !params[:last_repl_date].blank?) ? params[:last_repl_date] : Date.today
+      self.next_repl_date = self.last_repl_date + (self.cycle_repl_duration * 30)
+    end
+    
+    # 다음 교체 주행거리 계산
+    if(self.repl_unit == Consumable::REPL_UNIT_BOTH || self.repl_unit == Consumable::REPL_UNIT_MILEAGE)
+      self.last_repl_mile = (params && !params[:last_repl_mile].blank? && params[:last_repl_mile] > 0) ? params[:last_repl_mile] : current_miles
+      self.next_repl_mile = self.last_repl_mile + self.cycle_repl_mile
+    end
+    
+    self.description = params[:comment] if(params && !params[:comment].blank?)
+    self.cumulative_cost += params[:repl_cost].to_i if(params && !params[:repl_cost].blank?)
+    
+    # 소모품 교체 이력 추가 
+    ConsumableHist.add_replace_history(self, params)
+    
+    self.health_rate = 0
+    self.status = VehicleStatus::HEALTH_HEALTHY
+    self.save!
   end
   
   #
@@ -38,7 +68,7 @@ class VehicleConsumable < ActiveRecord::Base
   #
   def update_status
     self.health_rate = self.calc_impending_rate
-    self.status = (self.health_rate > 1) ? VehicleStatus::HEALTH_OVERDUE : ((self.health_rate < 0.9) ? VehicleStatus::HEALTH_HEALTHY : VehicleStatus::HEALTH_IMPENDING)
+    self.status = (self.health_rate > 100) ? VehicleStatus::HEALTH_OVERDUE : ((self.health_rate < 90) ? VehicleStatus::HEALTH_HEALTHY : VehicleStatus::HEALTH_IMPENDING)
     self.save!
   end
   
@@ -72,6 +102,15 @@ class VehicleConsumable < ActiveRecord::Base
 		rate_by_mile = self.calc_impending_rate_by_miles
 		rate_by_time = self.calc_impending_rate_by_duration
 		return (rate_by_mile > rate_by_time) ? rate_by_mile : rate_by_time;
+  end
+  
+  #
+  # consumable history 삭제 
+  #
+  def self.remove_history(params)
+    hist = ConsumableHist.find(params[:instance_id])
+    hist.destroy!
+    true
   end
 	
 end
