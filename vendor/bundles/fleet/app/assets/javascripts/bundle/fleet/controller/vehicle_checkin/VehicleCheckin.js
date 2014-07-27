@@ -25,7 +25,8 @@ Ext.define('Fleet.controller.vehicle_checkin.VehicleCheckin', {
 		this.control({
 			'fleet_vehicle_checkin' : this.EntryPoint({
 				click_simulation : this.onSimulation,
-				click_summary : this.onSummary
+				click_daily_summary : this.onDailySummary,
+				click_monthly_summary : this.onMonthlySummary,
 			}),
 			'fleet_vehicle_checkin #goto_item' : {
 				click : this.onGotoItem
@@ -60,11 +61,25 @@ Ext.define('Fleet.controller.vehicle_checkin.VehicleCheckin', {
 	},
 	
 	/**
-	 * summary data generation
+	 * daily summary data generation
 	 */
-	onSummary : function() {
+	onDailySummary : function() {
     	Ext.Ajax.request({
-		    url : 'diy_services/FleetSummary/shoot.json',
+		    url : 'diy_services/FleetDailySummary/shoot.json',
+		    method : 'POST',
+		    success : function(response) {
+				HF.msg.notice(T('text.Success to Create'));
+			},
+			scope : this
+		});
+	},
+	
+	/**
+	 * monthly summary data generation
+	 */
+	onMonthlySummary : function() {
+    	Ext.Ajax.request({
+		    url : 'diy_services/FleetMonthlySummary/shoot.json',
 		    method : 'POST',
 		    success : function(response) {
 				HF.msg.notice(T('text.Success to Create'));

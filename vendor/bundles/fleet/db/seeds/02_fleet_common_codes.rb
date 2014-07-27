@@ -8,9 +8,16 @@ CommonCode.setup :HEALTH_STATUS, {:description => 'Vehicle Health Status'} do
 end
 
 CommonCode.setup :RUN_STATUS, {:description => 'Vehicle Running Status'} do
-  code 'Idle' => 'Overdue'
+  code 'Idle' => 'Idle'
   code 'Incident' => 'Incident'
   code 'Maint' => 'Maintenance'
+  code 'None' => 'None'
+  code 'Running' => 'Running'
+end
+
+CommonCode.setup :DRIVER_STATUS, {:description => 'Driver Running Status'} do
+  code 'Idle' => 'Idle'
+  code 'Incident' => 'Incident'
   code 'None' => 'None'
   code 'Running' => 'Running'
 end

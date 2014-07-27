@@ -42,12 +42,12 @@ Ext.define('Fleet.view.vehicle_status.VehicleStatus', {
 		{ header : T('label.total_dist'), dataIndex : 'total_dist', xtype : 'numbercolumn', format : T('format.number'), width : 115, align : 'right', editor : { xtype : 'numberfield', minValue : 0 } },
 		{ header : T('label.total_runtime'), dataIndex : 'total_runtime', xtype : 'numbercolumn', format : T('format.number'), width : 145, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
 		{ header : T('label.remain_fuel'), dataIndex : 'remain_fuel', width : 115, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.official_effcc'), dataIndex : 'official_effcc', width : 140, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.avg_effcc'), dataIndex : 'avg_effcc', width : 120, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.eco_index'), dataIndex : 'eco_index', width : 80, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.eco_run_rate'), dataIndex : 'eco_run_rate', width : 125, align : 'right' , editor : { xtype : 'numberfield', minValue : 0 } },
-		{ header : T('label.lat'), dataIndex : 'lat', width : 75, align : 'right' , editor : { xtype : 'numberfield' } },
-		{ header : T('label.lng'), dataIndex : 'lng', width : 85, align : 'right' , editor : { xtype : 'numberfield' } }
+		{ header : T('label.official_effcc'), dataIndex : 'official_effcc', xtype : 'numbercolumn', format : '0.00', width : 140, align : 'right', editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.avg_effcc'), dataIndex : 'avg_effcc', xtype : 'numbercolumn', format : '0.00', width : 120, align : 'right', editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.eco_index'), dataIndex : 'eco_index', width : 80, align : 'right', editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.eco_run_rate'), dataIndex : 'eco_run_rate', width : 125, align : 'right', editor : { xtype : 'numberfield', minValue : 0 } },
+		{ header : T('label.lat'), dataIndex : 'lat', xtype : 'numbercolumn', format : '0.0000', width : 75, align : 'right', editor : { xtype : 'numberfield' } },
+		{ header : T('label.lng'), dataIndex : 'lng', xtype : 'numbercolumn', format : '0.0000', width : 85, align : 'right', editor : { xtype : 'numberfield' } }
 	],
 	
 	dockedItems: [ {

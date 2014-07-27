@@ -125,8 +125,9 @@ END
 
 checkin_simulation.save!
 
-fleet_summary = DiyService.create!(:name => 'FleetSummary', :description => 'Daily Summaries', :script_type => 'DSL', :active_flag => true, :atomic_flag => true)
-fleet_summary.service_logic = <<-END
+# daily summary
+fleet_daily_summary = DiyService.create!(:name => 'FleetDailySummary', :description => 'Daily Summaries', :script_type => 'DSL', :active_flag => true, :atomic_flag => true)
+fleet_daily_summary.service_logic = <<-END
 # 소모품 건강 상태 업데이트 
 consumables = VehicleConsumable.all
 consumables.each do |consumable|
@@ -192,22 +193,9 @@ checkin_summaries.each do |checkin|
     
     vehicle_spd_sum = VehicleSpeedSum.where("vehicle_id = ? and run_year = ? and run_month = ?", vehicle_id, year, month).first
     vehicle_spd_sum = VehicleSpeedSum.new(vehicle_id: vehicle_id, run_year: year, run_month: month) unless vehicle_spd_sum
-    vehicle_spd_sum.spd_lt_10  = checkin['spd_lt_10'].to_i
-    vehicle_spd_sum.spd_lt_20  = checkin['spd_lt_20'].to_i
-    vehicle_spd_sum.spd_lt_30  = checkin['spd_lt_30'].to_i
-    vehicle_spd_sum.spd_lt_40  = checkin['spd_lt_40'].to_i
-    vehicle_spd_sum.spd_lt_50  = checkin['spd_lt_50'].to_i
-    vehicle_spd_sum.spd_lt_60  = checkin['spd_lt_60'].to_i
-    vehicle_spd_sum.spd_lt_70  = checkin['spd_lt_70'].to_i
-    vehicle_spd_sum.spd_lt_80  = checkin['spd_lt_80'].to_i
-    vehicle_spd_sum.spd_lt_90  = checkin['spd_lt_90'].to_i
-    vehicle_spd_sum.spd_lt_100 = checkin['spd_lt_100'].to_i
-    vehicle_spd_sum.spd_lt_110 = checkin['spd_lt_110'].to_i
-    vehicle_spd_sum.spd_lt_120 = checkin['spd_lt_120'].to_i
-    vehicle_spd_sum.spd_lt_130 = checkin['spd_lt_130'].to_i
-    vehicle_spd_sum.spd_lt_140 = checkin['spd_lt_140'].to_i
-    vehicle_spd_sum.spd_lt_150 = checkin['spd_lt_150'].to_i
-    vehicle_spd_sum.spd_lt_160 = checkin['spd_lt_160'].to_i
+    1.upto(16) do |sq|
+      vehicle_spd_sum["spd_lt_\#{sq}0"] = checkin["spd_lt_\#{sq}0].to_i
+    end
     vehicle_spd_sum.save!
 end
 
@@ -260,26 +248,87 @@ checkin_summaries.each do |checkin|
     
     driver_spd_sum = DriverSpeedSum.where("driver_id = ? and run_year = ? and run_month = ?", driver_id, year, month).first
     driver_spd_sum = DriverSpeedSum.new(driver_id: driver_id, run_year: year, run_month: month) unless driver_spd_sum
-    driver_spd_sum.spd_lt_10  = checkin['spd_lt_10'].to_i
-    driver_spd_sum.spd_lt_20  = checkin['spd_lt_20'].to_i
-    driver_spd_sum.spd_lt_30  = checkin['spd_lt_30'].to_i
-    driver_spd_sum.spd_lt_40  = checkin['spd_lt_40'].to_i
-    driver_spd_sum.spd_lt_50  = checkin['spd_lt_50'].to_i
-    driver_spd_sum.spd_lt_60  = checkin['spd_lt_60'].to_i
-    driver_spd_sum.spd_lt_70  = checkin['spd_lt_70'].to_i
-    driver_spd_sum.spd_lt_80  = checkin['spd_lt_80'].to_i
-    driver_spd_sum.spd_lt_90  = checkin['spd_lt_90'].to_i
-    driver_spd_sum.spd_lt_100 = checkin['spd_lt_100'].to_i
-    driver_spd_sum.spd_lt_110 = checkin['spd_lt_110'].to_i
-    driver_spd_sum.spd_lt_120 = checkin['spd_lt_120'].to_i
-    driver_spd_sum.spd_lt_130 = checkin['spd_lt_130'].to_i
-    driver_spd_sum.spd_lt_140 = checkin['spd_lt_140'].to_i
-    driver_spd_sum.spd_lt_150 = checkin['spd_lt_150'].to_i
-    driver_spd_sum.spd_lt_160 = checkin['spd_lt_160'].to_i
+    1.upto(16) do |sq|
+      driver_spd_sum["spd_lt_\#{sq}0"] = checkin["spd_lt_\#{sq}0"].to_i
+    end
     driver_spd_sum.save!
 end
 
 [ {:success => true, :msg => :success} ]
 END
 
-fleet_summary.save!
+fleet_daily_summary.save!
+
+# monthly summary
+fleet_monthly_summary = DiyService.create!(:name => 'FleetMonthlySummary', :description => 'Monthly Summaries', :script_type => 'DSL', :active_flag => true, :atomic_flag => true)
+fleet_monthly_summary.service_logic = <<-END
+today = Date.today
+year, month = today.year, today.month
+from_date, to_date = today.at_beginning_of_month.strftime('%Y-%m-%d'), today.at_end_of_month.strftime('%Y-%m-%d')
+
+sql = "
+    SELECT
+        VEHICLE_ID,
+        SUM(RUN_TIME) RUN_TIME, 
+        SUM(RUN_DIST) RUN_DIST, 
+        SUM(ECO_DRV_TIME) ECO_DRV_TIME, 
+        SUM(FUEL_CONSMPT) FUEL_CONSMPT
+    FROM
+        VEHICLE_CHECKINS
+    WHERE
+        RUN_DATE >= '\#{from_date}' AND RUN_DATE <= '\#{to_date}'
+    GROUP BY
+        VEHICLE_ID
+    ORDER BY
+        VEHICLE_ID"
+
+checkin_summaries = VehicleCheckin.connection.select_all(sql)
+
+# Vehicle & Driver Summary By Checkin Data
+checkin_summaries.each do |checkin|
+    vehicle_id = checkin['vehicle_id']
+    vehicle_status = VehicleStatus.where("vehicle_id = ?", vehicle_id).first
+    vehicle_status.total_runtime += checkin['run_time'].to_i
+    vehicle_status.total_dist += checkin['run_dist'].to_i
+    vehicle_status.avg_effcc = (checkin['run_dist'].to_f / checkin['fuel_consmpt'].to_f)
+    vehicle_status.eco_index = (vehicle_status.avg_effcc.to_f / vehicle_status.official_effcc.to_f) * 100
+    vehicle_status.eco_run_rate = (checkin['eco_drv_time'].to_f / checkin['run_time'].to_f) * 100
+    vehicle_status.save!
+end
+
+# Driver Summary
+
+sql = "
+    SELECT
+        DRIVER_ID,
+        SUM(RUN_TIME) RUN_TIME, 
+        SUM(RUN_DIST) RUN_DIST, 
+        SUM(ECO_DRV_TIME) ECO_DRV_TIME, 
+        SUM(FUEL_CONSMPT) FUEL_CONSMPT
+    FROM
+        VEHICLE_CHECKINS
+    WHERE
+        RUN_DATE >= '\#{from_date}' AND RUN_DATE <= '\#{to_date}'
+    GROUP BY
+        DRIVER_ID
+    ORDER BY
+        DRIVER_ID"
+
+checkin_summaries = VehicleCheckin.connection.select_all(sql)
+
+# Driver Summary By Checkin Data
+checkin_summaries.each do |checkin|
+    driver_id = checkin['driver_id']
+    driver_status = DriverStatus.where("driver_id = ?", driver_id).first
+    driver_status.total_runtime += checkin['run_time'].to_i
+    driver_status.total_dist += checkin['run_dist'].to_i
+    driver_status.avg_effcc = (checkin['run_dist'].to_f / checkin['fuel_consmpt'].to_f)
+    driver_status.eco_run_rate = (checkin['eco_drv_time'].to_f / checkin['run_time'].to_f) * 100
+    driver_status.save!
+end
+
+[ {:success => true, :msg => :success} ]
+
+END
+
+fleet_monthly_summary.save!

@@ -76,7 +76,7 @@ T({
 		'ownership' : 'Ownership',
 		'birth_year' : 'Birth Year',
 		'seat_size' : 'Seat Size',
-		'run_dist' : 'Run Dist.(km)',
+		'run_dist' : 'Run Dist. (km)',
 		'run_time' : 'Runtime (min.)',
 		'idle_time' : 'Idle Time (min.)',
 		'eco_drv_time' : 'Eco Driving Time (min.)',
@@ -160,7 +160,8 @@ T({
 	button : {
 		'ok' : 'OK',
 		'simulation' : 'Simulation',
-		'summary' : 'Summary'
+		'daily_summary' : 'Daily Summary',
+		'monthly_summary' : 'Monthly Summary'
 	},
 	text : {
 	}

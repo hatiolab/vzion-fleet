@@ -8,6 +8,8 @@ class VehicleTrace < ActiveRecord::Base
   
   after_create do
     if(self.vehicle)
+      # Location alarm
+      # TODO 이 부분은 속도 문제가 될 수 있으므로 background로 처리하도록 던져주고 끝나는 것으로 추후 변경
       lat_hist = self.changes['lat']
       lng_hist = self.changes['lng']
       
@@ -17,23 +19,27 @@ class VehicleTrace < ActiveRecord::Base
       prev_vehicle_lng = lng_hist[0].nil? ? 0 : lng_hist[0]
       current_vehicle_lng = lng_hist[1].nil? ? 0 : lng_hist[1]
       
-      
       vehicle_status = self.vehicle.vehicle_status
       vehicle_status.lat = self.lat
       vehicle_status.lng = self.lng
       vehicle_status.status = VehicleStatus::STATUS_RUN
       vehicle_status.save!
       
-      location_alarm = self.check_location_based_alarm(self.vehicle.id, prev_vehicle_lat, current_vehicle_lat, prev_vehicle_lng, current_vehicle_lng)
-      
-      if(!location_alarm.blank?)
-        location_alarm['vehicle'] = self.vehicle
+      alarms = self.check_location_based_alarm(self.vehicle.id, prev_vehicle_lat, current_vehicle_lat, prev_vehicle_lng, current_vehicle_lng)
+      alarms.each do |alar|
+        alarm['vehicle'] = self.vehicle
         begin
-          LocationAlarmMailer.location(location_alarm).deliver
+          LocationAlarmMailer.location(alarm).deliver
         rescue
           logger.error "Failed to sending mail!"
         end
-      end
+      end unless(alarms.empty?)
+    end
+    
+    if(self.driver && self.driver.driver_status && DriverStatus::STATUS_RUN != self.driver.driver_status.status)
+      driver_status = self.driver.driver_status
+      driver_status.status = DriverStatus::STATUS_RUN
+      driver_status.save!
     end
   end
   
@@ -73,8 +79,7 @@ class VehicleTrace < ActiveRecord::Base
   where
       tbl.event_type != 'no'"
     
-    results = VehicleTrace.connection.select_all(sql).first
-    results
+      VehicleTrace.connection.select_all(sql)
   end
-	
+
 end

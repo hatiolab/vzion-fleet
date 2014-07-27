@@ -19,11 +19,11 @@ Ext.define('Fleet.view.driver_status.DriverStatus', {
 				return val ? val.description : '';
 			} 
 		},
-		{ header : T('label.status'), dataIndex : 'status', width : 80 , editor : { xtype : 'textfield' } },
-		{ header : T('label.total_dist'), dataIndex : 'total_dist', align : 'right', width : 110, editor : { xtype : 'numberfield' } },
-		{ header : T('label.total_runtime'), dataIndex : 'total_runtime', align : 'right', width : 145, editor : { xtype : 'numberfield' } },
-		{ header : T('label.avg_effcc'), dataIndex : 'avg_effcc', align : 'right', width : 120, editor : { xtype : 'numberfield' } },
-		{ header : T('label.eco_index'), dataIndex : 'eco_index', align : 'right', width : 80, editor : { xtype : 'numberfield' } },
+		{ header : T('label.status'), dataIndex : 'status', width : 90, editor : { xtype : 'codecombo', commonCode : 'DRIVER_STATUS' } },
+		{ header : T('label.total_dist'), dataIndex : 'total_dist', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 110, editor : { xtype : 'numberfield' } },
+		{ header : T('label.total_runtime'), dataIndex : 'total_runtime', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 145, editor : { xtype : 'numberfield' } },
+		{ header : T('label.avg_effcc'), dataIndex : 'avg_effcc', xtype : 'numbercolumn', format : '0.00', align : 'right', width : 120, editor : { xtype : 'numberfield' } },
+		//{ header : T('label.eco_index'), dataIndex : 'eco_index', align : 'right', width : 80, editor : { xtype : 'numberfield' } },
 		{ header : T('label.eco_run_rate'), dataIndex : 'eco_run_rate', align : 'right', width : 125, editor : { xtype : 'numberfield' } }
 	],
 	

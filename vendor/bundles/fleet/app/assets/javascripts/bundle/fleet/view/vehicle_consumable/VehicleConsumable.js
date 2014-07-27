@@ -102,7 +102,7 @@ Ext.define('Fleet.view.vehicle_consumable.VehicleConsumable', {
 		{ header : T('label.x_repl_mile', {x : T('label.last')}), dataIndex : 'last_repl_mile', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 115, editor : { xtype : 'numberfield' } },
 		{ header : T('label.x_repl_date', {x : T('label.next')}), dataIndex : 'next_repl_date', xtype : 'datecolumn', format : T('format.date'), width : 115, align : 'center', editor : { xtype : 'datefield', format : T('format.date') } },
 		{ header : T('label.x_repl_mile', {x : T('label.next')}), dataIndex : 'next_repl_mile', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 115, editor : { xtype : 'numberfield' } },
-		{ header : T('label.cumulative_cost'), dataIndex : 'cumulative_cost', align : 'right', width : 120, editor : { xtype : 'numberfield' } },
+		{ header : T('label.cumulative_cost'), dataIndex : 'cumulative_cost', xtype : 'numbercolumn', format : T('format.number'), align : 'right', width : 120, editor : { xtype : 'numberfield' } },
 		{ header : T('label.updater'), dataIndex : 'updater', xtype : 'entitycolumn' },
 		{ header : T('label.updated_at'), dataIndex : 'updated_at', xtype : 'datecolumn', format : T('format.datetime'), width : 120 },
 

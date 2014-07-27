@@ -17,7 +17,7 @@ Ext.define('Fleet.view.driver_status.DriverStatusForm', {
 	items : [
 		{ name : 'id', fieldLabel : T('label.id'), hidden : true },
 		{ name : 'driver', fieldLabel : T('label.driver'), xtype : 'entityfield', storeClass : 'Fleet.store.Driver' },
-		{ name : 'status', fieldLabel : T('label.status') },
+		{ name : 'status', fieldLabel : T('label.status'), xtype : 'codefield', commonCode : 'VEHICLE_STATUS' },
 		{ name : 'total_dist', fieldLabel : T('label.total_dist'), xtype : 'numberfield' },
 		{ name : 'total_runtime', fieldLabel : T('label.total_runtime'), xtype : 'numberfield' },
 		{ name : 'avg_effcc', fieldLabel : T('label.avg_effcc'), xtype : 'numberfield' },

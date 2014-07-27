@@ -1,0 +1,20 @@
+<h2>"Vzion-Fleet - Location Alarm</h2><br/>
+
+<table border='1' bordercolor='#5D5D5D' cellspacing='0' cellpadding='1'>
+	<tr>
+		<td width='180' bgcolor='#C4DEFF'>&nbsp; Vehicle</td>
+		<td width='500' align='left'>&nbsp; <%= @alarm['vehicle'] ? @alarm['vehicle']['name'] : '' %> (<%= @alarm['vehicle'] ? @alarm['vehicle']['description'] : '' %>)</td>
+	</tr>
+	<tr>
+		<td width='180' bgcolor='#C4DEFF'>&nbsp; Alarm</td>
+		<td width='500' align='left'>&nbsp; <%= @alarm['alarm_name'] %></td>
+	</tr>
+	<tr>
+		<td width='180' bgcolor='#C4DEFF'>&nbsp; Location</td>
+		<td width='500' align='left'>&nbsp; <%= @alarm['loc_name'] %></td>
+	</tr>		
+	<tr>
+		<td width='180' bgcolor='#C4DEFF'>&nbsp; Event Type </td>
+		<td width='500' align='left'>&nbsp; <%= @alarm['event_type'] %></td>
+	</tr>
+</table>

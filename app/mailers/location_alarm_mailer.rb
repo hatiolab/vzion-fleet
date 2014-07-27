@@ -2,10 +2,9 @@ class LocationAlarmMailer < ActionMailer::Base
 
   default from: "admin@hatiolab.com"
 
-  def location(location_alarm)
+  def alarm(alarm)
     return if(!location_alarm)
-
-    @location_alarm = location_alarm
+    @alarm = alarm
     emails = get_mailing_list
 
     if(emails && !emails.empty?)
