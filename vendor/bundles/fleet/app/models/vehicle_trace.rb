@@ -8,7 +8,7 @@ class VehicleTrace < ActiveRecord::Base
   
   after_create do
     if(self.vehicle)
-      # Location alarm
+      # Spot alarm
       # TODO 이 부분은 속도 문제가 될 수 있으므로 background로 처리하도록 던져주고 끝나는 것으로 추후 변경
       lat_hist = self.changes['lat']
       lng_hist = self.changes['lng']
@@ -25,11 +25,11 @@ class VehicleTrace < ActiveRecord::Base
       vehicle_status.status = VehicleStatus::STATUS_RUN
       vehicle_status.save!
       
-      alarms = self.check_location_based_alarm(self.vehicle.id, prev_vehicle_lat, current_vehicle_lat, prev_vehicle_lng, current_vehicle_lng)
+      alarms = self.check_spot_based_alarm(self.vehicle.id, prev_vehicle_lat, current_vehicle_lat, prev_vehicle_lng, current_vehicle_lng)
       alarms.each do |alar|
         alarm['vehicle'] = self.vehicle
         begin
-          LocationAlarmMailer.location(alarm).deliver
+          SpotAlarmMailer.spot(alarm).deliver
         rescue
           logger.error "Failed to sending mail!"
         end
@@ -43,7 +43,7 @@ class VehicleTrace < ActiveRecord::Base
     end
   end
   
-  def check_location_based_alarm(vehicle_id, prev_vehicle_lat, current_vehicle_lat, prev_vehicle_lng, current_vehicle_lng)
+  def check_spot_based_alarm(vehicle_id, prev_vehicle_lat, current_vehicle_lat, prev_vehicle_lng, current_vehicle_lng)
     sql = "
     select
       alarm_name,
@@ -70,9 +70,9 @@ class VehicleTrace < ActiveRecord::Base
             'no'
           end event_type
       from
-          location_alarms a,
-          location_alarm_vehicles avr,
-          locations l
+          spot_alarms a,
+          spot_alarm_vehicles avr,
+          spots l
         where
           avr.vehicle_id = '#{vehicle_id}'
     )tbl

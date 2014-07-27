@@ -1,6 +1,6 @@
 #encoding: utf-8 
 
-Entity.setup Location, {:bundle =>'fleet'} do
+Entity.setup Spot, {:bundle =>'fleet'} do
   @list_columns = ['name', 'description', 'address', 'radius', 'lat', 'lng', 'lat_hi', 'lat_low', 'lng_hi', 'lng_low', 'updater_id', 'updated_at']
   @search_columns = ['name', 'description']
   @sort_columns = ['name']
@@ -126,7 +126,7 @@ Entity.setup Task, {:bundle =>'fleet'} do
   @editable_columns = ['title', 'start_date', 'end_date']
 end
 
-Entity.setup LocationAlarm, {:bundle =>'fleet'} do
+Entity.setup SpotAlarm, {:bundle =>'fleet'} do
   @list_columns = ['name', 'transfer_type', 'evt_type', 'evt_name', 'evt_trg', 'always', 'enabled', 'from_date', 'to_date']
   @search_columns = ['name']
   @sort_columns = ['name']

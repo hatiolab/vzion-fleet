@@ -1,9 +1,9 @@
 #encoding: utf-8 
 
 Menu.setup :Company, {:rank => 1000} do
-  submenu :Location, {:rank => 1100, :template => 'Fleet.view.location.Location'}
-  submenu :Consumable, {:rank => 1200, :template => 'Fleet.view.consumable.Consumable'}
-  submenu :LocationAlarm, {:rank => 1300, :template => 'Fleet.view.location_alarm.LocationAlarm'}
+  submenu :Consumable, {:rank => 1100, :template => 'Fleet.view.consumable.Consumable'}
+  submenu :Spot, {:rank => 1200, :template => 'Fleet.view.spot.Spot'}
+  submenu :SpotAlarm, {:rank => 1300, :template => 'Fleet.view.spot_alarm.SpotAlarm'}
 end
 
 Menu.setup :Vehicle, {:rank => 2000} do

@@ -7,7 +7,7 @@ T({
 		'Maintenance' : 'Maintenance',
 		'Schedule' : 'Schedule',
 		'Dashboard' : 'Dashboard',
-		'Location' : 'Location',
+		'Spot' : 'Spot',
 		'Consumable' : 'Consumable Code',
 		'VehicleGroup' : 'Vehicle Group',
 		'VehicleStatus' : 'Vehicle Status',
@@ -27,8 +27,7 @@ T({
 		'Incident' : 'Abnormal Situation',
 		'VehicleRepair' : 'Maintenance History',
 		'TaskCalendar' : 'Schedule',
-		'LocationAlarm' : 'Location Alarm',
-		'LocationAlarmVehicle' : 'Vehicle List'
+		'SpotAlarm' : 'Spot Alarm'
 	},
 	title : {
 	},
@@ -40,7 +39,7 @@ T({
 		'maintenance' : 'Maintenance',
 		'schedule' : 'Schedule',
 		'dashboard' : 'Dashboard',
-		'location' : 'Location',
+		'spot' : 'Spot',
 		'consumable' : 'Consumable Code',
 		'vehicle_group' : 'Vehicle Group',
 		'Vehicle_status' : 'Vehicle Status',
@@ -147,7 +146,7 @@ T({
 		'all_day' : 'All Day?',
 		'reminder' : 'Reminder',
 		'notes' : 'Notes',
-		'loc' : 'Location',
+		'loc' : 'Spot',
 		'evt_type' : 'Event Type',
 		'evt_name' : 'Event',
 		'evt_trg' : 'Event Trigger',
