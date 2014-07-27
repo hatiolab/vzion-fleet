@@ -15,6 +15,6 @@ vehicles.each do |vehicle|
       last_repl_mile: 0,
       cumulative_cost: 0
     )
-    vehicle_consumable.replace_consumable
+    vehicle_consumable.reset_consumable
   end
 end

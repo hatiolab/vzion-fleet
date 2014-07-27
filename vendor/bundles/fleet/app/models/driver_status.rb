@@ -5,4 +5,9 @@ class DriverStatus < ActiveRecord::Base
 	stampable
 	belongs_to :driver
 	
+  STATUS_NONE = "None"
+  STATUS_IDLE = "Idle"
+  STATUS_INCIDENT = "Incident"
+  STATUS_RUN = "Running"
+  
 end

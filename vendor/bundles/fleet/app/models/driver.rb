@@ -8,11 +8,8 @@ class Driver < ActiveRecord::Base
   strip_cols [:name,:description,:social_id,:division,:title,:phone_no,:mobile_no]
   removing_trackable
   
-  STATUS_NONE = "None"
-  STATUS_IDLE = "Idle"
-  STATUS_INCIDENT = "Incident"
-  STATUS_RUN = "Running"
-	
+  has_one :driver_status
+  
   after_create do
     DriverStatus.create!({:driver_id => self.id, :status => :None.to_s})
   end
