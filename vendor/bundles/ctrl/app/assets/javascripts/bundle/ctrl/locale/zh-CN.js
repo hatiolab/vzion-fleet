@@ -6,7 +6,7 @@ T({
 	button : {
 	},
 	menu : {
-		'Ctrl' : 'Ctrl'
+		'Ctrl' : '控制'
 	},
 	text : {		
 	}
