@@ -154,7 +154,8 @@ T({
 		'enabled' : '可行的',
 		'from_date' : '开始日期',
 		'to_date' : '结束日期',
-		'alarm_name' : '警告名称'
+		'alarm_name' : '警告名称',
+		'location' : 'Location'
 	},
 	button : {
 		'ok' : 'OK',
