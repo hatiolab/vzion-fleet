@@ -154,7 +154,8 @@ T({
 		'enabled' : 'Enabled',
 		'from_date' : 'From Date',
 		'to_date' : 'To Date',
-		'alarm_name' : 'Alarm Name'
+		'alarm_name' : 'Alarm Name',
+		'location' : 'Location'
 	},
 	button : {
 		'ok' : 'OK',

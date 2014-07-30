@@ -51,8 +51,8 @@ class VehicleTrace < ActiveRecord::Base
       event_type
     from (
         select
-          a.name alarm_name,
-          l.name loc_name,
+          a.name as alarm_name,
+          l.name as loc_name,
           case
           when
             (a.evt_trg ='In' or a.evt_trg = 'In-Out') and
@@ -68,7 +68,7 @@ class VehicleTrace < ActiveRecord::Base
             'out'
           else
             'no'
-          end event_type
+          end as event_type
       from
           spot_alarms a,
           spot_alarm_vehicles avr,

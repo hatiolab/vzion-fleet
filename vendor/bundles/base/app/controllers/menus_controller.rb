@@ -87,7 +87,7 @@ class MenusController < ResourceMultiUpdateController
       return sql
     else
       # 역할이 없다면 일단 모든 메뉴를 내려준다.
-      sql = "select id, name, description, category, parent_id, template, menu_type, rank, '' auth from menus where hidden_flag != true order by rank asc"
+      sql = "select id, name, description, category, parent_id, template, menu_type, rank, '' as auth from menus where hidden_flag != true order by rank asc"
       return sql
     end
   end

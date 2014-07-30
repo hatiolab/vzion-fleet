@@ -77,12 +77,12 @@ Ext.define('Ctrl.controller.monitor.Incident', {
 	 * 현재 선택한 차량 정보를 Info 뷰와 Map에 표시 
 	 */
 	setIncident : function(incident) {
-		if(incident && incident.incident_id) {
+		if(incident && incident.id) {
 			this.getIncidentStore().proxy.extraParams = { "_q[incident_id-eq]" : incident.incident_id };
 			this.getIncidentStore().load();
 			
-			// vehicle이 달라졌다면 차량 정보 폼에 정보를 뿌린다.
-			if(!this.incident || (this.incident.incident_id != incident.incident_id)) {
+			// incident가 달라졌다면 차량 정보 폼에 정보를 뿌린다.
+			if(!this.incident || (this.incident.id != incident.id)) {
 				this.showIncidentInfo(incident);
 			} 
 			
@@ -95,15 +95,30 @@ Ext.define('Ctrl.controller.monitor.Incident', {
 	 */
 	showIncidentInfo : function(incident) {
 		var incidentView = this.getIncidentView();
-		/*var infoForm = incidentView.down(' #vehicle_form');
-		infoForm.getForm().setValues(vehicle);
-		var vehicleDesc = vehicle.vehicle.name + (vehicle.vehicle.description ? ' (' + vehicle.vehicle.description + ')' : '');
-		var driverDesc = vehicle.driver.name + (vehicle.driver.description ? ' (' + vehicle.driver.description + ')' : '');
-		var terminalDesc = vehicle.terminal.name + (vehicle.terminal.description ? ' (' + vehicle.terminal.description + ')' : '');
-		infoForm.down(' displayfield[name=vehicle]').setValue(vehicleDesc);
-		infoForm.down(' displayfield[name=driver]').setValue(driverDesc);
-		infoForm.down(' displayfield[name=terminal]').setValue(terminalDesc);
-		this.showAddrByLoc(vehicle.lat, vehicle.lng, infoForm.down(' displayfield[name=location]'));*/
+		var infoForm = incidentView.down(' #incident_form');
+		infoForm.getForm().setValues(incident);
+		var vehicleDesc = incident.vehicle.name + (incident.vehicle.description ? ' (' + incident.vehicle.description + ')' : '');
+		var driverDesc = incident.driver.name + (incident.driver.description ? ' (' + incident.driver.description + ')' : '');
+		infoForm.down(' displayfield[name=incident_time]').setValue(incident.created_at);
+		infoForm.down(' displayfield[name=vehicle_id]').setValue(vehicleDesc);
+		infoForm.down(' displayfield[name=driver_id]').setValue(driverDesc);
+		this.showAddrByLoc(incident.lat, incident.lng, infoForm.down(' displayfield[name=location]'));
+		this.playMovie(incident);
+	},
+
+	/**
+	 * 영상 정보를 플레이한다.
+	 */
+	playMovie : function(incident) {
+		var path = incident.data ? incident.get("video_clip") : incident.video_clip;
+		alert(path);
+		var videoBox = this.getIncidentView().down(' #videobox');
+		var html = "<video class='video' width='100%' height='100%' controls='controls'><source src='";
+		html += path;
+		html += "' type='video/mp4' />Your browser does not support the video tag.</video>"
+		videoBox.getEl().setHTML(html);
+		var video = videoBox.getEl().down('.video').dom;
+		video.play();
 	},
 	
 	/**

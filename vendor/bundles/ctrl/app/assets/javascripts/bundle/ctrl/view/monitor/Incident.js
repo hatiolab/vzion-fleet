@@ -58,7 +58,7 @@ Ext.define('Ctrl.view.monitor.Incident', {
 				format : 'd-m-Y H:i:s'
 			}, {
 				xtype : 'displayfield',
-				itemId : 'incident_time',
+				name : 'incident_time',
 				width : 160,
 				fieldLabel : T('label.x_time', {
 					x : T('label.incident')
@@ -125,10 +125,10 @@ Ext.define('Ctrl.view.monitor.Incident', {
 					xtype : 'box',
 					cls : 'incidentDetail',
 					flex : 1,
-					itemId : 'video',
-					tpl : [ '<video width="100%" height="100%" controls="controls">', 
+					itemId : 'videobox',
+					/*tpl : [ '<video width="100%" height="100%" controls="controls">', 
 						    '<source {value} type="video/mp4" />',
-							'Your browser does not support the video tag.', '</video>' ]
+							'Your browser does not support the video tag.', '</video>' ]*/
 				} ]
 			}, {
 				xtype : 'panel',

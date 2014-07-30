@@ -16,6 +16,8 @@
 #
 development:
   adapter: postgresql
+  #host: www.morp.co.kr
+  #port: 5432
   encoding: unicode
   database: fleet_development
   pool: 5
