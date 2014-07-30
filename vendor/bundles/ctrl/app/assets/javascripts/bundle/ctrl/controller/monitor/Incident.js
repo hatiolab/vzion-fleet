@@ -111,7 +111,6 @@ Ext.define('Ctrl.controller.monitor.Incident', {
 	 */
 	playMovie : function(incident) {
 		var path = incident.data ? incident.get("video_clip") : incident.video_clip;
-		alert(path);
 		var videoBox = this.getIncidentView().down(' #videobox');
 		var html = "<video class='video' width='100%' height='100%' controls='controls'><source src='";
 		html += path;
