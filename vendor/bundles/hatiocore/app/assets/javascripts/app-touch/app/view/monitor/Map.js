@@ -7,18 +7,18 @@ Ext.define('FleetTouch.view.monitor.Map', {
 	id : 'monitor_map',
 	
 	config : {
-		useCurrentLocation: false,
-		/*mapOptions : {
+	    useCurrentLocation: false,
+		mapOptions : {
 			zoom : 10,
 			maxZoom : 19,
 			minZoom : 3,
 			center : new google.maps.LatLng(System.props.lat, System.props.lng),
 			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}*/	
+		}	
 	},
 
 	initialize : function() {
-		/*this.callParent();
+		this.callParent();
 		
 		var self = this;
 		
@@ -68,7 +68,7 @@ Ext.define('FleetTouch.view.monitor.Map', {
 			tap : function(e) {
 				self.fireEvent('drivertap', self.selectedMarker.driver_record);
 			}
-		});*/
+		});
 	},
 	
 	refresh : function() {

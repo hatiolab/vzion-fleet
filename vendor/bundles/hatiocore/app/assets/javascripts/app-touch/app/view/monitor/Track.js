@@ -57,8 +57,8 @@ Ext.define('FleetTouch.view.monitor.Track', {
 				zoom : 10,
 				maxZoom : 19,
 				minZoom : 3,
-				//center : new google.maps.LatLng(System.props.lat, System.props.lng),
-				//mapTypeId : google.maps.MapTypeId.ROADMAP
+				center : new google.maps.LatLng(System.props.lat, System.props.lng),
+				mapTypeId : google.maps.MapTypeId.ROADMAP
 			}	
 		}]
 

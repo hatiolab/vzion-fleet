@@ -14,7 +14,7 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 	},
 	
 	constructor : function(config) {
-		/*config.items = [
+		config.items = [
 			this.zInfo,
 			this.zVideo,
 			this.zChart
@@ -30,7 +30,7 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 		
 		self.getLogStore().on('load', this.storeHandler);
 		
-		// chart 가 문제가 없을 때까지는 아래처럼 해야한다. - self.down(..)이 안된다. 아마도 차트 때문이다.
+		/* chart 가 문제가 없을 때까지는 아래처럼 해야한다. - self.down(..)이 안된다. 아마도 차트 때문이다. */
 		self.items.items[0].on('activate', function() {
 			self.refresh();
 		});
@@ -54,7 +54,7 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 					field.setValue(self.incident.get('confirm'));
 				}
 			});
-		});*/
+		});
 	},
 	
 	destroy : function() {
@@ -406,8 +406,8 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 				zoom : 10,
 				maxZoom : 19,
 				minZoom : 3,
-				//center : new google.maps.LatLng(System.props.lat, System.props.lng),
-				//mapTypeId : google.maps.MapTypeId.ROADMAP
+				center : new google.maps.LatLng(System.props.lat, System.props.lng),
+				mapTypeId : google.maps.MapTypeId.ROADMAP
 			}	
 		}]
 	},
