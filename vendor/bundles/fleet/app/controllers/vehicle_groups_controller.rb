@@ -9,7 +9,28 @@ public
     @collection = vehicle_group.vehicles
     @total_count = @collection.size
   end
-
+  
+  #
+  # GET vehicle_groups/groups_vehicles
+  #
+  def groups_vehicles
+    groups, items = VehicleGroup.all, []
+    groups.each do |group|
+      item = {
+        :id => "#{group.id}",
+        :name => "#{group.name} (#{group.description})",
+        :description => "#{group.name} (#{group.description})",
+      }
+      item[:vehicles] = group.vehicles.collect { |vehicle| vehicle.id.to_s }
+      items.push(item)
+    end
+    
+    respond_to do |format|
+      format.xml  { render :xml => {:items => items, :total => items.size, :success => true } }
+      format.json { render :json => {:items => items, :total => items.size, :success => true } }
+    end
+  end
+  
   #
   # POST vehicle_groups/:id/update_groups_vehicles
   #

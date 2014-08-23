@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="../../resources/css/touch-charts-demo.css" type="text/css">
+    <title>CHARTS-176</title>
+    <script type="text/javascript" src="../../sencha-touch-debug.js"> </script>
+    <script type="text/javascript" src="../../touch-charts-debug.js"> </script>
+    <script type="text/javascript">
+        Ext.setup({
+            onReady: function() {
+                var generateData = function(n, floor) {
+                    var data = [],
+                        p = (Math.random() *  11) + 1,
+                        i;
+
+                    floor = (!floor && floor !== 0)? 20 : floor;
+
+                    for (i = 0; i < (n || 12); i++) {
+                        data.push({
+                            pos: i + 5,
+                            name: Date.monthNames[i % 12].substr(0, 3),
+                            data1: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data2: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data3: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data4: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data5: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data6: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data7: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data8: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data9: Math.floor(Math.max((Math.random() * 100), floor))
+                        });
+                    }
+                    return data;
+                };
+                var store1 = new Ext.data.JsonStore({
+                    fields: ['pos', 'data1', 'data2', 'data3'],
+                    data: generateData(12, 5)
+                });
+                var onRefreshTap = function() {
+                    store1.loadData(generateData(12, 5));
+                };
+                new Ext.chart.Panel({
+                    title: 'Line Chart',
+                    fullscreen: true,
+                    dockedItems: {
+                        xtype: 'button',
+                        iconCls: 'shuffle',
+                        iconMask: true,
+                        ui: 'plain',
+                        handler: onRefreshTap,
+                        dock: 'right'
+                    },
+                    items: {
+                        animate: true,
+                        // shadow: true,
+                        store: store1,
+                        axes: [{
+                            type: 'Category',
+                            position: 'left',
+                            fields: ['name']
+                        }, {
+                            type: 'Numeric',
+                            position: 'bottom',
+                            fields: ['pos'],
+                            title: 'If missed to include \'bottom\' in series\'s axis, it is assumed to be 0 to 11. So the second line should start at around (5*20/11=)9.09.',
+                            minimum: 0,
+                            maximum: 20
+                        }],
+                        series: [{
+                            type: 'line',
+                            axis: ['left', 'bottom'],
+                            xField: 'pos',
+                            yField: 'name'
+                        }, {
+                            type: 'line',
+                            axis: ['left'],
+                            xField: 'pos',
+                            yField: 'name'
+                        }]
+                    }
+                });
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

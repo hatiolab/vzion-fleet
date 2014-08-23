@@ -18,4 +18,7 @@ class WelcomeController < ApplicationController
     end
   end
   
+  def ctl
+  end
+  
 end

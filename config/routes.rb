@@ -9,6 +9,8 @@ VzionSys::Application.routes.draw do
 
   root to: 'site#main'
   
+  get "m" => "welcome#ctl"
+  
   get "#{GlobalConfig.ops_name}" => "welcome##{GlobalConfig.ops_name}"
   
   get "#{GlobalConfig.std_name}" => "welcome##{GlobalConfig.std_name}"

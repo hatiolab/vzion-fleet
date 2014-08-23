@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../resources/css/sencha-touch.css" type="text/css">
+        <script type="text/javascript" src="bootstrap.js"></script>
+        <script type="text/javascript">
+             Ext.require('*');
+             Ext.onReady(function() {
+                TestBootstrap.loadSpecs(function(){
+                     if (parent && parent.Test) {
+                        jasmine.getEnv().addReporter(parent.Test.SandBox.reporter);
+                     }
+                     jasmine.getEnv().execute();
+                });
+             });
+        </script>
+    </head>
+    <body></body>
+</html>

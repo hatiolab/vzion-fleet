@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="../../resources/css/touch-charts-demo.css" type="text/css">
+    <title>CHARTS-193</title>
+    <script type="text/javascript" src="../../sencha-touch-debug.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../../touch-charts-debug.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        Ext.setup({
+            onReady: function() {
+                window.generateData = function(n, floor) {
+                    var data = [],
+                        p = (Math.random() *  11) + 1,
+                        i;
+
+                    floor = (!floor && floor !== 0)? 20 : floor;
+
+                    for (i = 0; i < (n || 12); i++) {
+                        data.push({
+                            pos: i,
+                            name: Ext.Date.monthNames[i % 12],
+                            data1: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data2: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data3: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data4: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data5: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data6: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data7: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data8: Math.floor(Math.max((Math.random() * 100), floor)),
+                            data9: Math.floor(Math.max((Math.random() * 100), floor))
+                        });
+                    }
+                    return data;
+                };
+                window.store1 = new Ext.data.JsonStore({
+                    fields: ['pos', 'name', 'data1', 'data2', 'data3', 'data4', 'data5', 'data6', 'data7', 'data9', 'data9'],
+                    data: generateData(12, 20)
+                });
+
+                var onRefreshTap = function() {
+                    window.store1.loadData(generateData(12, 5));
+                };
+
+                // Create Test Panel here
+                Ext.create('Ext.chart.Panel', {
+                    title: 'Scatter Chart',
+                    fullscreen: true,
+                    buttons: [{
+                        xtype: 'button',
+                        iconCls: 'shuffle',
+                        iconMask: true,
+                        ui: 'plain',
+                        handler: onRefreshTap
+                    }],
+                    chart: Ext.create('Ext.chart.Chart', {
+                        width: 800,
+                        height: 600,
+                        animate: false,
+                        // shadow: true,
+                        store: store1,
+                        axes: [{
+                            type: 'Numeric',
+                            position: 'left',
+                            fields: ['data1', 'data2', 'data3']
+                        }, {
+                            type: 'Numeric',
+                            position: 'bottom',
+                            fields: ['pos']
+                        }],
+                        series: [{
+                            type: 'line',
+                            markerConfig: { radius: 7 },
+                            axis: ['bottom', 'left'],
+                            xField: 'pos',
+                            yField: 'data1',
+                            label: {
+                                display: 'middle',
+                                field: 'data1',
+                                'text-anchor': 'middle',
+                                contrast: true
+                            }
+                        }]
+                    })
+                });
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

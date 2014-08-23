@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="../../resources/css/touch-charts-demo.css" type="text/css">
+    <title>CHARTS-176</title>
+    <script type="text/javascript" src="../../sencha-touch-debug.js"> </script>
+    <script type="text/javascript" src="../../touch-charts-debug.js"> </script>
+    <script type="text/javascript">
+
+        Ext.onReady(function(){
+            new Ext.chart.Panel({
+                title: 'Line Chart',
+                fullscreen: true,
+                items: {
+                    animate: true,
+                    store: new Ext.data.JsonStore({
+                        fields: ['data', 'name'],
+                        data: [{
+                            data: 10, name: '1st'
+                        }, {
+                            data: 20, name: '2nd'
+                        }, {
+                            data: 30, name: '3rd'
+                        }, {
+                            data: 40, name: '4th'
+                        }]
+                    }),
+                    legend: {
+                        position: {
+                            portrait: 'bottom',
+                            landscape: 'left'
+                        }
+                    },
+                    series: [{
+                        showInLegend: true,
+                        type: 'pie',
+                        field: 'data',
+                        highlight: {
+                            segment: {
+                                margin: 20
+                            }
+                        },
+                        label: {
+                            field: 'name',
+                            display: 'rotate',
+                            font: '20px Arial',
+                            contrast: true
+                        }
+                    }]
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

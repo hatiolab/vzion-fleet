@@ -1,0 +1,36 @@
+Ext.define('SPECTRUM.model.Node', {
+    extend: 'Ext.data.Model',
+
+
+    fields: [
+        {name: 'id', type: 'string'},
+        {name: 'dbid', type: 'string'},
+        {name: 'originalId', type: 'string'},
+        {name: 'parentId', type: 'string'},
+        {name: 'text', type: 'string'},
+        {name: 'name', type: 'string'},
+        {name: 'type', type: 'string'},
+        {name: 'ref', type: 'string'},
+        {name: 'action', type: 'string'},
+        {name: 'expandable', type: 'boolean'}
+    ],
+
+    requires: [
+        'SPECTRUM.controller.Proxy'
+    ]
+
+
+//    ,
+//    proxy: {
+//        type: 'enpasos',
+//        reader: {
+//            type: 'json',
+//            root: 'payload'
+//        },
+//        url: 'service/tree/module'
+////        ,
+////        extraParams :{
+////            topdown: true
+////        }
+//    }
+});

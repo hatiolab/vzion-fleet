@@ -1,0 +1,34 @@
+Ext.define('SPECTRUM.model.Peak', {
+    extend: 'Ext.data.Model',
+
+    fields: [
+        {name: 'ref_lambda', type: 'float'},
+        {name: 'ref_intensity',      type: 'float'},
+
+        {name: 'bandm1_lambda', type: 'float'},
+        {name: 'bandm1_width',      type: 'float'},
+        {name: 'bandm1_intensity',      type: 'float'},
+
+        {name: 'band0_lambda', type: 'float'},
+        {name: 'band0_width',      type: 'float'},
+        {name: 'band0_intensity',      type: 'float'},
+
+        {name: 'bandp1_lambda', type: 'float'},
+        {name: 'bandp1_width',      type: 'float'},
+        {name: 'bandp1_intensity',      type: 'float'}
+    ],
+
+
+    requires: [
+        'Ext.data.proxy.Rest'
+    ],
+
+    proxy: {
+        type: 'rest',
+        url: 'service/spectrum/peaks',
+        reader: {
+            type: 'json',
+            root: 'payload'
+        }
+    }
+});

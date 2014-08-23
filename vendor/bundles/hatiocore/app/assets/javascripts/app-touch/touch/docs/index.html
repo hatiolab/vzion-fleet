@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sencha Docs - Touch Charts 2.0</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="fragment" content="!">
+
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+  <link rel="stylesheet" href="resources/css/app.css" type="text/css" />
+  <link rel="stylesheet" href="resources/prettify/prettify.css" type="text/css" />
+  <!--[if IE]>
+    <link rel="stylesheet" href="resources/css/ie.css" type="text/css" />
+    <link rel="stylesheet" href="resources/css/welcome_ie6.css" type="text/css" />
+  <![endif]-->
+
+  <!-- Async script to not block while loading TypeKit fonts -->
+  <script type="text/javascript">
+  (function() {
+    var TypekitConfig = {
+      kitId: 'uxj6dew'
+    };
+    var tk = document.createElement('script');
+    tk.src = '//use.typekit.com/' + TypekitConfig.kitId + '.js';
+    tk.type = 'text/javascript';
+    tk.async = 'true';
+    tk.onload = tk.onreadystatechange = function() {
+      var rs = this.readyState;
+      if (rs && rs != 'complete' && rs != 'loaded') return;
+      try { Typekit.load(TypekitConfig); } catch (e) {}
+    };
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(tk, s);
+  })();
+  </script>
+
+  <script type="text/javascript" src="extjs/ext-all.js"></script>
+  <script type="text/javascript" src="data.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="resources/prettify/prettify.js"></script>
+
+  <link rel='canonical' href='http://docs.sencha.com/touch-charts/2-0/' /><meta name='description' content='Sencha Touch Charts 2.0 API Documentation. Documentation on how to create Charts with Sencha Touch' />
+
+</head>
+<body id="ext-body">
+
+  <div id="loading"><span class="title"></span><span class="logo"></span></div>
+
+  <form id="history-form" class="x-hide-display">
+      <input type="hidden" id="x-history-field" />
+      <iframe id="x-history-frame"></iframe>
+  </form>
+
+  <div id="header-content"><strong>Sencha Docs </strong>Touch Charts 2.0</div>
+  
+          <div id='categories-content' style='display:none'>
+            <div class='section'>
+<h1>Touch Charts</h1>
+<div class='left-column'>
+<h3>Charts</h3>
+<div class='links'>
+<a href="#!/api/Ext.chart.Transformable" rel="Ext.chart.Transformable" class="docClass">Ext.chart.Transformable</a>
+<a href="#!/api/Ext.chart.Chart" rel="Ext.chart.Chart" class="docClass">Ext.chart.Chart</a>
+<a href="#!/api/Ext.chart.Legend" rel="Ext.chart.Legend" class="docClass">Ext.chart.Legend</a>
+<a href="#!/api/Ext.chart.Label" rel="Ext.chart.Label" class="docClass">Ext.chart.Label</a>
+<a href="#!/api/Ext.chart.Toolbar" rel="Ext.chart.Toolbar" class="docClass">Ext.chart.Toolbar</a>
+<a href="#!/api/Ext.chart.Spark" rel="Ext.chart.Spark" class="docClass">Ext.chart.Spark</a>
+</div>
+</div>
+<div class='middle-column'>
+<h3>Axis</h3>
+<div class='links'>
+<a href="#!/api/Ext.chart.axis.Abstract" rel="Ext.chart.axis.Abstract" class="docClass">Ext.chart.axis.Abstract</a>
+<a href="#!/api/Ext.chart.axis.Axis" rel="Ext.chart.axis.Axis" class="docClass">Ext.chart.axis.Axis</a>
+<a href="#!/api/Ext.chart.axis.Category" rel="Ext.chart.axis.Category" class="docClass">Ext.chart.axis.Category</a>
+<a href="#!/api/Ext.chart.axis.Gauge" rel="Ext.chart.axis.Gauge" class="docClass">Ext.chart.axis.Gauge</a>
+<a href="#!/api/Ext.chart.axis.Numeric" rel="Ext.chart.axis.Numeric" class="docClass">Ext.chart.axis.Numeric</a>
+<a href="#!/api/Ext.chart.axis.Radial" rel="Ext.chart.axis.Radial" class="docClass">Ext.chart.axis.Radial</a>
+<a href="#!/api/Ext.chart.axis.Time" rel="Ext.chart.axis.Time" class="docClass">Ext.chart.axis.Time</a>
+</div>
+<h3>Series</h3>
+<div class='links'>
+<a href="#!/api/Ext.chart.series.Area" rel="Ext.chart.series.Area" class="docClass">Ext.chart.series.Area</a>
+<a href="#!/api/Ext.chart.series.Bar" rel="Ext.chart.series.Bar" class="docClass">Ext.chart.series.Bar</a>
+<a href="#!/api/Ext.chart.series.Cartesian" rel="Ext.chart.series.Cartesian" class="docClass">Ext.chart.series.Cartesian</a>
+<a href="#!/api/Ext.chart.series.Column" rel="Ext.chart.series.Column" class="docClass">Ext.chart.series.Column</a>
+<a href="#!/api/Ext.chart.series.Gauge" rel="Ext.chart.series.Gauge" class="docClass">Ext.chart.series.Gauge</a>
+<a href="#!/api/Ext.chart.series.Line" rel="Ext.chart.series.Line" class="docClass">Ext.chart.series.Line</a>
+<a href="#!/api/Ext.chart.series.Pie" rel="Ext.chart.series.Pie" class="docClass">Ext.chart.series.Pie</a>
+<a href="#!/api/Ext.chart.series.Radar" rel="Ext.chart.series.Radar" class="docClass">Ext.chart.series.Radar</a>
+<a href="#!/api/Ext.chart.series.Scatter" rel="Ext.chart.series.Scatter" class="docClass">Ext.chart.series.Scatter</a>
+<a href="#!/api/Ext.chart.series.Series" rel="Ext.chart.series.Series" class="docClass">Ext.chart.series.Series</a>
+<a href="#!/api/Ext.chart.series.ItemEvents" rel="Ext.chart.series.ItemEvents" class="docClass">Ext.chart.series.ItemEvents</a>
+<a href="#!/api/Ext.chart.series.AbstractSpaceFilling" rel="Ext.chart.series.AbstractSpaceFilling" class="docClass">Ext.chart.series.AbstractSpaceFilling</a>
+<a href="#!/api/Ext.chart.series.Sunburst" rel="Ext.chart.series.Sunburst" class="docClass">Ext.chart.series.Sunburst</a>
+<a href="#!/api/Ext.chart.series.Icicle" rel="Ext.chart.series.Icicle" class="docClass">Ext.chart.series.Icicle</a>
+<a href="#!/api/Ext.chart.series.Treemap" rel="Ext.chart.series.Treemap" class="docClass">Ext.chart.series.Treemap</a>
+<a href="#!/api/Ext.chart.series.Wordmap" rel="Ext.chart.series.Wordmap" class="docClass">Ext.chart.series.Wordmap</a>
+</div>
+</div>
+<div class='right-column'>
+<h3>Interactions</h3>
+<div class='links'>
+<a href="#!/api/Ext.chart.interactions.Abstract" rel="Ext.chart.interactions.Abstract" class="docClass">Ext.chart.interactions.Abstract</a>
+<a href="#!/api/Ext.chart.interactions.DelayedSync" rel="Ext.chart.interactions.DelayedSync" class="docClass">Ext.chart.interactions.DelayedSync</a>
+<a href="#!/api/Ext.chart.interactions.PanZoom" rel="Ext.chart.interactions.PanZoom" class="docClass">Ext.chart.interactions.PanZoom</a>
+<a href="#!/api/Ext.chart.interactions.PieGrouping" rel="Ext.chart.interactions.PieGrouping" class="docClass">Ext.chart.interactions.PieGrouping</a>
+<a href="#!/api/Ext.chart.interactions.Rotate" rel="Ext.chart.interactions.Rotate" class="docClass">Ext.chart.interactions.Rotate</a>
+<a href="#!/api/Ext.chart.interactions.ItemCompare" rel="Ext.chart.interactions.ItemCompare" class="docClass">Ext.chart.interactions.ItemCompare</a>
+<a href="#!/api/Ext.chart.interactions.ItemHighlight" rel="Ext.chart.interactions.ItemHighlight" class="docClass">Ext.chart.interactions.ItemHighlight</a>
+<a href="#!/api/Ext.chart.interactions.ItemInfo" rel="Ext.chart.interactions.ItemInfo" class="docClass">Ext.chart.interactions.ItemInfo</a>
+<a href="#!/api/Ext.chart.interactions.Reset" rel="Ext.chart.interactions.Reset" class="docClass">Ext.chart.interactions.Reset</a>
+<a href="#!/api/Ext.chart.interactions.ToggleStacked" rel="Ext.chart.interactions.ToggleStacked" class="docClass">Ext.chart.interactions.ToggleStacked</a>
+</div>
+<h3>Draw</h3>
+<div class='links'>
+<a href="#!/api/Ext.draw.Draw" rel="Ext.draw.Draw" class="docClass">Ext.draw.Draw</a>
+<a href="#!/api/Ext.draw.Color" rel="Ext.draw.Color" class="docClass">Ext.draw.Color</a>
+<a href="#!/api/Ext.draw.Component" rel="Ext.draw.Component" class="docClass">Ext.draw.Component</a>
+<a href="#!/api/Ext.draw.CompositeSprite" rel="Ext.draw.CompositeSprite" class="docClass">Ext.draw.CompositeSprite</a>
+<a href="#!/api/Ext.draw.Sprite" rel="Ext.draw.Sprite" class="docClass">Ext.draw.Sprite</a>
+<a href="#!/api/Ext.draw.Surface" rel="Ext.draw.Surface" class="docClass">Ext.draw.Surface</a>
+<a href="#!/api/Ext.draw.engine.Canvas" rel="Ext.draw.engine.Canvas" class="docClass">Ext.draw.engine.Canvas</a>
+<a href="#!/api/Ext.draw.engine.SvgExporter" rel="Ext.draw.engine.SvgExporter" class="docClass">Ext.draw.engine.SvgExporter</a>
+<a href="#!/api/Ext.draw.engine.ImageExporter" rel="Ext.draw.engine.ImageExporter" class="docClass">Ext.draw.engine.ImageExporter</a>
+</div>
+<h3>Animation</h3>
+<div class='links'>
+<a href="#!/api/Ext.fx.Frame" rel="Ext.fx.Frame" class="docClass">Ext.fx.Frame</a>
+<a href="#!/api/Ext.fx.Sprite" rel="Ext.fx.Sprite" class="docClass">Ext.fx.Sprite</a>
+<a href="#!/api/Ext.fx.Queue" rel="Ext.fx.Queue" class="docClass">Ext.fx.Queue</a>
+<a href="#!/api/Ext.fx.TimingFunctions" rel="Ext.fx.TimingFunctions" class="docClass">Ext.fx.TimingFunctions</a>
+</div>
+</div>
+<div style='clear:both'></div>
+</div>
+        </div>
+
+          <div id='guides-content' style='display:none'>
+            <h3>Sencha Charts</h3>
+<ul>
+<li><a href='#!/guide/drawing_and_charting'>Drawing and Charting</a></li>
+<li><a href='#!/guide/touch_charts_interactions'>Interactions</a></li>
+<li><a href='#!/guide/touch_charts_styling'>Styling</a></li>
+</ul>
+        </div>
+
+  <div id='footer-content' style='display: none'>Sencha Touch Charts 2.0.0 Docs - Generated with <a href='https://github.com/senchalabs/jsduck'>JSDuck</a> VERSION. <a href='http://www.sencha.com/legal/terms-of-use/'>Terms of Use</a></div>
+
+  
+
+</body>
+</html>

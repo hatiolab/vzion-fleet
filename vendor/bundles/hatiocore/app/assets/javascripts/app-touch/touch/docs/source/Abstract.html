@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-fx-Abstract'>/**
+</span> * @class Ext.fx.Abstract
+ * @private
+ * An abstract class used as the base for animations.
+ *
+ */
+Ext.define('Ext.fx.Abstract', {
+
+    requires: ['Ext.fx.TimingFunctions', 'Ext.fx.Queue'],
+
+    config: {
+<span id='Ext-fx-Abstract-cfg-delay'>        /**
+</span>         * @cfg {Number} delay
+         * The delay in ms for triggering the animation. Default's 0.
+         */
+        delay: 0,
+<span id='Ext-fx-Abstract-cfg-duration'>        /**
+</span>         * @cfg {Number} duration
+         * The duration of the animation in ms. Default's 1000.
+         */
+        duration: 1000,
+
+<span id='Ext-fx-Abstract-cfg-easing'>        /**
+</span>         * @cfg {Number} easing
+         *  An easing function for the animation. The easing function will receive a parameter in [0, 1] and
+         *  return a float value.
+         */
+        easing: function (x) {
+            return x;
+        },
+
+<span id='Ext-fx-Abstract-cfg-onCompute'>        /**
+</span>         * @cfg {Function} onCompute
+         * Called on each step of the animation (if the animation is timer based).
+         * The first argument of the function is a real number from [0, 1].
+         */
+        onCompute: Ext.emptyFn,
+
+<span id='Ext-fx-Abstract-cfg-onComplete'>        /**
+</span>         * @cfg {Function} onComplete
+         * Called once the animation has ended.
+         */
+        onComplete: Ext.emptyFn,
+
+<span id='Ext-fx-Abstract-cfg-from'>        /**
+</span>         * @cfg {Mixed} from
+         *  The initial value for the animation.
+         */
+        from: 0,
+
+<span id='Ext-fx-Abstract-cfg-to'>        /**
+</span>         * @cfg {Mixed} to
+         *  The end value for the animation.
+         */
+        to: 0
+    },
+
+<span id='Ext-fx-Abstract-method-constructor'>    /**
+</span>     *
+     * @constructor
+     * @param {Object} config The configuration options
+     */
+    constructor: function (config) {
+        this.initConfig(config);
+    },
+
+<span id='Ext-fx-Abstract-method-start'>    /**
+</span>     * Starts the animation
+     */
+    start: function () {
+        //Add to queue
+        Ext.fx.Queue.add(this);
+    },
+
+<span id='Ext-fx-Abstract-method-stop'>    /**
+</span>     * Stops the animation
+     */
+    stop: function () {
+        //Remove from queue
+        Ext.fx.Queue.remove(this);
+    },
+
+<span id='Ext-fx-Abstract-method-compute'>    /** 
+</span>     * Computes the current values for the animation
+     */
+    compute: Ext.emptyFn,
+
+    step: Ext.emptyFn,
+
+    /* Pauses the animation  */
+    pause: Ext.emptyFn,
+
+    resume: Ext.emptyFn,
+
+    applyEasing: function (easing) {
+        if (typeof easing === 'string') {
+            return Ext.fx.TimingFunctions.EasingMap[easing];
+        } else {
+            return easing;
+        }
+    }
+});
+
+
+</pre>
+</body>
+</html>

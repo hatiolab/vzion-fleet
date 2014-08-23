@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Leak test</title>
+        <link rel="stylesheet" href="../../resources/css/sencha-touch.css" />
+        <link rel="stylesheet" href="../../resources/css/touch-charts.css" />
+        <script type="text/javascript" src="../../sencha-touch-debug.js"></script>
+        <script>
+        Ext.setup({
+            onReady: function() {
+
+                var addChart = function() {
+                    console.log(document.getElementsByTagName("*").length + ' DOM elements');
+                    if (iterations && (chartCount < iterations)) {
+                        document.title = 'adding chart ' + (chartCount + 1) + '...';
+
+                        chart = document.createElement('canvas');
+                        chart.width = 3100;
+                        chart.height = 1000;
+                        document.getElementById('ext-viewport').appendChild(chart);
+                        ctx = chart.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+
+                        onAfterRender();
+                    }
+                }
+
+                var removeChart = function(){
+                   console.log('removing chart '+(chartCount)+'...');
+                   chart.parentNode.removeChild(chart);
+                  new Ext.util.DelayedTask(addChart).delay(addDelay);
+
+                };
+
+                var onAfterRender = function() {
+                    console.log('added chart '+(chartCount+1)+'!');
+                    console.log(document.getElementsByTagName("*").length+' DOM elements');
+                    chartCount++;
+                    if (chartCount < iterations) {
+                        new Ext.util.DelayedTask(removeChart).delay(removeDelay);
+                    }
+                };
+
+                var runTest = function() {
+                    chartCount = 0;
+                    iterations = 200;
+                    addDelay = 1000;
+                    removeDelay = 1000;
+                    addChart();
+                };
+
+                var img = new Image();
+                img.src = 'http://www.roblaplaca.com/examples/ipadImageLoading/20500.jpg';
+                img.onload = function() {
+                    alert('image loaded');
+                    document.body.appendChild(img);
+                    runTest();
+                };
+                
+                //runTest();
+            }
+        });  
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
+

@@ -1,0 +1,114 @@
+{
+    "name": "BrowseST/app/data/",
+    "id": "BrowseST/app/data/",
+    "children": [
+        {
+            "id": "BrowseST/app/data/getdata.js",
+            "name": "getdata.js",
+            "children": [],
+            "data": {
+                "name": "getdata.js",
+                "fileType": "JavaScript File",
+                "path": "BrowseST/app/data/getdata.js",
+                "size": 2467
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/data/file-root.json",
+            "name": "file-root.json",
+            "children": [],
+            "data": {
+                "name": "file-root.json",
+                "fileType": "JSON File",
+                "path": "BrowseST/app/data/file-root.json",
+                "size": 3235
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/data/1330994411781.json",
+            "name": "1330994411781.json",
+            "children": [],
+            "data": {
+                "name": "1330994411781.json",
+                "fileType": "JSON File",
+                "path": "BrowseST/app/data/1330994411781.json",
+                "size": 0
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/data/1330994411402.json",
+            "name": "1330994411402.json",
+            "children": [],
+            "data": {
+                "name": "1330994411402.json",
+                "fileType": "JSON File",
+                "path": "BrowseST/app/data/1330994411402.json",
+                "size": 0
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/data/1330994411301.json",
+            "name": "1330994411301.json",
+            "children": [],
+            "data": {
+                "name": "1330994411301.json",
+                "fileType": "JSON File",
+                "path": "BrowseST/app/data/1330994411301.json",
+                "size": 0
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/data/1330994411244.json",
+            "name": "1330994411244.json",
+            "children": [],
+            "data": {
+                "name": "1330994411244.json",
+                "fileType": "JSON File",
+                "path": "BrowseST/app/data/1330994411244.json",
+                "size": 0
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/data/1330994411045.json",
+            "name": "1330994411045.json",
+            "children": [],
+            "data": {
+                "name": "1330994411045.json",
+                "fileType": "JSON File",
+                "path": "BrowseST/app/data/1330994411045.json",
+                "size": 0
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/data/1330994410984.json",
+            "name": "1330994410984.json",
+            "children": [],
+            "data": {
+                "name": "1330994410984.json",
+                "fileType": "JSON File",
+                "path": "BrowseST/app/data/1330994410984.json",
+                "size": 0
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/data/1330994410945.json",
+            "name": "1330994410945.json",
+            "children": [],
+            "data": {
+                "name": "1330994410945.json",
+                "fileType": "JSON File",
+                "path": "BrowseST/app/data/1330994410945.json",
+                "size": 0
+            },
+            "leaf": true
+        }
+    ]
+}

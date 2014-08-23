@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leak test</title>
+    <link rel="stylesheet" href="../../resources/css/sencha-touch.css"/>
+    <link rel="stylesheet" href="../../resources/css/touch-charts.css"/>
+    <script type="text/javascript" src="../../sencha-touch-debug.js"></script>
+    <script type="text/javascript" src="../../touch-charts-debug.js"></script>
+    <script>
+        Ext.setup({
+            onReady: function() {
+                var log = function () {};
+                if (localStorage.iteration) {
+                    alert('last time it was ' + localStorage.iteration + ' iterations');
+                    localStorage.clear();
+                }
+                document.title = 'loooo';
+
+                var data = [], i, floor = 20,
+                        store1, colors, chartCount = 0,
+                        iterations = 0, addDelay = 0,
+                        removeDelay = 0;
+
+                for (i = 0; i < 12; i++) {
+                    data.push([Ext.Date.monthNames[i % 12], Math.floor(Math.max((Math.random() * 100), floor))]);
+                }
+
+                dataString = JSON.stringify(data);
+
+                store1 = new Ext.data.ArrayStore({
+                    fields: ['name', 'data1'],
+                    data: JSON.parse(dataString)
+                });
+
+
+                var addChart = function() {
+                    log(document.getElementsByTagName("*").length + ' DOM elements');
+                    if (iterations && (chartCount < iterations)) {
+                        document.title = 'adding chart ' + (chartCount + 1) + '...';
+                        chart = new Ext.draw.Component({
+                            width: 768,
+                            height: 1024,
+                            items: [
+                                {
+                                    type: 'rect',
+                                    fill: '#ff0',
+                                    width: 900,
+                                    height: 900,
+                                    x: 30,
+                                    y: 30
+                                },
+                                {
+                                    type: 'text',
+                                    x : 100,
+                                    y : 110
+                                },
+                                {
+                                    type: 'text',
+                                    x : 100,
+                                    y : 120
+                                },
+                                {
+                                    type: 'text',
+                                    x : 100,
+                                    y : 130
+                                },
+                                {
+                                    type: 'text',
+                                    x : 100,
+                                    y : 140
+                                },
+                                {
+                                    type: 'text',
+                                    x : 100,
+                                    y : 150
+                                }
+                            ]
+                        });
+
+                        //chart.redraw = Ext.emptyFn;
+                        main.add(chart);
+
+                        chart.surface.renderFrame();
+
+                        onAfterRender();
+                    }
+                }
+
+                var removeChart = function() {
+                    log('removing chart ' + (chartCount) + '...');
+                    main.removeAll(true);
+                    //main.doLayout();
+                    new Ext.util.DelayedTask(addChart).delay(addDelay);
+                };
+
+                var onAfterRender = function() {
+                    log('added chart ' + (chartCount + 1) + '!');
+                    log(document.getElementsByTagName("*").length + ' DOM elements');
+                    chartCount++;
+                    if (chartCount < iterations) {
+                        localStorage.clear();
+                        localStorage.iteration = chartCount + '';
+                        new Ext.util.DelayedTask(removeChart).delay(removeDelay);
+                    }
+                };
+
+                var runTest = function() {
+                    chartCount = 0;
+                    main.removeAll(true);
+                    iterations = 50000000;
+                    addDelay = 10;
+                    removeDelay = 100;
+                    addChart();
+                };
+
+                var main = new Ext.Panel({
+                    fullscreen: true,
+                    layout: 'fit',
+                    items: [
+                        {
+                            docked: 'top',
+                            xtype: 'toolbar',
+                            title: 'Testing Charts'
+                        }
+                    ]
+                });
+                runTest();
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
+

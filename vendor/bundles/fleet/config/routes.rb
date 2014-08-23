@@ -103,6 +103,7 @@ Fleet::Engine.routes.draw do
 			post :update_multiple
 			get :show_by_name
 			get :export
+      get :locations
 		end
 	end
 
@@ -111,6 +112,7 @@ Fleet::Engine.routes.draw do
 			post :update_multiple
 			get :show_by_name
 			get :export
+      get :groups_vehicles
 		end
     member do
       get :vehicles
@@ -123,6 +125,7 @@ Fleet::Engine.routes.draw do
 			post :update_multiple
 			get :show_by_name
 			get :export
+      get :groups_drivers
 		end
     member do
       get :drivers
@@ -144,6 +147,7 @@ Fleet::Engine.routes.draw do
 			get :show_by_name
 			get :export
       get :simulation_service
+      get :summary
 		end
     member do
       get :repairs
@@ -156,6 +160,7 @@ Fleet::Engine.routes.draw do
 			post :update_multiple
 			get :show_by_name
 			get :export
+      get :summary
 		end
 	end
 

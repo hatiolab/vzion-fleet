@@ -107,6 +107,7 @@ Ext.define('Fleet.controller.vehicle.VehicleItem', {
 		if(grid.xtype == 'fleet_vehicle_repair') {
 			return Ext.create(grid.getStore().model, {
 				id : null,
+				domain_id : login.current_domain_id,
 				vehicle_id : HF.current.resource().id,
 				next_repair_date : '',
 				repair_date : '',

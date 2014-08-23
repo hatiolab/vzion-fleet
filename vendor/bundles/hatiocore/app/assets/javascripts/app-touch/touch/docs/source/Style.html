@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-chart-theme-Style'>/**
+</span> * @class Ext.chart.theme.Style
+ * @ignore
+ */
+Ext.define('Ext.chart.theme.Style', {
+
+    constructor: function(config) {
+        config = config || {};
+
+        if (config.parent) {
+            this.themeStyle = Ext.Object.chain(config.parent);
+        } else {
+            this.themeStyle = {};
+        }
+
+        this.themeStyle.reset = function () {
+            Ext.Object.each(this, function(name) {
+                delete this[name];
+            });
+        };
+        this.themeStyle = Ext.Object.chain(this.themeStyle);
+        this.style = Ext.Object.chain(this.themeStyle);
+        Ext.apply(this.style, config);
+    }
+});
+</pre>
+</body>
+</html>

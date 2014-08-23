@@ -1,0 +1,21 @@
+{
+"total": 1,
+"items": [
+{
+"id": "D001",
+"domain_id": "1",
+"description": "D001",
+"title": "이사",
+"updated_at": 1329739777706,
+"division": "Sales",
+"phone_no": "010-1111-2222",
+"mobile_no": "010-3333-4444",
+"name": "오현석",
+"image_clip": "data/image/D001.jpg",
+"created_at": 1329067836762,
+"social_id": "10011-0983425",
+"creator_id": "1",
+"updater_id": "1"
+}],
+"success": true
+}

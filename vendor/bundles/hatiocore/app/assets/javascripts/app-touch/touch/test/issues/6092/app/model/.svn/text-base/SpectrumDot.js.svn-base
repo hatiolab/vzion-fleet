@@ -1,0 +1,24 @@
+Ext.define('SPECTRUM.model.SpectrumDot', {
+    extend: 'Ext.data.Model',
+
+    fields: [
+        {name: 'wavelength', type: 'float'},
+        {name: 'bandp1', type: 'float'},
+        {name: 'band0', type: 'float'},
+        {name: 'bandm1', type: 'float'}
+    ],
+
+
+    requires: [
+        'Ext.data.proxy.Rest'
+    ],
+
+    proxy: {
+        type: 'rest',
+        url: 'service/spectrum/example',
+        reader: {
+            type: 'json',
+            root: 'payload'
+        }
+    }
+});

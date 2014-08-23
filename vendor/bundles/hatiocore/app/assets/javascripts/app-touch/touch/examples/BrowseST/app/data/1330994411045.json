@@ -1,0 +1,30 @@
+{
+    "name": "BrowseST/app/view/",
+    "id": "BrowseST/app/view/",
+    "children": [
+        {
+            "id": "BrowseST/app/view/Viewport.js",
+            "name": "Viewport.js",
+            "children": [],
+            "data": {
+                "name": "Viewport.js",
+                "fileType": "JavaScript File",
+                "path": "BrowseST/app/view/Viewport.js",
+                "size": 1162
+            },
+            "leaf": true
+        },
+        {
+            "id": "BrowseST/app/view/Charts.js",
+            "name": "Charts.js",
+            "children": [],
+            "data": {
+                "name": "Charts.js",
+                "fileType": "JavaScript File",
+                "path": "BrowseST/app/view/Charts.js",
+                "size": 2517
+            },
+            "leaf": true
+        }
+    ]
+}

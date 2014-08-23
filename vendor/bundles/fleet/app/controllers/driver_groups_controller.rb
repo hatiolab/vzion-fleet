@@ -11,6 +11,27 @@ public
   end
   
   #
+  # GET driver_groups/groups_drivers
+  #
+  def groups_drivers
+    groups, items = DriverGroup.all, []
+    groups.each do |group|
+      item = {
+        :id => "#{group.id}",
+        :name => "#{group.name} (#{group.description})",
+        :description => "#{group.name} (#{group.description})",
+      }
+      item[:drivers] = group.drivers.collect { |driver| driver.id.to_s }
+      items.push(item)
+    end
+    
+    respond_to do |format|
+      format.xml  { render :xml => {:items => items, :total => items.size, :success => true } }
+      format.json { render :json => {:items => items, :total => items.size, :success => true } }
+    end
+  end
+    
+  #
   # POST driver_groups/:id/update_groups_drivers
   #
   def update_groups_drivers

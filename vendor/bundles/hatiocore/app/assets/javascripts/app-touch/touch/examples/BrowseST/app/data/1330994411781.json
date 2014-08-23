@@ -1,0 +1,18 @@
+{
+    "name": "BrowseST/app/model/",
+    "id": "BrowseST/app/model/",
+    "children": [
+        {
+            "id": "BrowseST/app/model/File.js",
+            "name": "File.js",
+            "children": [],
+            "data": {
+                "name": "File.js",
+                "fileType": "JavaScript File",
+                "path": "BrowseST/app/model/File.js",
+                "size": 134
+            },
+            "leaf": true
+        }
+    ]
+}

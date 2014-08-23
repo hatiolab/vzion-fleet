@@ -1,0 +1,509 @@
+{
+    "children": [
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "4.16", 
+             "color": "#3974af", 
+             "area": 4.16
+           }, 
+           "id": "album-Militarypersonnel", 
+           "name": "Military personnel"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "7.89", 
+             "color": "#326599", 
+             
+             "area": 7.89
+           }, 
+           "id": "album-Ongoing", 
+           "name": "Ongoing operations, equipment and supplies"
+         }, 
+         {
+           "children": [], 
+           "data": {
+             "playcount": "7.22", 
+             "color": "#2a5581", 
+             
+             "area": 7.22
+           }, 
+           "id": "album-Othernationaldefense", 
+           "name": "Other national defense"
+         }
+        ],
+       "data": {
+         "playcount": 19.27, 
+         "area": 19.27
+       }, 
+       "id": "artist-Nationaldefense", 
+       "name": "National Defense"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "7.28", 
+             "color": "#94a558", 
+             
+             "area": 7.28
+           }, 
+           "id": "album-MedicaidandChildren", 
+           "name": "Medicaid and Children's Health Insurance"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "12.86", 
+             "color": "#808f4c", 
+             
+             "area": 12.86
+           }, 
+           "id": "album-Medicare", 
+           "name": "Medicare"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "1.06", 
+             "color": "#637b29", 
+             
+             "area": 1.06
+           }, 
+           "id": "album-Healthresearch", 
+           "name": "Health research & food safety"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "1.42", 
+             "color": "#a4b762", 
+             
+             "area": 1.42
+           }, 
+           "id": "album-Otherhealth", 
+           "name": "Other health care"
+         }
+       ], 
+       "data": {
+         "playcount": 22.62, 
+         "area": 22.62
+       }, 
+       "id": "artist-HealthCare", 
+       "name": "Health Care"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "2.83", 
+             "color": "#c19868", 
+             
+             "area": 2.83
+           }, 
+           "id": "album-Foodandnutrition", 
+           "name": "Food and nutrition assistance"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "1.59", 
+             "color": "#8a5b23", 
+             
+             "area": 1.59
+           }, 
+           "id": "album-Housingssistance", 
+           "name": "Housing assistance"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "2.52", 
+             "color": "#d0b28e", 
+             
+             "area": 2.52
+           }, 
+           "id": "album-Unemployment", 
+           "name": "Unemployment compensation"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "1.87", 
+             "color": "#9c6c33", 
+             
+             "area": 1.87
+           }, 
+           "id": "album-Earnedincomecredits", 
+           "name": "Earned income and child tax credits"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "5.67", 
+             "color": "#b27e42", 
+             
+             "area": 5.67
+           }, 
+           "id": "album-Otherincome", 
+           "name": "Other income security"
+         }
+       ], 
+       "data": {
+         "playcount": 14.48, 
+         "area": 14.48
+       }, 
+       "id": "artist_Incomesecurity", 
+       "name": "Income Security"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.58", 
+             "color": "#5a4a42", 
+             
+             "area": 0.58
+           }, 
+           "id": "album-Studentfinaid", 
+           "name": "Student financial aid for college, including Pell Grants"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.43", 
+             "color": "#8e7569", 
+             
+             "area": 0.43
+           }, 
+           "id": "album-Fundsforschool", 
+           "name": "Funds for school districts with low income K-12 students"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.36", 
+             "color": "#a48778", 
+             
+             "area": 0.36
+           }, 
+           "id": "album-Specialed", 
+           "name": "Special education"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "1.40", 
+             "color": "#766157", 
+             
+             "area": 1.40
+           }, 
+           "id": "album-Othereducation", 
+           "name": "Other education and job training"
+         }
+       ], 
+       "data": {
+         "playcount": 2.77, 
+         "area": 2.77
+       }, 
+       "id": "artist_Educationandjobtraining", 
+       "name": "Education and Job Training"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "1.44", 
+             "color": "#f2cd30", 
+             
+             "area": 1.44
+           }, 
+           "id": "album-Incomeandhousing", 
+           "name": "Income and housing support"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "1.37", 
+             "color": "#f1de85", 
+             
+             "area": 1.37
+           }, 
+           "id": "album-vHealthcare", 
+           "name": "Health care"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.45", 
+             "color": "#d7b62b", 
+             
+             "area": 0.45
+           }, 
+           "id": "album-Otherveteransbenefits", 
+           "name": "Other veterans benefits"
+         }
+       ], 
+       "data": {
+         "playcount": 3.26, 
+         "area": 3.26
+       }, 
+       "id": "artist_Veteransbenefits", 
+       "name": "Veteran's benefits"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.78", 
+             "color": "#9f1f63", 
+             
+             "area": 0.78
+           }, 
+           "id": "album-Development", 
+           "name": "Development and humanitarian assistance"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.39", 
+             "color": "#d52a85", 
+             
+             "area": 0.39
+           }, 
+           "id": "album-Securityassistance", 
+           "name": "Security assistance"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.48", 
+             "color": "#b82473", 
+             
+             "area": 0.48
+           }, 
+           "id": "album-Otherinternational", 
+           "name": "Other international affairs"
+         }
+       ], 
+       "data": {
+         "playcount": 1.65, 
+         "area": 1.65
+       }, 
+       "id": "artist-Internationalaffairs", 
+       "name": "International Affairs"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "1.87", 
+             "color": "#e7802f", 
+             
+             "area": 1.87
+           }, 
+           "id": "album-Highways", 
+           "name": "Highways, mass transit, and other ground transportation"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.87", 
+             "color": "#e4612e", 
+             
+             "area": 0.87
+           }, 
+           "id": "album-Othertransport", 
+           "name": "Other transportation and infrastructure"
+         }
+       ], 
+       "data": {
+         "playcount": 2.74, 
+         "area": 2.74
+       }, 
+       "id": "artist_Transportation", 
+       "name": "Transportation"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.55", 
+             "color": "#6ba042", 
+             
+             "area": 0.55
+           }, 
+           "id": "album-Waterandland", 
+           "name": "Water and land management"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.57", 
+             "color": "#8dc63f", 
+             
+             "area": 0.57
+           }, 
+           "id": "album-Pollution", 
+           "name": "Pollution control and other"
+         }
+       ], 
+       "data": {
+         "playcount": 1.12, 
+         "area": 1.12
+       }, 
+       "id": "artist_NaturalResourcesandEnvironment", 
+       "name": "Natural Resources"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.45", 
+             "color": "#e0c69a", 
+             
+             "area": 0.45
+           }, 
+           "id": "album-NASA", 
+           "name": "NASA"
+         },
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.39", 
+             "color": "#d5b77e", 
+             
+             "area": 0.39
+           }, 
+           "id": "album-Otherscience", 
+           "name": "Other science research and laboratories"
+         }
+       ], 
+       "data": {
+         "playcount": 0.84, 
+         "area": 0.84
+       }, 
+       "id": "artist_technologyprograms", 
+       "name": "Technology Programs"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "20.04", 
+             "color": "#d1d085", 
+             
+             "area": 20.04
+           }, 
+           "id": "album-SocialSecurity", 
+           "name": "Social Security"
+         }
+       ], 
+       "data": {
+         "playcount": 20.04, 
+         "area": 20.04
+       }, 
+       "id": "artist_SocialSecurity", 
+       "name": "Social Security"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.81", 
+             "color": "#0b2285", 
+              
+             "area": 0.81
+           }, 
+           "id": "album-Immigration", 
+           "name": "Immigration and other federal law enforcement "
+         }
+       ], 
+       "data": {
+         "playcount": 0.81, 
+         "area": 0.81
+       }, 
+       "id": "artist_Immigrationandlawenforcement", 
+       "name": "Immigration & Law Enforcement"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "0.44", 
+             "color": "#d54e25", 
+             "area": 0.44
+           }, 
+           "id": "album-Responsetonaturaldisasters", 
+           "name": "Response to natural disasters"
+         }
+       ], 
+       "data": {
+         "playcount": 0.44, 
+         "area": 0.44
+       }, 
+       "id": "artist_Responsetonaturaldisasters", 
+       "name": "Response to Natural Disasters"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "3.65", 
+             "color": "#2d667b", 
+             
+             "area": 3.65
+           }, 
+           "id": "album-Othergovernmentprograms", 
+           "name": "Other government programs"
+         }
+       ], 
+       "data": {
+         "playcount": 3.65, 
+         "area": 3.65
+       }, 
+       "id": "artist_Othergovernmentprograms", 
+       "name": "Other Government Programs"
+     }, 
+     {
+       "children": [
+         {
+           "children": [], 
+           "data": {
+             "playcount": "6.31", 
+             "color": "#422e5c", 
+             
+             "area": 6.31
+           }, 
+           "id": "album-Netinterest", 
+           "name": "Net interest"
+         }
+       ], 
+       "data": {
+         "playcount": 6.31, 
+         "area": 6.31
+       }, 
+       "id": "artist_Netinterest", 
+       "name": "Net Interest"
+     }
+   ], 
+   "data": {}, 
+   "id": "root", 
+   "name": "2012 Budget Proposal"
+   }
+

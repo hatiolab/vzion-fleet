@@ -1,0 +1,230 @@
+{
+    "name": "BrowseST/app/",
+    "id": "BrowseST/app/",
+    "children": [
+        {
+            "id": "BrowseST/app/view",
+            "name": "view",
+            "children": [
+                {
+                    "id": "BrowseST/app/view/Viewport.js",
+                    "name": "Viewport.js",
+                    "children": [],
+                    "data": {
+                        "name": "Viewport.js",
+                        "fileType": "JavaScript File",
+                        "path": "BrowseST/app/view/Viewport.js",
+                        "size": 1162
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/view/Charts.js",
+                    "name": "Charts.js",
+                    "children": [],
+                    "data": {
+                        "name": "Charts.js",
+                        "fileType": "JavaScript File",
+                        "path": "BrowseST/app/view/Charts.js",
+                        "size": 2517
+                    },
+                    "leaf": true
+                }
+            ],
+            "data": {
+                "name": "view",
+                "fileType": "Directory",
+                "path": "BrowseST/app/view",
+                "size": 136,
+                "next": "1330994411045.json"
+            },
+            "leaf": false
+        },
+        {
+            "id": "BrowseST/app/store",
+            "name": "store",
+            "children": [
+                {
+                    "id": "BrowseST/app/store/FileStore.js",
+                    "name": "FileStore.js",
+                    "children": [],
+                    "data": {
+                        "name": "FileStore.js",
+                        "fileType": "JavaScript File",
+                        "path": "BrowseST/app/store/FileStore.js",
+                        "size": 316
+                    },
+                    "leaf": true
+                }
+            ],
+            "data": {
+                "name": "store",
+                "fileType": "Directory",
+                "path": "BrowseST/app/store",
+                "size": 102,
+                "next": "1330994410945.json"
+            },
+            "leaf": false
+        },
+        {
+            "id": "BrowseST/app/model",
+            "name": "model",
+            "children": [
+                {
+                    "id": "BrowseST/app/model/File.js",
+                    "name": "File.js",
+                    "children": [],
+                    "data": {
+                        "name": "File.js",
+                        "fileType": "JavaScript File",
+                        "path": "BrowseST/app/model/File.js",
+                        "size": 134
+                    },
+                    "leaf": true
+                }
+            ],
+            "data": {
+                "name": "model",
+                "fileType": "Directory",
+                "path": "BrowseST/app/model",
+                "size": 102,
+                "next": "1330994411781.json"
+            },
+            "leaf": false
+        },
+        {
+            "id": "BrowseST/app/data",
+            "name": "data",
+            "children": [
+                {
+                    "id": "BrowseST/app/data/getdata.js",
+                    "name": "getdata.js",
+                    "children": [],
+                    "data": {
+                        "name": "getdata.js",
+                        "fileType": "JavaScript File",
+                        "path": "BrowseST/app/data/getdata.js",
+                        "size": 2467
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/data/file-root.json",
+                    "name": "file-root.json",
+                    "children": [],
+                    "data": {
+                        "name": "file-root.json",
+                        "fileType": "JSON File",
+                        "path": "BrowseST/app/data/file-root.json",
+                        "size": 3235
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/data/1330994411781.json",
+                    "name": "1330994411781.json",
+                    "children": [],
+                    "data": {
+                        "name": "1330994411781.json",
+                        "fileType": "JSON File",
+                        "path": "BrowseST/app/data/1330994411781.json",
+                        "size": 0
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/data/1330994411402.json",
+                    "name": "1330994411402.json",
+                    "children": [],
+                    "data": {
+                        "name": "1330994411402.json",
+                        "fileType": "JSON File",
+                        "path": "BrowseST/app/data/1330994411402.json",
+                        "size": 0
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/data/1330994411301.json",
+                    "name": "1330994411301.json",
+                    "children": [],
+                    "data": {
+                        "name": "1330994411301.json",
+                        "fileType": "JSON File",
+                        "path": "BrowseST/app/data/1330994411301.json",
+                        "size": 0
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/data/1330994411244.json",
+                    "name": "1330994411244.json",
+                    "children": [],
+                    "data": {
+                        "name": "1330994411244.json",
+                        "fileType": "JSON File",
+                        "path": "BrowseST/app/data/1330994411244.json",
+                        "size": 0
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/data/1330994411045.json",
+                    "name": "1330994411045.json",
+                    "children": [],
+                    "data": {
+                        "name": "1330994411045.json",
+                        "fileType": "JSON File",
+                        "path": "BrowseST/app/data/1330994411045.json",
+                        "size": 0
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/data/1330994410984.json",
+                    "name": "1330994410984.json",
+                    "children": [],
+                    "data": {
+                        "name": "1330994410984.json",
+                        "fileType": "JSON File",
+                        "path": "BrowseST/app/data/1330994410984.json",
+                        "size": 0
+                    },
+                    "leaf": true
+                },
+                {
+                    "id": "BrowseST/app/data/1330994410945.json",
+                    "name": "1330994410945.json",
+                    "children": [],
+                    "data": {
+                        "name": "1330994410945.json",
+                        "fileType": "JSON File",
+                        "path": "BrowseST/app/data/1330994410945.json",
+                        "size": 0
+                    },
+                    "leaf": true
+                }
+            ],
+            "data": {
+                "name": "data",
+                "fileType": "Directory",
+                "path": "BrowseST/app/data",
+                "size": 340,
+                "next": "1330994411533.json"
+            },
+            "leaf": false
+        },
+        {
+            "id": "BrowseST/app/app.js",
+            "name": "app.js",
+            "children": [],
+            "data": {
+                "name": "app.js",
+                "fileType": "JavaScript File",
+                "path": "BrowseST/app/app.js",
+                "size": 3704
+            },
+            "leaf": true
+        }
+    ]
+}

@@ -12,6 +12,6 @@ datetime_format: '%Y-%m-%d %H:%M'
 time_format: '%H:%M'
 shift_time_format: '%H:%M'
 std_name : std
-ops_name : ops
+ops_name : ctl
 default_lat : 37.381
 default_lng : 127.11846

@@ -54,7 +54,7 @@ gem 'capistrano', '2.15.5' #, group: :development
 group :development do
   # gem 'better_errors'
   # gem 'binding_of_caller'
-  gem 'meta_request'
+  # gem 'meta_request'
 end
 
 gem 'activerecord-session_store'
