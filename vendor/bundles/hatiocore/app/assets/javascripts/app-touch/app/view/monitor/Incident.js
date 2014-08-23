@@ -420,7 +420,7 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 		items : [{
 			xtype    : 'video',
 			itemId : 'video',
-			posterUrl: 'porsche.png'
+			//posterUrl: 'porsche.png'
 		}]
 	},
 	
