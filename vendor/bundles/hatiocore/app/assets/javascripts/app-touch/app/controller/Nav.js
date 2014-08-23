@@ -303,7 +303,6 @@ Ext.define('FleetTouch.controller.Nav', {
 
         for (var i = 0; i < count; i++) {
             var incident = store.getAt(i);
-			console.log(incident);
             incidents.add({
                 xtype: 'button',
                 incident: incident,

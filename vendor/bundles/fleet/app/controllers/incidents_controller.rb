@@ -2,7 +2,7 @@ class IncidentsController < ResourceMultiUpdateController
   
 public
   #
-  # GET incidents/:id/incident_logs
+  # GET incidents/incident_logs
   #
   def incident_logs
     @collection = IncidentLog.where("incident_id = ?", params[:id])

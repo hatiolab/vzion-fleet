@@ -71,7 +71,8 @@ Ext.define('FleetTouch.store.IncidentLogStore', {
 
 		proxy : {
 			type : 'ajax',
-			url : window.location.pathname.indexOf(contextPath) === 0 ? '/incident_logs' : 'assets/app-touch/data/incident_log.json',
+			// 일단 에러 나지 않게 수정함. TODO Controller에서 id 파라미터 수정
+			url : window.location.pathname.indexOf(contextPath) === 0 ? '/incidents/incident_logs?id=1' : 'assets/app-touch/data/incident_log.json',
 			reader : {
 				type : 'json',
 				rootProperty : 'items',
