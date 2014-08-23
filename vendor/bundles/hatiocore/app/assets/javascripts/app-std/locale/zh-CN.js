@@ -6,6 +6,6 @@ T({
 		'page-standard' : 'Standard Page'
 	},
 	text : {
-		'Welcome Ment' : '欢迎登陆 Vzion Fleet'
+		'Welcome Ment' : '欢迎登陆 Things Fleet'
 	}
 });

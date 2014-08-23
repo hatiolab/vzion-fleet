@@ -6,6 +6,6 @@ T({
 		'page-standard' : 'Standard Page'
 	},
 	text : {
-		'Welcome Ment' : 'Welcome to the Vzion Fleet'
+		'Welcome Ment' : 'Welcome to the Things Fleet'
 	}
 });

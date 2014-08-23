@@ -7,7 +7,7 @@ Domain.current_domain = Domain.where(name: domain_name).first_or_create(
   system_flag: true,
   timezone: 'Beijing',
   subdomain: subdomain,
-  brand_name: 'Vzion Fleet',
+  brand_name: 'Things Fleet',
   brand_image: File.open(Base::Engine.root.join('app', 'assets', 'images', 'site_brand.png')),
   content_image: File.open(Base::Engine.root.join('app', 'assets', 'images', 'caffeine_content.jpg'))
 )

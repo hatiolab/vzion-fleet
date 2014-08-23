@@ -6,6 +6,6 @@ T({
 		'page-standard' : '표준 화면'
 	},
 	text : {
-		'Welcome Ment' : 'Vzion Fleet에 오신 것을 환영합니다.'
+		'Welcome Ment' : 'Things Fleet에 오신 것을 환영합니다.'
 	}
 });
