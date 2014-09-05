@@ -16,7 +16,7 @@ Ext.define('FleetTouch.view.vehicle.RepairHistory', {
 		this.callParent(arguments);		
 		this.on('painted', function() {
 			FleetTouch.setting.on('vehicle', this.refresh, this);
-			this.refresh();			
+			this.refresh();
 		});
 		
 		this.on('erased', function() {
@@ -37,7 +37,7 @@ Ext.define('FleetTouch.view.vehicle.RepairHistory', {
 			scrollable : 'vertical',
 
 			tpl : [
-				'<div class="reportWrap type2">',
+				'<div class="reportWrap type3">',
 					'<div class="reportTitle">'+ T('title.maintenance_history') + '</div>',
 					'<div class="reportItem">',
 						'<table frame="hsides" rules="rows">',
@@ -69,7 +69,7 @@ Ext.define('FleetTouch.view.vehicle.RepairHistory', {
 		
 	refreshPage : function() {
 		var self = this;
-		this.vehicle = FleetTouch.setting.get('vehicle');		
+		this.vehicle = FleetTouch.setting.get('vehicle');
 		Ext.Ajax.request({
 			url : window.location.pathname.indexOf(contextPath) === 0 ? '/repair' : 'assets/app-touch/data/vehicle_repair.json',
 			method : 'GET',
@@ -94,6 +94,6 @@ Ext.define('FleetTouch.view.vehicle.RepairHistory', {
 			failure : function(response) {
 				Ext.Msg.alert(T('label.failure'), response.responseText);
 			}
-		});		
+		});
 	}
 });

@@ -4,9 +4,9 @@ Ext.define('FleetTouch.view.chart.driver.Running', {
 	xtype : 'chart_d_running',
 	
 	requires: [
-	'Ext.chart.Chart',
-    'Ext.chart.axis.Numeric',
-    'Ext.chart.axis.Category'
+		'Ext.chart.Chart',
+		'Ext.chart.axis.Numeric',
+		'Ext.chart.axis.Category'
 	],
 		
 	config : {
@@ -66,7 +66,7 @@ Ext.define('FleetTouch.view.chart.driver.Running', {
 		
 		store.load({
 			params : {
-				driver : this.driver,
+				'driver_id-eq' : this.driver,
 				from_year : this.fromYear,
 				to_year : thisYear,
 				from_month : 1,

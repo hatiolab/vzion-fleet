@@ -4,9 +4,9 @@ Ext.define('FleetTouch.view.chart.vehicle.Running', {
 	xtype : 'chart_v_running',
 	
 	requires: [
-	'Ext.chart.Chart',
-    'Ext.chart.axis.Numeric',
-    'Ext.chart.axis.Category'
+		'Ext.chart.Chart',
+		'Ext.chart.axis.Numeric',
+		'Ext.chart.axis.Category'
 	],
 		
 	config : {
@@ -66,7 +66,7 @@ Ext.define('FleetTouch.view.chart.vehicle.Running', {
 		
 		store.load({
 			params : {
-				vehicle : this.vehicle,
+				'vehicle_id-eq' : this.vehicle,
 				from_year : this.fromYear,
 				to_year : thisYear,
 				from_month : 1,

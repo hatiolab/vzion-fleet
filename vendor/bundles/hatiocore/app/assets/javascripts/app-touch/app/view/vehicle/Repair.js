@@ -17,19 +17,19 @@ Ext.define('FleetTouch.view.vehicle.Repair', {
 	    
 		items : [{
 			xtype : 'vehicle_repair_overview',
-			iconCls : 'iconsTab tabConsumable',
+			iconCls : 'tabConsumable',
 			title : T('title.maintenance')
 		}, {
 			xtype : 'vehicle_repair_history',
-			iconCls : 'iconsTab tabTrack',
+			iconCls : 'tabTrace',
 			title : T('title.maintenance_history')
 		}, {
 			xtype : 'vehicle_chart_mttr',
-			iconCls : 'iconsTab tabTrack',
+			iconCls : 'tabRepairTime',
 			title : T('report.mttr')
 		}, {
 			xtype : 'vehicle_chart_mtbf',
-			iconCls : 'iconsTab tabTrack',
+			iconCls : 'tabConditionTerm',
 			title : T('report.mtbf')
 		}]
 	},

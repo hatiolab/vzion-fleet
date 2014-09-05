@@ -43,7 +43,7 @@ Ext.define('FleetTouch.store.VehicleRunStore', {
 			type : 'float'
 		}, {
 			name : 'eco_index',
-			type : 'integer'			
+			type : 'integer'
 		}, {
 			name : 'sud_accel_cnt',
 			type : 'integer'
@@ -58,7 +58,7 @@ Ext.define('FleetTouch.store.VehicleRunStore', {
 			type : 'integer'
 		}, {
 			name : 'idle_time',
-			type : 'integer'			
+			type : 'integer'
 		}, {
 			name : 'inc_cnt',
 			type : 'integer'

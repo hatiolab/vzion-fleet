@@ -4,10 +4,10 @@ Ext.define('FleetTouch.view.chart.vehicle.Consumable', {
 	xtype : 'chart_v_consumable',
 	
 	requires: [
-	'Ext.chart.Chart',
-    'Ext.chart.axis.Numeric',
-    'Ext.chart.axis.Category',
-	//'Ext.chart.series.Column',
+		'Ext.chart.Chart',
+		'Ext.chart.axis.Numeric',
+		'Ext.chart.axis.Category',
+		'Ext.chart.series.Column',
 	],
 		
 	config : {
@@ -55,7 +55,7 @@ Ext.define('FleetTouch.view.chart.vehicle.Consumable', {
 		
 		store.load({
 			params : {
-				vehicle_id : this.vehicle
+				'vehicle_id-eq' : this.vehicle
 			},
 			callback : function(records) {
 				Ext.each(records, function(record) {

@@ -196,7 +196,8 @@ T({
 		cancel : '취소',
 		sync : '동기화',
 		file : '파일...',
-		close : '닫기'
+		close : '닫기',
+		start_maint : '정비 시작'
 	},
 	
 	label : {

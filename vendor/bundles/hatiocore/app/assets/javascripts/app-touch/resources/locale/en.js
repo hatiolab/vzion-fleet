@@ -196,7 +196,8 @@ T({
 		cancel : 'Cancel',
 		sync : 'Sync',
 		file : 'file...',
-		close : 'Close'
+		close : 'Close',
+		start_maint : 'Start Maintenance'
 	},
 	
 	label : {
@@ -323,7 +324,7 @@ T({
 		cost : 'Cost',
 		worker : 'Worker',
 		component : 'Component',
-		accrued_cost : 'Accrued Cost',		
+		accrued_cost : 'Accrued Cost',
 		replacement : 'Replacement',
 		health_rate : 'Health Rate',
 		time : 'Time',
@@ -340,7 +341,7 @@ T({
 		healthy : 'Healthy',
 		impending : 'Impending',
 		overdue : 'Overdue',
-		repair : 'Maintenence',
+		repair : 'Maintenance',
 		repair_date : 'Maint. Date',
 		next_repair_date : 'Next Maint. Date',
 		repair_mileage : 'Maint. Mileage',

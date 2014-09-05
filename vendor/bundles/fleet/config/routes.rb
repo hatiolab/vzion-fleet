@@ -1,5 +1,13 @@
 Fleet::Engine.routes.draw do
   # RESOURCES BEGIN BLOCK DON'T REMOVE
+	resources :repairs do
+		collection do
+			post :update_multiple
+			get :show_by_name
+			get :export
+		end
+	end
+
 	resources :spot_alarms do
 		collection do
 			post :update_multiple

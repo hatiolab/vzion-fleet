@@ -11,7 +11,7 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 		}
 	},
 	
-	constructor : function(config) {		
+	constructor : function(config) {
 		config.items = [
 			this.buildOverview(),
 			this.buildButton()
@@ -35,7 +35,7 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 			xtype : 'panel',
 			
 			layout : {
-				type: 'vbox',				
+				type: 'vbox',
 				align: 'center'
 			},
 			
@@ -57,7 +57,7 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 								return;
 							}
 							
-							var actionUrl = '/repair/' + ((btnText == self.getRepairStartText()) ? 'start' : 'end');
+							var actionUrl = '/repairs/' + ((btnText == self.getRepairStartText()) ? 'start' : 'end');
 							Ext.Ajax.request({
 								url : actionUrl,
 								method : 'POST',
@@ -78,7 +78,7 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 							});
 						});
 					}
-				}							
+				}
 			}]	
 		}
 	},
@@ -94,7 +94,7 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 			cls : 'bgHGradient',
 			
 			tpl : [
-				'<div class="reportWrap type2">',
+				'<div class="reportWrap type3">',
 					'<div class="reportTitle">'+ T('title.maintenance') + '</div>',
 					'<div class="reportItem">',
 						'<table frame="hsides" rules="rows">',
@@ -114,7 +114,7 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 							'<tr>',
 								'<td class="alignCenter">' + T('label.repair_mileage') + '</td>',
 								'<td class="alignCenter">{repair_mileage} (km)</td>',
-							'</tr>',							
+							'</tr>',
 							'</tpl>',
 						'</table>',
 					'</div>',
@@ -145,25 +145,25 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 		var store = Ext.getStore('VehicleStore');
 		store.clearFilter(true);
 		store.filter('id', this.vehicle);
-		
+
 		store.load(function(records) {
 			var record = records[0].getData();
-			data['vehicle_status'] = T('label.state_' + record.status.toLowerCase());
+			data['vehicle_status'] = record.status ? T('label.state_' + record.status.toLowerCase()) : '';
 			
 			// Vehicle Status 에 따 라 button text 변 경 
-			if('Incident' == record.status || 'Idle' == record.status || 'Running' == record.status) {
+			if(!record.status || 'Incident' == record.status || 'Idle' == record.status || 'Running' == record.status) {
 				self.down('[itemId=repair_button]').setText(self.getRepairStartText());
 			} else if('Maint' == record.status) {
 				self.down('[itemId=repair_button]').setText(self.getRepairEndText());
 			}
-			
+
 			Ext.Ajax.request({
-				url : window.location.pathname.indexOf(contextPath) === 0 ? '/repair' : 'assets/app-touch/data/vehicle_repair.json',
+				url : window.location.pathname.indexOf(contextPath) === 0 ? '/repairs' : 'assets/app-touch/data/vehicle_repair.json',
 				method : 'GET',
 				params : {
 					limit : 1,
 					start : 0,
-					vehicle_id : this.vehicle
+					'vehicle_id-eq' : self.vehicle
 				},
 				success : function(response) {
 					var resultObj = Ext.JSON.decode(response.responseText);
@@ -178,10 +178,10 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 							if(records[0].next_repair_date) {
 								var nextRepairDate = new Date(records[0].next_repair_date)
 								data['next_repair_date'] = Ext.Date.format(nextRepairDate, 'Y-m-d');
-							}							
+							}
 							
 							data['repair_mileage'] = records[0].repair_mileage;
-							self.down('[itemId=repair_overview]').setData(data);							
+							self.down('[itemId=repair_overview]').setData(data);
 						}
 					} else {
 						Ext.Msg.alert(T('label.failure'), resultObj.msg);
@@ -189,8 +189,9 @@ Ext.define('FleetTouch.view.vehicle.RepairOverview', {
 				},
 				failure : function(response) {
 					Ext.Msg.alert(T('label.failure'), response.responseText);
-				}
-			});			
+				},
+				scope : this
+			});
 		});
 	}
 });
