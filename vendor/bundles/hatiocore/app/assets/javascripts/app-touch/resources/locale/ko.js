@@ -435,7 +435,9 @@ T({
 		vehicle_model : '차량 모델',
 		eco_level : '경제주행 레벨',
 		mileage_of_month : '이달 주행거리',
-		consumption_of_month : '이달 연료소모량'
+		consumption_of_month : '이달 연료소모량',
+		the_first : '최초',
+		not_decided_yet : '미정'
 	},
 	
 	format : {

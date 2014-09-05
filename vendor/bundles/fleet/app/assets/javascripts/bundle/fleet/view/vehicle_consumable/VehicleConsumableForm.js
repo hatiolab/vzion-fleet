@@ -24,9 +24,9 @@ Ext.define('Fleet.view.vehicle_consumable.VehicleConsumableForm', {
 		{ name : 'repl_unit', fieldLabel : T('label.repl_unit') },
 		{ name : 'cycle_repl_mile', fieldLabel : T('label.x_repl_cycle_y', {x : '', y : T('label.mile')}), xtype : 'numberfield' },
 		{ name : 'cycle_repl_duration', fieldLabel : T('label.x_repl_cycle_y', {x : '', y : T('label.month')}), xtype : 'numberfield' },
-		{ name : 'last_repl_date', fieldLabel : T('label.x_repl_date', {x : T('label.last')}), xtype : 'datefield', format : T('format.date') },
+		{ name : 'last_repl_date', fieldLabel : T('label.x_repl_date', {x : T('label.last')}), xtype : 'datefield', format : T('format.date'), submitFormat : T('format.submitDate') },
 		{ name : 'last_repl_mile', fieldLabel : T('label.x_repl_mile', {x : T('label.last')}), xtype : 'numberfield' },
-		{ name : 'next_repl_date', fieldLabel : T('label.x_repl_date', {x : T('label.next')}), xtype : 'datefield', format : T('format.date') },
+		{ name : 'next_repl_date', fieldLabel : T('label.x_repl_date', {x : T('label.next')}), xtype : 'datefield', format : T('format.date'), submitFormat : T('format.submitDate') },
 		{ name : 'next_repl_mile', fieldLabel : T('label.x_repl_mile', {x : T('label.next')}), xtype : 'numberfield' },
 		{ name : 'cumulative_cost', fieldLabel : T('label.cumulative_cost'), xtype : 'numberfield' },
 		{ xtype : 'timestamp' }

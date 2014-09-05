@@ -113,6 +113,7 @@ Ext.define('FleetTouch.view.vehicle.Summary', {
 			vehicleInfo.total_distance_mile = (vehicleInfo.total_distance * 0.621371192237334).toFixed(2);
 			vehicleInfo.run_dist_mile_of_month = (vehicleInfo.run_dist_of_month * 0.621371192237334).toFixed(2);
 			var idx = Math.floor(vehicleInfo.eco_index / 20);
+			idx = idx > 4 ? 4 : idx;
 			vehicleInfo.eco_level = ['E', 'D', 'C', 'B', 'A'][idx];
 			vehicleInfo.cost_reduction = [50, 40, 30, 20, 10][idx];
 			
@@ -142,7 +143,15 @@ Ext.define('FleetTouch.view.vehicle.Summary', {
 						
 			// Maintenance
 			var tpl = ['<div class="subtitle">'+ T('title.maintenance') +'</div>'];
-			var maintMsg = maintenance ? T('msg.maint_on_x_next_y', {x : maintenance.repair_date, y : maintenance.next_repair_date}) : T('msg.no_maint_history');
+			var maintMsg = null;
+			if(maintenance) {
+				var repairDate = maintenance.repair_date ? maintenance.repair_date : T('label.the_first');
+				var nextRepairDate = maintenance.next_repair_date ? maintenance.next_repair_date : T('label.not_decided_yet');
+				maintMsg = T('msg.maint_on_x_next_y', {x : repairDate, y : nextRepairDate});
+			} else {
+				maintMsg = T('msg.no_maint_history');
+			}
+			
 			tpl.push('<div class="itemCell">' + maintMsg + '</div>');
 			self.down('[itemId=maintInfo]').setHtml(tpl.join(''));		
 		});		
@@ -215,7 +224,7 @@ Ext.define('FleetTouch.view.vehicle.Summary', {
 			tpl : [
 			'<div class="subtitle">' + T('title.consumable_item') + '</div>',
 			'<tpl for=".">',
-			'<div class="itemCell">{consumable_item} <div class="percent"><span style="width:{health_rate_max}%">{health_rate}%</span></div></div>',
+			'<div class="itemCell">{consumable_item} <div class="percent"><span style="width:{health_rate_max * 100}%">{health_rate}%</span></div></div>',
 			'</tpl>'
 			],
 		}
