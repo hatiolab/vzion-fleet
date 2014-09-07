@@ -22,6 +22,7 @@ Ext.define('FleetTouch.controller.Main', {
 				orientationchange: 'onOC'
 			},
 			'#content' : {
+				show : 'onHome',
 				painted : 'onHome'
 			},
 			'header #map' : {
@@ -42,7 +43,6 @@ Ext.define('FleetTouch.controller.Main', {
 			'header #refresh' : {
 				tap : 'onRefresh'
 			},
-			
 			'monitor_map' : {
 				drivertap : 'onMapDriverTap',
 				vehicletap : 'onMapVehicleTap',
@@ -57,17 +57,14 @@ Ext.define('FleetTouch.controller.Main', {
 			'monitor_incident image' : {
 				tap : 'onImage'
 			},
-			
 			'vehicle_summary' : {
 				showMap : 'onShowMap',
 				showTrack : 'onShowTrack'
 			},
-
 			'driver_summary' : {
 				showMap : 'onShowMap',
 				showTrack : 'onShowTrack'
 			}
-
 		}
 	},
 

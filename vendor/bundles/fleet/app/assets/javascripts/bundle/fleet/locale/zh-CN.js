@@ -27,7 +27,8 @@ T({
 		'Incident' : '突发事件',
 		'VehicleRepair' : '维护履历',
 		'TaskCalendar' : '日程表',
-		'SpotAlarm' : '地点警告'
+		'SpotAlarm' : '地点警告',
+		'Repair' : '维护'
 	},
 	title : {
 	},

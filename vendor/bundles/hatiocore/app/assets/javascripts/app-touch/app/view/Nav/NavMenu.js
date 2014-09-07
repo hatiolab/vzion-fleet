@@ -1,20 +1,20 @@
 Ext.define('FleetTouch.view.nav.NavMenu', {
 	extend: 'Ext.dataview.List',
 	
-    xtype: 'nav_menu',
+	xtype: 'nav_menu',
 
-    requires: [
-    'Ext.dataview.List'
-    ],
+	requires: [
+	'Ext.dataview.List'
+	],
 
-    initialize: function() {
-        this.callParent();
+	initialize: function() {
+		this.callParent();
 
-    },
+	},
 
-    config: {
-        disclosure: true,
+	config: {
+		disclosure: true,
 		grouped :true,
-        itemTpl: '<div class="menu"><strong>{text}</strong></div>'
-    }
+		itemTpl: '<div class="menu"><strong>{text}</strong></div>'
+	}
 });

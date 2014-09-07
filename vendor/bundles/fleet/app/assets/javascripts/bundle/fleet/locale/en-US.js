@@ -27,7 +27,8 @@ T({
 		'Incident' : 'Abnormal Situation',
 		'VehicleRepair' : 'Maintenance History',
 		'TaskCalendar' : 'Schedule',
-		'SpotAlarm' : 'Spot Alarm'
+		'SpotAlarm' : 'Spot Alarm',
+		'Repair' : 'Maintenance'
 	},
 	title : {
 	},

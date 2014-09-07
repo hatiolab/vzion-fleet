@@ -1,15 +1,15 @@
 Ext.define('FleetTouch.view.nav.NavDriver', {
 	
-    extend: 'Ext.dataview.List',
+	extend: 'Ext.dataview.List',
 
-    xtype: 'nav_driver',
+	xtype: 'nav_driver',
 
-    requires: [
-    	'Ext.dataview.List'
-    ],
+	requires: [
+		'Ext.dataview.List'
+	],
 
-    initialize: function() {
-        this.callParent();
+	initialize: function() {
+		this.callParent();
 
 		var self = this;
 		
@@ -22,19 +22,19 @@ Ext.define('FleetTouch.view.nav.NavDriver', {
 		this.on('erased', function() {
 			FleetTouch.setting.un('driver', self.onDriver, self);
 		});
-    },
+	},
 
-    config: {
-        title: T('title.driver_list'),
+	config: {
+		title: T('title.driver_list'),
 
-        disclosure: true,
+		disclosure: true,
 
-        store: 'DriverBriefStore',
+		store: 'DriverBriefStore',
 
-        itemTpl: '<div class="iconDriver"><strong>{name}</strong> {description}</div>',
+		itemTpl: '<div class="iconDriver"><strong>{name}</strong> {description}</div>',
 
 		onItemDisclosure : true
-    },
+	},
 
 	onDriver : function() {
 		var driver = FleetTouch.setting.get('driver');

@@ -75,7 +75,7 @@ Ext.define('FleetTouch.controller.Nav', {
 
 		/* Incident 상태 처리 */
 		var incidentStore = Ext.getStore('RecentIncidentStore');
-		incidentStore.filter('confirm', false);
+		incidentStore.filter('confirm-eq', false);
 		incidentStore.load();
 
 		/* Vehicle 상태 처리 */

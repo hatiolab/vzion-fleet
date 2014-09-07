@@ -10,7 +10,7 @@ Ext.define('Fleet.model.VehicleCheckin', {
 		{ name : 'vehicle', type : 'auto' },
 		{ name : 'driver_id', type : 'string' },
 		{ name : 'driver', type : 'auto' },
-		{ name : 'run_date', type : 'date' },
+		{ name : 'run_date', type : 'date', dateWriteFormat : T('format.submitDate') },
 		{ name : 'start_time', type : 'date' },
 		{ name : 'run_dist', type : 'integer' },
 		{ name : 'run_time', type : 'integer' },

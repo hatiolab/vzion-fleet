@@ -44,9 +44,8 @@ Ext.define('Fleet.view.incident.Incident', {
 		{ header : T('label.engine_temp_threshold'), dataIndex : 'engine_temp_threshold', align : 'right', width : 160 },
 		{ header : T('label.obd'), dataIndex : 'obd_connected', xtype : 'checkcolumn', width : 45 },
 		{ header : T('label.video'), dataIndex : 'video_clip', editor : { xtype : 'textfield' }, width : 200 },
-		{ header : T('label.created_at'), dataIndex : 'created_at', xtype : 'datecolumn', format : T('format.datetime'), width : 120 },
-
-		],	
+		{ header : T('label.created_at'), dataIndex : 'created_at', xtype : 'datecolumn', format : T('format.datetime'), width : 130 }
+	],
 	
 	dockedItems: [ {
 		xtype : 'searchform',

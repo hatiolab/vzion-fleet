@@ -1,16 +1,16 @@
 Ext.define('FleetTouch.view.nav.NavReport', {
-    extend: 'Ext.dataview.List',
+	extend: 'Ext.dataview.List',
 
-    xtype: 'nav_report',
+	xtype: 'nav_report',
 
-    requires: ['Ext.dataview.List'],
+	requires: ['Ext.dataview.List'],
 
-    config: {
-        title: T('title.report_list'),
+	config: {
+		title: T('title.report_list'),
 
-        disclosure: true,
+		disclosure: true,
 
-        store: Ext.create('Ext.data.Store', {
+		store: Ext.create('Ext.data.Store', {
 			fields : ['reportId', 'desc'],
 			data : [{
 				reportId : 'rpt_daily_driving',
@@ -59,6 +59,6 @@ Ext.define('FleetTouch.view.nav.NavReport', {
 			}]
 		}),
 
-        itemTpl: '<div class="iconChart"><strong>{desc}</strong></div>'
-    }
+		itemTpl: '<div class="iconChart"><strong>{desc}</strong></div>'
+	}
 });

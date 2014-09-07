@@ -116,9 +116,9 @@ Ext.define('FleetTouch.store.RecentIncidentStore', {
 		proxy : {
 			type : 'ajax',
 			url : window.location.pathname.indexOf(contextPath) === 0 ? '/incidents' : 'assets/app-touch/data/incident.json',
-			// extraParams : {
-			// 	confirm : false
-			// },
+			extraParams : {
+				'confirm-eq' : true
+			},
 			reader : {
 				type : 'json',
 				rootProperty : 'items',

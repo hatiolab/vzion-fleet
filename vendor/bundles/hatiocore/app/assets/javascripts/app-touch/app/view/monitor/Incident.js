@@ -35,16 +35,13 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 			self.refresh();
 		});
 		
-		self.items.items[0].down('[itemId=confirm]').on('change', function(field, b, c, d, value) {
+		self.items.items[0].down('[itemId=confirm]').on('change', function(field, value) {
 			Ext.Ajax.request({
-				url : '/incident/save',
-				method : 'POST',
-				params : {
-					id : self.incident.get('id'),
-					confirm : value[0] ? 'on' : 'off'
-				},
+				url : '/incidents/' + self.incident.get('id') + '.json',
+				method : 'PUT',
+				params : { 'incident[confirm]' : value ? true : false },
 				success : function(response) {
-					if(value[0])
+					if(value)
 						Ext.Msg.alert('성공', '이상상황 정보가 확인 처리되었습니다. 이상상황 리스트에서 잠시 후 사라지게 됩니다. 리스트에서 유지하고 싶으면, 다시 미확인으로 변경하시기 바랍니다.', Ext.emptyFn);
 					else
 						Ext.Msg.alert('성공', '이상상황 정보가 미확인 처리되었습니다. 이상상황 리스트에 다시 유지되게 됩니다. 리스트에서 제거하고 싶으면, 다시 확인으로 변경하시기 바랍니다.', Ext.emptyFn);

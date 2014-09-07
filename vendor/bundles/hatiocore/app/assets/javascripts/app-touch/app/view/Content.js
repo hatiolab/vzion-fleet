@@ -1,10 +1,10 @@
 Ext.define('FleetTouch.view.Content', {
 	
-    extend : 'Ext.Panel',
+	extend : 'Ext.Panel',
 
-    xtype : 'content',
+	xtype : 'content',
 
-    config : {
+	config : {
 		title : 'FleetTouch',
 		
 		layout : 'card',
@@ -20,5 +20,5 @@ Ext.define('FleetTouch.view.Content', {
 			cls : 'launchscreen',
 			scrollable : true
 		} ]
-    }
+	}
 });

@@ -1,15 +1,15 @@
 Ext.define('FleetTouch.view.nav.NavVehicle', {
 	
-    extend: 'Ext.dataview.List',
+	extend: 'Ext.dataview.List',
 
-    xtype: 'nav_vehicle',
+	xtype: 'nav_vehicle',
 
-    requires: [
-    	'Ext.dataview.List'
-    ],
+	requires: [
+		'Ext.dataview.List'
+	],
 
-    initialize: function() {
-        this.callParent();
+	initialize: function() {
+		this.callParent();
 
 		var self = this;
 		
@@ -22,20 +22,20 @@ Ext.define('FleetTouch.view.nav.NavVehicle', {
 		this.on('erased', function() {
 			FleetTouch.setting.un('vehicle', self.onVehicle, self);
 		});
-    },
+	},
 
-    config: {
-        title: T('title.vehicle_list'),
+	config: {
+		title: T('title.vehicle_list'),
 		cls : 'x-button-icon',
 
-        disclosure: true,
+		disclosure: true,
 
-        store: 'VehicleMapStore',
+		store: 'VehicleMapStore',
 
-        itemTpl: '<div class="iconVehicle"><strong>{description}</strong> {name}</div>',
+		itemTpl: '<div class="iconVehicle"><strong>{description}</strong> {name}</div>',
 
 		onItemDisclosure : true
-    },
+	},
 
 	onVehicle : function() {
 		var vehicle = FleetTouch.setting.get('vehicle');

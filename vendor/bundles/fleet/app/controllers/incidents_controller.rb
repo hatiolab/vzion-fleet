@@ -11,6 +11,6 @@ public
 
 private
   def resource_params
-    [ params.require(:incident).permit(:incident_id, :vehicle_id, :terminal_id, :driver_id, :accel_x, :accel_y, :accel_z, :velocity, :lat, :lng, :video_clip) ]
+    [ params.require(:incident).permit(:terminal_id, :vehicle_id, :driver_id, :impulse_x, :impulse_y, :impulse_z, :impulse_abs, :impulse_threshold, :engine_temp, :engine_temp_threshold, :obd_connected, :confirm, :velocity, :lat, :lng, :video_clip) ]
   end
 end
