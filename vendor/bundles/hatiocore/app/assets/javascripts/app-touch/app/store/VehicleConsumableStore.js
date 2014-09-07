@@ -13,7 +13,7 @@ Ext.define('FleetTouch.store.VehicleConsumableStore', {
 				type : 'string'
 			}, {
 				name : 'vehicle_id',
-				type : 'string'				
+				type : 'string'
 			}, {
 				name : 'name',
 				type : 'string'
@@ -37,15 +37,13 @@ Ext.define('FleetTouch.store.VehicleConsumableStore', {
 				type : 'string'
 			}, {
 				name : 'last_repl_date',
-				type : 'date',
-				dateFormat : 'time'
+				type : 'date'
 			}, {
 				name : 'last_repl_mile',
 				type : 'integer'
 			}, {
 				name : 'next_repl_date',
-				type : 'date',
-				dateFormat : 'time'
+				type : 'date'
 			}, {
 				name : 'next_repl_mile',
 				type : 'integer'
@@ -60,12 +58,10 @@ Ext.define('FleetTouch.store.VehicleConsumableStore', {
 				type : 'integer'
 			}, {
 				name : 'created_at',
-				type : 'date',
-				dateFormat:'time'
+				type : 'date'
 			}, {
 				name : 'updated_at',
-				type : 'date',
-				dateFormat:'time'
+				type : 'date'
 			}	
 		],
 

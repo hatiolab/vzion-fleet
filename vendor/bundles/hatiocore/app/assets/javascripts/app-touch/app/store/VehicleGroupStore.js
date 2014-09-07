@@ -27,12 +27,10 @@ Ext.define('FleetTouch.store.VehicleGroupStore', {
 			type : 'integer'
 		}, {
 			name : 'created_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		}, {
 			name : 'updated_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		} ],
 
 		proxy : {

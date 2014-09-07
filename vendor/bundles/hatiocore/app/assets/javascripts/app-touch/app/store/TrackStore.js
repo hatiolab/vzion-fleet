@@ -29,15 +29,14 @@ Ext.define('FleetTouch.store.TrackStore', {
 			type : 'number'
 		}, {
 			name : 'trace_time',
-			type : 'date',
-			dateFormat : 'time'
+			type : 'date'
 		}, {
 			name : 'velocity',
 			type : 'float'
 		} ],
 
 		sorters : [ {
-			property : 'datetime',
+			property : 'trace_time',
 			direction : 'DESC'
 		} ],
 

@@ -29,8 +29,7 @@ Ext.define('FleetTouch.store.TrackByVehicleStore', {
 			type : 'number'
 		}, {
 			name : 'trace_time',
-			type : 'date',
-			dateFormat : 'time'
+			type : 'date'
 		}, {
 			name : 'velocity',
 			type : 'float'

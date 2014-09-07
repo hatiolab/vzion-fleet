@@ -19,12 +19,10 @@ Ext.define('FleetTouch.store.VehicleRepairStore', {
 			type : 'string'
 		}, {
 			name : 'next_repair_date',
-			type : 'date',
-			dateFormat : 'time'
+			type : 'date'
 		}, {
 			name : 'repair_date',
-			type : 'date',
-			dateFormat : 'time'
+			type : 'date'
 		}, {
 			name : 'repair_man',
 			type : 'string'
@@ -48,16 +46,14 @@ Ext.define('FleetTouch.store.VehicleRepairStore', {
 			type : 'integer'
 		}, {
 			name : 'created_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		}, {
 			name : 'updated_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		}],
 
 		sorters : [ {
-			property : 'repair_date',
+			property : 'created_at',
 			direction : 'DESC'
 		} ],
 		

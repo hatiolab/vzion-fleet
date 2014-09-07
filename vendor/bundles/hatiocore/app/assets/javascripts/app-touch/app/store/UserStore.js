@@ -40,13 +40,11 @@ Ext.define('FleetTouch.store.UserStore', {
         },
         {
             name: 'created_at',
-            type: 'date',
-            dateFormat: 'time'
+            type: 'date'
         },
         {
             name: 'updated_at',
-            type: 'date',
-            dateFormat: 'time'
+            type: 'date'
         }],
 
         proxy: {
