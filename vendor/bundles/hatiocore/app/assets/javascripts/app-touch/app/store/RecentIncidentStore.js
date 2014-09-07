@@ -101,13 +101,11 @@ Ext.define('FleetTouch.store.RecentIncidentStore', {
 		},
 		{
 			name: 'created_at',
-			type: 'date',
-			dateFormat: 'time'
+			type: 'date'
 		},
 		{
 			name: 'updated_at',
-			type: 'date',
-			dateFormat: 'time'
+			type: 'date'
 		} ],
 
 		sorters : [ {

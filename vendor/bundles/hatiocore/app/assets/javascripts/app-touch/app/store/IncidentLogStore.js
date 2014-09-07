@@ -28,8 +28,7 @@ Ext.define('FleetTouch.store.IncidentLogStore', {
 			type : 'string'
 		}, {
 			name : 'incident_date',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		}, {
 			name : 'lat',
 			type : 'float'
@@ -56,16 +55,14 @@ Ext.define('FleetTouch.store.IncidentLogStore', {
 			type : 'string'
 		}, {
 			name : 'created_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		}, {
 			name : 'updated_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		} ],
 
 		sorters : [ {
-			property : 'datetime',
+			property : 'created_at',
 			direction : 'ASC'
 		} ],
 

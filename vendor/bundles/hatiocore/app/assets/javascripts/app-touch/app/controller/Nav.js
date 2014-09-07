@@ -1,13 +1,14 @@
 Ext.define('FleetTouch.controller.Nav', {
-    extend: 'Ext.app.Controller',
+	
+	extend: 'Ext.app.Controller',
 
 	requires : ['FleetTouch.view.driver.Driver', 'FleetTouch.view.vehicle.Vehicle'],
 	
-    config: {
-        refs: {
-            main : 'main',
-            nav : 'nav',
-            content : 'content',
+	config: {
+		refs: {
+			main : 'main',
+			nav : 'nav',
+			content : 'content',
 			header : 'header',
 			incidents : 'nav #incidents',
 			status : 'nav #status',
@@ -17,9 +18,9 @@ Ext.define('FleetTouch.controller.Nav', {
 			stateMaint: 'nav #state_maint',
 			vgroups : 'nav #vgroups',
 			dgroups : 'nav #dgroups'
-        },
+		},
 
-        control: {
+		control: {
 			nav : {
 				initialize : 'onInitialize',
 				destroy : 'onDestroy' //TODO 이런 이벤트는 발생하지 않음. 처리 요망.
@@ -57,33 +58,33 @@ Ext.define('FleetTouch.controller.Nav', {
 				tap : 'onDGroup'
 			},
 			
-            'nav_driver' : {
-                itemtap: 'onDriverItemTap',
+			'nav_driver' : {
+				itemtap: 'onDriverItemTap',
 				disclose : 'onDriverDisclose'
-            },
+			},
 
-            'nav_vehicle' : {
-                itemtap: 'onVehicleItemTap',
+			'nav_vehicle' : {
+				itemtap: 'onVehicleItemTap',
 				disclose : 'onVehicleDisclose'
-            }
-        }
-    },
+			}
+		}
+	},
 
 	onInitialize: function() {
-        var self = this;
+		var self = this;
 
-        /* Incident 상태 처리 */
-        var incidentStore = Ext.getStore('RecentIncidentStore');
+		/* Incident 상태 처리 */
+		var incidentStore = Ext.getStore('RecentIncidentStore');
 		incidentStore.filter('confirm', false);
-        incidentStore.load();
+		incidentStore.load();
 
-        /* Vehicle 상태 처리 */
-        var vehicleMapStore = Ext.getStore('VehicleMapStore');
-        vehicleMapStore.load();
+		/* Vehicle 상태 처리 */
+		var vehicleMapStore = Ext.getStore('VehicleMapStore');
+		vehicleMapStore.load();
 
-        /* Driver 상태 처리 */
-        var driverStore = Ext.getStore('DriverBriefStore');
-        driverStore.load();
+		/* Driver 상태 처리 */
+		var driverStore = Ext.getStore('DriverBriefStore');
+		driverStore.load();
 
 		/* refreshTerm 에 따라 자동 리프레쉬 기능을 동작시킴. */
 		function onRefreshTerm(val) {
@@ -91,15 +92,15 @@ Ext.define('FleetTouch.controller.Nav', {
 				clearInterval(self.incidentInterval);
 			if(val > 0)
 				self.incidentInterval = setInterval(function() {
-		            incidentStore.load();
-		        }, val * 1000);
+					incidentStore.load();
+				}, val * 1000);
 
 			if(self.vehicleMapInterval)
-	        	clearInterval(self.vehicleMapInterval);
+				clearInterval(self.vehicleMapInterval);
 			if(val > 0)
-		        self.vehicleMapInterval = setInterval(function() {
-		            vehicleMapStore.load();
-		        }, val * 1000);
+				self.vehicleMapInterval = setInterval(function() {
+					vehicleMapStore.load();
+				}, val * 1000);
 		}
 
 		FleetTouch.setting.on({
@@ -108,28 +109,28 @@ Ext.define('FleetTouch.controller.Nav', {
 
 		onRefreshTerm(FleetTouch.setting.get('refreshTerm'));
 
-        /* 자동 리프레쉬 처리 */
-        this.getIncidents().on({
-            painted: function() {
+		/* 자동 리프레쉬 처리 */
+		this.getIncidents().on({
+			painted: function() {
 				self.refreshIncidents(incidentStore);
-                incidentStore.on('load', self.refreshIncidents, self);
-            },
-            erased: function() {
-                incidentStore.un('load', self.refreshIncidents, self);
-            },
-            scope: self
-        });
+				incidentStore.on('load', self.refreshIncidents, self);
+			},
+			erased: function() {
+				incidentStore.un('load', self.refreshIncidents, self);
+			},
+			scope: self
+		});
 
-        this.getStatus().on({
-            painted: function() {
+		this.getStatus().on({
+			painted: function() {
 				self.refreshStatus(vehicleMapStore);
-                vehicleMapStore.on('load', self.refreshStatus, self);
-            },
-            erased: function() {
-                vehicleMapStore.un('load', self.refreshStatus, self);
-            },
-            scope: self
-        });
+				vehicleMapStore.on('load', self.refreshStatus, self);
+			},
+			erased: function() {
+				vehicleMapStore.un('load', self.refreshStatus, self);
+			},
+			scope: self
+		});
 
 		/* Vehicle, Driver 그룹 처리 */
 		Ext.getStore('VehicleGroupStore').load(function(store) {
@@ -139,56 +140,56 @@ Ext.define('FleetTouch.controller.Nav', {
 		Ext.getStore('DriverGroupStore').load(function(store) {
 			self.refreshDGroups(this);
 		});
-    },
-
-	onDestroy: function() {
-        clearInterval(this.incidentInterval);
-        clearInterval(this.vehicleMapInterval);
 	},
 
-    onDriver: function(button, e) {
+	onDestroy: function() {
+		clearInterval(this.incidentInterval);
+		clearInterval(this.vehicleMapInterval);
+	},
+
+	onDriver: function(button, e) {
 		this.getNav().setNavigationBar(true);
 		this.getNav().push({
 			xtype : 'nav_driver'
 		});
-    },
+	},
 
-    onVehicle: function(button, e) {
+	onVehicle: function(button, e) {
 		this.getNav().setNavigationBar(true);
 		this.getNav().push({
 			xtype : 'nav_vehicle'
 		});
-    },
+	},
 
 	onReport: function(button, e) {
 		this.getNav().setNavigationBar(true);
 		this.getNav().push({
 			xtype : 'nav_report'
 		});
-    },
+	},
 
-    onFav: function(button, e) {
+	onFav: function(button, e) {
 		this.getNav().setNavigationBar(true);
 		this.getNav().push({
 			xtype : 'nav_fav'
 		});
-    },
+	},
 
-    onComm: function(button, e) {
+	onComm: function(button, e) {
 		this.getNav().setNavigationBar(true);
 		this.getNav().push({
 			xtype : 'nav_comm'
 		});
-    },
+	},
 
-    onNoti: function(button, e) {
+	onNoti: function(button, e) {
 		this.getNav().setNavigationBar(true);
 		this.getNav().push({
 			xtype : 'nav_noti'
 		});
-    },
+	},
 
-    onIncident: function(comp, e) {
+	onIncident: function(comp, e) {
 		var view = FleetTouch.nav.monitor('monitor_incident');
 
 		/* 여러 경로의 button동작을 통해서 들어오는 것을 감안함. */
@@ -196,7 +197,7 @@ Ext.define('FleetTouch.controller.Nav', {
 			view.setIncident(comp.config.incident);
 		else
 			view.setIncident();
-    },
+	},
 
 	onStatus : function(button, e) {
 		var store = Ext.getStore('VehicleFilteredStore');
@@ -242,80 +243,80 @@ Ext.define('FleetTouch.controller.Nav', {
 		FleetTouch.nav.monitor('monitor_map');
 	},
 	
-    onDriverItemTap: function(view, index, target, record) {
+	onDriverItemTap: function(view, index, target, record) {
 		FleetTouch.setting.set('driver', record.get('id'));
-    },
+	},
 
-    onDriverDisclose: function(list, record, el, index, e) {
+	onDriverDisclose: function(list, record, el, index, e) {
 		list.select(index);
 
 		FleetTouch.nav.driver();
 		
 		FleetTouch.setting.set('driver', record.get('id'));
-    },
+	},
 
-    onVehicleItemTap: function(view, index, target, record) {
+	onVehicleItemTap: function(view, index, target, record) {
 		FleetTouch.setting.set('vehicle', record.get('id'));
-    },
+	},
 
-    onVehicleDisclose: function(list, record, el, index, e) {
+	onVehicleDisclose: function(list, record, el, index, e) {
 		list.select(index);
 
 		FleetTouch.nav.vehicle();
 
 		FleetTouch.setting.set('vehicle', record.get('id'));
-    },
+	},
 
-    refreshStatus: function(store) {
-        var running = 0;
-        var idle = 0;
-        var incident = 0;
-        var maint = 0;
+	refreshStatus: function(store) {
+		var running = 0;
+		var idle = 0;
+		var incident = 0;
+		var maint = 0;
 
-        store.each(function(record) {
-            switch (record.get('status')) {
-            case 'Running':
-                running++;
-                break;
-            case 'Idle':
-                idle++;
-                break;
-            case 'Incident':
-                incident++;
-                break;
-            case 'Maint':
-                maint++;
-                break;
-            }
-        });
+		store.each(function(record) {
+			switch (record.get('status')) {
+			case 'Running':
+				running++;
+				break;
+			case 'Idle':
+				idle++;
+				break;
+			case 'Incident':
+				incident++;
+				break;
+			case 'Maint':
+				maint++;
+				break;
+			}
+		});
 
-        this.getStateRunning().setHtml(T('label.state_running') + '</br><span>' + running + '</span>');
-        this.getStateIdle().setHtml(T('label.state_idle') + '</br><span>' + idle + '</span>');
-        this.getStateIncident().setHtml(T('label.state_incident') + '</br><span>' + incident + '</span>');
-        this.getStateMaint().setHtml(T('label.state_maint') + '</br><span>' + maint + '</span>');
-    },
+		this.getStateRunning().setHtml(T('label.state_running') + '</br><span>' + running + '</span>');
+		this.getStateIdle().setHtml(T('label.state_idle') + '</br><span>' + idle + '</span>');
+		this.getStateIncident().setHtml(T('label.state_incident') + '</br><span>' + incident + '</span>');
+		this.getStateMaint().setHtml(T('label.state_maint') + '</br><span>' + maint + '</span>');
+	},
 
-    refreshIncidents: function(store) {
-        var incidents = this.getIncidents();
+	refreshIncidents: function(store) {
+		var incidents = this.getIncidents();
 
-        incidents.removeAll();
-        var count = store.getCount();
+		incidents.removeAll();
+		var count = store.getCount();
 
-        for (var i = 0; i < count; i++) {
-            var incident = store.getAt(i);
-            incidents.add({
-                xtype: 'button',
-                incident: incident,
-                html: '<a href="#">'
-                + incident.get('vehicle').name
-                + ', '
-                + incident.get('driver').description
-                + '<span>'
-                + Ext.Date.format(incident.get('created_at'),
-                'D Y-m-d H:i:s') + '</span></a>'
-            });
-        }
-    },
+		for (var i = 0; i < count; i++) {
+			var incident = store.getAt(i);
+			incidents.add({
+				xtype: 'button',
+				incident: incident,
+				html: '<a href="#">'
+				+ incident.get('vehicle').name
+				+ ', '
+				+ incident.get('driver').description
+				+ '<span>'
+				+ Ext.Date.format(incident.get('created_at'),'Y-m-d H:i:s') 
+				+ '</span></a>'
+			});
+		}
+	},
 
 	refreshVGroups : function(store) {
 		var groups = this.getVgroups();
@@ -347,7 +348,7 @@ Ext.define('FleetTouch.controller.Nav', {
 						+ '<span>('
 						+ record.data.drivers.length
 						+ ')</span></a>'
-			});			
+			});
 		});
 	}
 });

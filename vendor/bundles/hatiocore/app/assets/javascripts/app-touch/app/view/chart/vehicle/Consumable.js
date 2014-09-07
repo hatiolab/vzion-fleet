@@ -71,46 +71,45 @@ Ext.define('FleetTouch.view.chart.vehicle.Consumable', {
 	buildChart : function(store) {
 		var self = this;
 		var store = new Ext.create('Ext.data.JsonStore', {
-			
-		    fields: ['name', 'health_rate', 'repl_unit', 'status', 'next_repl_mile', 'last_repl_date', 'cycle_repl_mile', 'cumulative_cost', 'cycle_repl_duration', 'last_repl_mile'],
-		    data: []
+			fields : ['name', 'health_rate', 'repl_unit', 'status', 'next_repl_mile', 'last_repl_date', 'cycle_repl_mile', 'cumulative_cost', 'cycle_repl_duration', 'last_repl_mile'],
+			data : []
 		});
 		
 		return {
 			xtype : 'chart',
 			store : store,
-            themeCls: 'column1',
-            animate: {
-                easing: 'bounceOut',
-                duration: 750
-            },
-            shadow: false,
+			themeCls : 'column1',
+			animate : {
+				easing : 'bounceOut',
+				duration : 750
+			},
+			shadow : false,
 			toolbar : null,
-            gradients: [ {
-				'id': 'overdue',
-				'angle': 0,
-				stops: {
-					0: {
+			gradients : [ {
+				'id' : 'overdue',
+				'angle' : 0,
+				stops : {
+					0 : {
 						color: 'rgb(212, 40, 40)'
 					},
-					70: {
+					70 : {
 						color: 'rgb(212, 216, 42)'
 					},
-					100: {
+					100 : {
 						color: 'rgb(14, 117, 14)'
 					}
 				}
 			}, {
-				'id': 'impending',
-				'angle': 0,
-				stops: {
-					0: {
+				'id' : 'impending',
+				'angle' : 0,
+				stops : {
+					0 : {
 						color: 'rgb(242, 176, 40)'
 					},
-					20: {
+					20 : {
 						color: 'rgb(212, 216, 42)'
 					},
-					100: {
+					100 : {
 						color: 'rgb(14, 117, 14)'
 					}
 				}
@@ -123,69 +122,74 @@ Ext.define('FleetTouch.view.chart.vehicle.Consumable', {
 					}
 				}
 			} ],
-            axes: [
-                {
-                    type: 'Numeric',
-                    position: 'left',
-                    fields: ['health_rate'],
+			axes: [
+				{
+					type: 'Numeric',
+					position: 'left',
+					fields: ['health_rate'],
 					grid : {
 						stroke : '#ccc'
 					},
-                    label: {
-                        renderer: function (v) {
-                            return Math.floor(v * 100);
-                        }
-                    },
-                    title: T('label.health_rate'),
-					majorTickSteps : 10
-                },
-                {
-                    type: 'Category',
-                    position: 'bottom',
-                    fields: ['name'],
-                    title: T('label.consumable_item'),
 					label: {
-				        rotate: {
-				            degrees: 315
-				        }
-				    }
-                }
-            ],
-            series: [
-                {
-                    type: 'column',
-                    axis: 'left',
-                    highlight: true,
-                    renderer: function (sprite, storeItem, barAttr, i, store) {
+						renderer: function (v) {
+							return v;
+						}
+					},
+					title: T('label.health_rate') + ' (%)',
+					majorTickSteps : 10,
+					minimum : 0,
+					maximum : 120
+				},
+				{
+					type: 'Category',
+					position: 'bottom',
+					fields: ['name'],
+					title: T('label.consumable_item'),
+					label: {
+						rotate: {
+							degrees: 315
+						}
+					}
+				}
+			],
+			series: [
+				{
+					type: 'column',
+					axis: 'left',
+					highlight: true,
+					renderer: function (sprite, storeItem, barAttr, i, store) {
 						var health_rate = storeItem.get('health_rate');
-						if(health_rate > 1) {
-	                        barAttr.fill = "url(#overdue)";
-						} else if(health_rate > 0.9) {
-	                        barAttr.fill = "url(#impending)";
+						if(health_rate > 100) {
+							barAttr.fill = "url(#overdue)";
+						} else if(health_rate > 90) {
+							barAttr.fill = "url(#impending)";
 						} else {
-	                        barAttr.fill = "url(#healthy)";
+							barAttr.fill = "url(#healthy)";
 						}
 
-                        return barAttr;
-                    },
-                    label: {
+						return barAttr;
+					},
+					label: {
 						display: 'outside',
 						'text-anchor': 'middle',
-                        field: 'status',
+						field: 'health_rate',
 						orientation: 'horizontal',
-						color: '#333'
-                    },
-                    xField: 'name',
-                    yField: 'health_rate'
-                }
-            ],
+						color: '#333',
+						renderer : function(v) {
+							return v.toString() + ' (%)';
+						}
+					},
+					xField: 'name',
+					yField: 'health_rate'
+				}
+			],
 			interactions: [{
-			    type: 'iteminfo',
-			    gesture: 'tap',
-			    listeners: {
-			        show: function(interaction, item, panel) {
-			            var record = item.storeItem;
-						var title = record.data.name + ' : ' + (record.data.health_rate * 100) + '% (' + record.data.status + ')';
+				type: 'iteminfo',
+				gesture: 'tap',
+				listeners: {
+					show: function(interaction, item, panel) {
+						var record = item.storeItem;
+						var title = record.data.name + ' : ' + (record.data.health_rate) + '% (' + record.data.status + ')';
 						var msg = record.data.name + ' ' + T('button.reset') + ' ' + T('msg.confirm_run');
 						Ext.Msg.show({
 							title : title,
@@ -203,11 +207,11 @@ Ext.define('FleetTouch.view.chart.vehicle.Consumable', {
 												self.resetConsumable(record.data.name);
 											}
 										});
-								}								
+								}
 							}
 						});
-			        }
-			    }
+					}
+				}
 			}]
 		};	
 	},
@@ -218,7 +222,7 @@ Ext.define('FleetTouch.view.chart.vehicle.Consumable', {
 			url : '/vehicle_consumable/reset',
 			method : 'POST',
 			params : {
-				vehicle_id : this.vehicle,
+				'vehicle_id-eq' : this.vehicle,
 				name : consumableItem
 			},
 			success : function(response) {

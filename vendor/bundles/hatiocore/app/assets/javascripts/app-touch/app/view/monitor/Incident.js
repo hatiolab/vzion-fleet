@@ -37,18 +37,18 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 		
 		self.items.items[0].down('[itemId=confirm]').on('change', function(field, b, c, d, value) {
 			Ext.Ajax.request({
-			    url : '/incident/save',
+				url : '/incident/save',
 				method : 'POST',
-			    params : {
+				params : {
 					id : self.incident.get('id'),
-			        confirm : value[0] ? 'on' : 'off'
-			    },
-			    success : function(response) {
+					confirm : value[0] ? 'on' : 'off'
+				},
+				success : function(response) {
 					if(value[0])
 						Ext.Msg.alert('성공', '이상상황 정보가 확인 처리되었습니다. 이상상황 리스트에서 잠시 후 사라지게 됩니다. 리스트에서 유지하고 싶으면, 다시 미확인으로 변경하시기 바랍니다.', Ext.emptyFn);
 					else
 						Ext.Msg.alert('성공', '이상상황 정보가 미확인 처리되었습니다. 이상상황 리스트에 다시 유지되게 됩니다. 리스트에서 제거하고 싶으면, 다시 확인으로 변경하시기 바랍니다.', Ext.emptyFn);
-			    },
+				},
 				failure : function(response) {
 					Ext.Msg.alert('실패', '이상상황 정보가 확인 처리가 실패되였습니다.(' + response.status + ')', Ext.emptyFn);
 					field.setValue(self.incident.get('confirm'));
@@ -130,9 +130,11 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 		incident.set('location', 'Resolving ..');
 		this.getLocation(incident.get('lat'), incident.get('lng'), function(location) {
 			incident.set('location', location);
+			incident.set('incident_date', Ext.Date.format(incident.get('created_at'), 'Y-m-d H:i:s'));
 			self.sub('briefInfo').setData(incident.getData());
 		});
-        this.sub('briefInfo').setData(incident.getData());
+		incident.set('incident_date', Ext.Date.format(incident.get('created_at'), 'Y-m-d H:i:s'));
+		this.sub('briefInfo').setData(incident.getData());
 		this.sub('detailInfo').setData(incident.getData());
 		this.sub('confirm').setValue(incident.get('confirm'));
 		
@@ -366,8 +368,8 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 				},
 				tpl : [
 				'<div class="infoID">{driver_name}({driver_desc}) , {name}({description})</div>',
-                '<div class="infoText">'+ T('label.location') +' : {location}</div>',
-                '<div class="infoText">'+ T('label.time') +' : {incident_date} </div>'
+				'<div class="infoText">'+ T('label.location') +' : {location}</div>',
+				'<div class="infoText">'+ T('label.time') +' : {incident_date} </div>'
 				]
 			}]
 		}, {
@@ -401,7 +403,7 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 			xtype : 'map',
 			itemId : 'map',
 			flex : 1,
-		    useCurrentLocation: false,
+			useCurrentLocation: false,
 			mapOptions : {
 				zoom : 10,
 				maxZoom : 19,
@@ -418,7 +420,7 @@ Ext.define('FleetTouch.view.monitor.Incident', {
 		layout : 'fit',
 		iconCls : 'iconsTab tabMovie',
 		items : [{
-			xtype    : 'video',
+			xtype	: 'video',
 			itemId : 'video',
 			//posterUrl: 'porsche.png'
 		}]

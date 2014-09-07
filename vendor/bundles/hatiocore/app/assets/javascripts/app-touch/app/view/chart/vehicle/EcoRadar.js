@@ -48,7 +48,7 @@ Ext.define('FleetTouch.view.chart.vehicle.EcoRadar', {
 		
 		store.load({
 			params : {
-				vehicle : this.vehicle,
+				'vehicle_id-eq' : this.vehicle,
 				from_year : this.fromYear,
 				to_year : thisYear,
 				from_month : 1,

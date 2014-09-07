@@ -82,67 +82,67 @@ Ext.define('FleetTouch.view.chart.driver.Running', {
 		return {
 			xtype : 'chart',
 			store : store,
-            animate: true,
-            shadow: false,
+			animate: true,
+			shadow: false,
 			toolbar : null,
 			flex : 1,
-            legend: {
-                position: {
-                    portrait: 'bottom',
-                    landscape: 'bottom'
-                },
-                labelFont: '17px Arial'
-            },
-            axes: [
-                {
-                    type: 'Category',
-                    position: 'bottom',
-                    fields: ['run_month'],
-                    title: T('label.month')
-                },
-                {
-                    type: 'Numeric',
-                    position: 'left',
-                    fields: ['run_time'],
-                    title: T('label.run_time'),
-                    minimum: 0
-                },
-                {
-                    type: 'Numeric',
-                    position: 'right',
-                    fields: ['run_dist'],
-                    title: T('label.run_dist'),
-                    minimum: 0
-                }
-            ],
-            series: [
-            {
-                type: 'column',
-                highlight: {
-                    size: 7,
-                    radius: 7
-                },
-                fill: true,
-                smooth: true,
-                axis: 'left',
-                xField: 'run_month',
-                yField: 'run_time',
-                title: T('label.run_time')
-            },
-            {
-                type: 'line',
-                highlight: {
-                    size: 7,
-                    radius: 7
-                },
-                fill: true,
-                smooth: true,
-                axis: 'right',
-                xField: 'run_month',
-                yField: 'run_dist',
-                title: T('label.run_dist'),
-            }
-            ]
+			legend: {
+				position: {
+					portrait: 'bottom',
+					landscape: 'bottom'
+				},
+				labelFont: '17px Arial'
+			},
+			axes: [
+				{
+					type: 'Category',
+					position: 'bottom',
+					fields: ['run_month'],
+					title: T('label.month')
+				},
+				{
+					type: 'Numeric',
+					position: 'left',
+					fields: ['run_time'],
+					title: T('label.run_time'),
+					minimum: 0
+				},
+				{
+					type: 'Numeric',
+					position: 'right',
+					fields: ['run_dist'],
+					title: T('label.run_dist'),
+					minimum: 0
+				}
+			],
+			series: [
+			{
+				type: 'column',
+				highlight: {
+					size: 7,
+					radius: 7
+				},
+				fill: true,
+				smooth: true,
+				axis: 'left',
+				xField: 'run_month',
+				yField: 'run_time',
+				title: T('label.run_time')
+			},
+			{
+				type: 'line',
+				highlight: {
+					size: 7,
+					radius: 7
+				},
+				fill: true,
+				smooth: true,
+				axis: 'right',
+				xField: 'run_month',
+				yField: 'run_dist',
+				title: T('label.run_dist'),
+			}
+			]
 		};
 	},
 	
@@ -150,66 +150,66 @@ Ext.define('FleetTouch.view.chart.driver.Running', {
 		return {
 			xtype : 'chart',
 			store : store,
-            animate: true,
-            shadow: false,
+			animate: true,
+			shadow: false,
 			toolbar : null,
 			flex : 1,
-            legend: {
-                position: {
-                    portrait: 'bottom',
-                    landscape: 'bottom'
-                },
-                labelFont: '17px Arial'
-            },
-            axes: [
-                {
-                    type: 'Category',
-                    position: 'bottom',
-                    fields: ['run_month'],
-                    title: T('label.month')
-                },
-                {
-                    type: 'Numeric',
-                    position: 'left',
-                    fields: ['consmpt'],
-                    title: T('label.fuel_consumption'),
-                    minimum: 0
-                },
-                {
-                    type: 'Numeric',
-                    position: 'right',
-                    fields: ['effcc'],
-                    title: T('label.fuel_efficiency'),
-                    minimum: 0
-                }
-            ],
-            series: [
-            {
-                type: 'column',
-                highlight: {
-                    size: 7,
-                    radius: 7
-                },
-                // fill: true,
-                smooth: true,
-                axis: 'left',
-                xField: 'run_month',
-                yField: ['consmpt'],
-                title: T('label.fuel_consumption')
-            }, {
-                type: 'line',
-                highlight: {
-                    size: 7,
-                    radius: 7
-                },
-                fill: true,
-                smooth: true,
-                axis: 'right',
-                xField: 'run_month',
-                yField: 'effcc',
-                title: T('label.fuel_efficiency')
-            }
-            ]
+			legend: {
+				position: {
+					portrait: 'bottom',
+					landscape: 'bottom'
+				},
+				labelFont: '17px Arial'
+			},
+			axes: [
+				{
+					type: 'Category',
+					position: 'bottom',
+					fields: ['run_month'],
+					title: T('label.month')
+				},
+				{
+					type: 'Numeric',
+					position: 'left',
+					fields: ['consmpt'],
+					title: T('label.fuel_consumption'),
+					minimum: 0
+				},
+				{
+					type: 'Numeric',
+					position: 'right',
+					fields: ['effcc'],
+					title: T('label.fuel_efficiency'),
+					minimum: 0
+				}
+			],
+			series: [
+			{
+				type: 'column',
+				highlight: {
+					size: 7,
+					radius: 7
+				},
+				// fill: true,
+				smooth: true,
+				axis: 'left',
+				xField: 'run_month',
+				yField: ['consmpt'],
+				title: T('label.fuel_consumption')
+			}, {
+				type: 'line',
+				highlight: {
+					size: 7,
+					radius: 7
+				},
+				fill: true,
+				smooth: true,
+				axis: 'right',
+				xField: 'run_month',
+				yField: 'effcc',
+				title: T('label.fuel_efficiency')
+			}
+			]
 		};
-	}	
+	}
 });

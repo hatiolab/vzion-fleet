@@ -64,8 +64,7 @@ Ext.define('FleetTouch.store.DriverRunStore', {
 			type : 'integer'
 		}, {
 			name : 'updated_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		} ],
 
 		sorters : [ {

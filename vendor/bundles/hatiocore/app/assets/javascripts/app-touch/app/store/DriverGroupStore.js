@@ -29,12 +29,10 @@ Ext.define('FleetTouch.store.DriverGroupStore', {
 			type : 'string'
 		}, {
 			name : 'created_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		}, {
 			name : 'updated_at',
-			type : 'date',
-			dateFormat:'time'
+			type : 'date'
 		} ],
 
 		proxy : {

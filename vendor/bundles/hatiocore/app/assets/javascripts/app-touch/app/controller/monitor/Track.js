@@ -1,29 +1,29 @@
 Ext.define('FleetTouch.controller.monitor.Track', {
-    extend: 'Ext.app.Controller',
+	extend: 'Ext.app.Controller',
 
 	requires : ['FleetTouch.view.monitor.Track'],
 	
-    config: {
-        refs: {
-            track : 'track',
+	config: {
+		refs: {
+			track : 'track',
 			map : 'track map',
 			buttonDays : 'track button',
 			buttonToday : 'track button[itemId=today]',
 			buttonYesterday : 'track button[itemId=yesterday]',
 			buttonAgo2days : 'track button[itemId=ago2days]',
 			buttonAgo3days : 'track button[itemId=ago3days]'
-        },
+		},
 
-        control: {
+		control: {
 			track : {
 				initialize : 'onInit',
 				refresh : 'delayRefresh'
-            },
+			},
 			buttonDays : {
 				tap : 'onButtonDays'
 			}
-        }
-    },
+		}
+	},
 
 	onInit : function() {
 		var self = this;

@@ -1,38 +1,38 @@
 Ext.define('FleetTouch.controller.Main', {
-    extend: 'Ext.app.Controller',
+	extend: 'Ext.app.Controller',
 
 	requires : ['FleetTouch.view.Setting', 'FleetTouch.view.driver.Driver', 'FleetTouch.view.vehicle.Vehicle'],
 	
-    config: {
+	config: {
 		routes : {
 			map : 'onMap',
 			info : 'onInfo',
 			incident : 'onIncident'
 		},
 		
-        refs: {
-            main: 'main',
-            nav: 'nav',
-            content: 'content',
+		refs: {
+			main: 'main',
+			nav: 'nav',
+			content: 'content',
 			header : 'header'
-        },
+		},
 
-        control: {
+		control: {
 			'#ext-viewport':{
 				orientationchange: 'onOC'
 			},
 			'#content' : {
 				painted : 'onHome'
 			},
-            'header #map' : {
-                tap: 'onMap'
-            },
-            'header #info' : {
-                tap: 'onInfo'
-            },
-            'header #incident' : {
-                tap: 'onIncident'
-            },
+			'header #map' : {
+				tap: 'onMap'
+			},
+			'header #info' : {
+				tap: 'onInfo'
+			},
+			'header #incident' : {
+				tap: 'onIncident'
+			},
 			'header #collapse' : {
 				tap : 'onCollapse'
 			},
@@ -61,15 +61,15 @@ Ext.define('FleetTouch.controller.Main', {
 			'vehicle_summary' : {
 				showMap : 'onShowMap',
 				showTrack : 'onShowTrack'
-            },
+			},
 
 			'driver_summary' : {
 				showMap : 'onShowMap',
 				showTrack : 'onShowTrack'
 			}
 
-        }
-    },
+		}
+	},
 
 	onOC : function(me, newOrient,w,h) {
 		if(newOrient === 'portrait') {
@@ -83,14 +83,14 @@ Ext.define('FleetTouch.controller.Main', {
 		FleetTouch.nav.monitor('monitor_map');
 	},
 	
-    onMap: function(button, e) {
+	onMap: function(button, e) {
 		FleetTouch.nav.monitor('monitor_map');
-    },
+	},
 
 	onInfo: function(button, e) {
 		FleetTouch.nav.monitor('monitor_info');
-    },
-    
+	},
+	
 	onIncident: function(comp, e) {
 		var view = FleetTouch.nav.monitor('monitor_incident');
 
@@ -99,9 +99,9 @@ Ext.define('FleetTouch.controller.Main', {
 			view.setIncident(comp.config.incident);
 		else
 			view.setIncident();
-    },
+	},
 
-    onCollapse : function(button, e) {
+	onCollapse : function(button, e) {
 		if(this.getNav().getDocked()) {
 			this.getNav().setDocked(null).hide();
 		} else {
@@ -119,25 +119,25 @@ Ext.define('FleetTouch.controller.Main', {
 			active.refresh();
 	},
   	
-    onMapTrackTap: function(vehicle) {
+	onMapTrackTap: function(vehicle) {
 		FleetTouch.nav.monitor('monitor_info');
 
 		FleetTouch.setting.set('monitoring_vehicle', vehicle.get('id'));
 		FleetTouch.setting.set('vehicle', vehicle.get('id'));
 		FleetTouch.setting.set('driver', vehicle.get('driver_id'));
-    },
+	},
 
-    onMapDriverTap: function(driver) {
+	onMapDriverTap: function(driver) {
 		FleetTouch.setting.set('driver', driver.get('id'));
 
 		FleetTouch.nav.driver();
-    },
+	},
 
-    onMapVehicleTap: function(vehicle) {
+	onMapVehicleTap: function(vehicle) {
 		FleetTouch.setting.set('vehicle', vehicle.get('id'));
 
 		FleetTouch.nav.vehicle();
-    },
+	},
 
 	onImage : function(comp) {
 		if(comp.config.itemId === 'driverImage')
@@ -146,16 +146,16 @@ Ext.define('FleetTouch.controller.Main', {
 			FleetTouch.nav.vehicle();
 	},
 
-    onShowMap: function(vehicle) {
+	onShowMap: function(vehicle) {
 		FleetTouch.nav.monitor('monitor_map');
 
 		FleetTouch.setting.set('vehicle', vehicle);
-    },
+	},
 
-    onShowTrack: function(vehicle) {
+	onShowTrack: function(vehicle) {
 		FleetTouch.nav.monitor('monitor_info');
 
 		FleetTouch.setting.set('vehicle', vehicle);
-    }
+	}
 
 });

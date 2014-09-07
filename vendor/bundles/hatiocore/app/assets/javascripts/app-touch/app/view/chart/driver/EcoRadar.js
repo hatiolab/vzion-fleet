@@ -4,9 +4,9 @@ Ext.define('FleetTouch.view.chart.driver.EcoRadar', {
 	xtype : 'chart_d_eco_radar',
 	
 	requires: [
-	'Ext.chart.Chart',
-    'Ext.chart.axis.Numeric',
-    'Ext.chart.axis.Category'
+		'Ext.chart.Chart',
+		'Ext.chart.axis.Numeric',
+		'Ext.chart.axis.Category'
 	],
 		
 	config : {
@@ -48,7 +48,7 @@ Ext.define('FleetTouch.view.chart.driver.EcoRadar', {
 		
 		store.load({
 			params : {
-				driver : this.driver,
+				'driver_id-eq' : this.driver,
 				from_year : this.fromYear,
 				to_year : thisYear,
 				from_month : 1,
@@ -60,7 +60,7 @@ Ext.define('FleetTouch.view.chart.driver.EcoRadar', {
 					overSpdTime : { name : T('label.ovr_spd_time') },
 					sudAccelCnt : { name : T('label.sud_accel_cnt') },
 					sudBrakeCnt : { name : T('label.sud_brake_cnt') },
-					idleTime : { name : T('label.idle_time') },					
+					idleTime : { name : T('label.idle_time') },
 					ecoDrvTime : { name : T('label.eco_drv_time') },
 					efficiency : { name : T('label.fuel_efficiency') },
 					ecoIndex : { name : T('label.eco_index') },
@@ -152,41 +152,41 @@ Ext.define('FleetTouch.view.chart.driver.EcoRadar', {
 		
 		var series = Ext.Array.map(fields, function(year) {
 			return {
-	            showInLegend: false,
-	            showMarkers: true,
-	            type: 'radar',
-	            xField: 'name',
-	            yField: year,
-	            style: {
-	                opacity: 0.4
-	            },
-	            markerConfig: {
-	                radius: 3,
-	                size: 5
-	            }
+				showInLegend: false,
+				showMarkers: true,
+				type: 'radar',
+				xField: 'name',
+				yField: year,
+				style: {
+					opacity: 0.4
+				},
+				markerConfig: {
+					radius: 3,
+					size: 5
+				}
 			};
 		});
 				
 		return {
 			xtype : 'chart',
 			themeCls: 'radar1',
-            theme: 'Demo',
-            insetPadding: 30,
-            shadow: true,
-            animate: true,
-            store: store,
-            interactions: ['rotate', 'reset'],
+			theme: 'Demo',
+			insetPadding: 30,
+			shadow: true,
+			animate: true,
+			store: store,
+			interactions: ['rotate', 'reset'],
 			legend: {
-                position: 'bottom'
-            },
-            axes: [{
-                type: 'Radial',
-                position: 'radial',
-                label: {
-                    display: true
-                }
-            }],
-            series: series	
+				position: 'bottom'
+			},
+			axes: [{
+				type: 'Radial',
+				position: 'radial',
+				label: {
+					display: true
+				}
+			}],
+			series: series	
 		}
 	}
 });
