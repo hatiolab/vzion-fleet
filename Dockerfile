@@ -53,7 +53,7 @@ WORKDIR /vzion-fleet
 RUN /bin/bash -l -c "bundle install"
 
 # Build Asset Pipeline for production
-RUN /bin/bash -l -c "rake assets:precompile RAILS_ENV=production"
+# RUN /bin/bash -l -c "rake assets:precompile RAILS_ENV=production"
 
 # Publish port 80
 EXPOSE 80
