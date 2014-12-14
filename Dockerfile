@@ -37,7 +37,9 @@ RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
 # Add configuration files in repository to filesystem
 ADD config/container/nginx-sites.conf /etc/nginx/sites-enabled/default
 ADD config/container/start-server.sh /usr/bin/start-server
+ADD config/container/start-server-dev.sh /usr/bin/start-server-dev
 RUN chmod +x /usr/bin/start-server
+RUN chmod +x /usr/bin/start-server-dev
 
 # Install postgresql library, git
 RUN apt-get install -qy libpq-dev
@@ -52,11 +54,13 @@ WORKDIR /vzion-fleet
 # bundle install
 RUN /bin/bash -l -c "bundle install"
 
-# Build Asset Pipeline for production
+# Build Asset Pipeline for production [only for PROD]
 # RUN /bin/bash -l -c "rake assets:precompile RAILS_ENV=production"
 
-# Publish port 80
-EXPOSE 80
+# Publish port [PROD : 80, DEV : 3000]
+# EXPOSE 80
+EXPOSE 3000
 
-# Startup commands
-ENTRYPOINT /usr/bin/start-server
+# Startup commands [PROD : start-server, DEV : start-server-dev]
+# ENTRYPOINT /usr/bin/start-server
+ENTRYPOINT /usr/bin/start-server-dev
