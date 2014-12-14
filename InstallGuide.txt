@@ -2,6 +2,6 @@
 2. Build Docker Image for vzionsys
 $ docker build -t vzion-fleet github.com/hatiolab/vzion-fleet.git
 3. Run Docker Container
-$ docker run -d -p 81:80 --name vzion-fleet vzion-fleet
+$ docker run -d -p 80:80 --name vzion-fleet vzion-fleet
 4. Check Rails production.log files
 $ docker run --rm --volumes-from vzion-fleet -t -i ubuntu /bin/bash
