@@ -22,12 +22,12 @@ Ext.define('FleetTouch.view.report.VehicleHealth', {
 		
 		this.callParent(arguments);
 		
-		var url = window.location.pathname.indexOf(contextPath) === 0 ? '/report/service' : 'assets/app-touch/data/dashboard/health/vehicle.json';
+		var url = window.location.pathname.indexOf(contextPath) === 0 ? 'diy_services/FleetVehicleHealth/shoot.json' : 'assets/app-touch/data/dashboard/health/vehicle.json';
 		
 		Ext.Ajax.request({
 			url : url,
-			method : 'GET',
-			params : {  id : 'vehicle_health', health_type : 'health' },
+			method : 'POST',
+			params : { health_type : 'health' },
 			success: function(response) {
 				var resultObj = Ext.JSON.decode(response.responseText);
 

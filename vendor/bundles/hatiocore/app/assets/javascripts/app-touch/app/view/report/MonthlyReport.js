@@ -27,22 +27,20 @@ Ext.define('FleetTouch.view.report.MonthlyReport', {
 		var self = this;
 		var data = {};
 		Ext.Ajax.request({
-			url: window.location.pathname.indexOf(contextPath) === 0 ? '/report/service' : 'assets/app-touch/data/monthly_report.json',
-			method : 'GET',
-			params : { 
-				id : 'monthly_driving_log'
-			},
-			success: function(response) {		    	
-			    var resultObj = Ext.JSON.decode(response.responseText);
+			url: window.location.pathname.indexOf(contextPath) === 0 ? 'diy_services/FleetMonthlyDrivingLog/shoot.json' : 'assets/app-touch/data/monthly_report.json',
+			method : 'POST',
+			// params : { id : 'monthly_driving_log' },
+			success: function(response) {
+				var resultObj = Ext.JSON.decode(response.responseText);
 
-			    if(resultObj.success) {
-					var records = resultObj.items;					
+				if(resultObj.success) {
+					var records = resultObj.items;
 					data.driving = records[0].driving;
 					data.maint = records[0].maint;
 					data.consummable = records[0].consumable;
 					self.down('[itemId=report]').setData(data);
 				} else {
-				   	Ext.MessageBox.alert(T('label.failure'), resultObj.msg);
+					Ext.MessageBox.alert(T('label.failure'), resultObj.msg);
 				}
 			},
 			failure: function(response) {
@@ -53,10 +51,10 @@ Ext.define('FleetTouch.view.report.MonthlyReport', {
 	
 	buildReport : function() {
 		return {
-			xtype : 'panel',			
-			itemId : 'report',						
+			xtype : 'panel',
+			itemId : 'report',
 			data : {},			
-			cls : 'bgHGradient',			
+			cls : 'bgHGradient',
 			scrollable : 'vertical',
 			tpl : [			
 			'<div class="reportWrap type2">',
@@ -66,16 +64,16 @@ Ext.define('FleetTouch.view.report.MonthlyReport', {
 						'<table frame="hsides" rules="rows">',
 						'<tr>',
 			   			 '<th>'+ T('label.vehicle') +'</th>',
-			   			 '<th>'+ T('label.run_dist') +'</th>',					
-						 '<th>'+ T('label.run_time') +'</th>',			
+			   			 '<th>'+ T('label.run_dist') +'</th>',
+						 '<th>'+ T('label.run_time') +'</th>',
 			   			 '<th>'+ T('label.fuel_consumption') +'</th>',
 			   			 '<th>'+ T('label.fuel_efficiency') +'</th>',
 						'</tr>',
 						'<tpl for="driving">',
 						'<tr>',
-							'<td class="alignCenter">{vehicle}</td>',						
+							'<td class="alignCenter">{vehicle}</td>',
 							'<td class="alignCenter">{run_dist}</td>',
-							'<td class="alignCenter">{run_time}</td>',							
+							'<td class="alignCenter">{run_time}</td>',
 							'<td class="alignCenter">{consmpt}</td>',
 							'<td class="alignCenter">{effcc}</td>',
 						'</tr>',

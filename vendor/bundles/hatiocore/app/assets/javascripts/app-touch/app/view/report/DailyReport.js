@@ -8,8 +8,8 @@ Ext.define('FleetTouch.view.report.DailyReport', {
 	},
 	
 	constructor : function(config) {
-		config.items = [ this.buildReport() ];		
-		this.callParent(arguments);		
+		config.items = [ this.buildReport() ];
+		this.callParent(arguments);
 		this.refresh();
 	},
 	
@@ -17,16 +17,14 @@ Ext.define('FleetTouch.view.report.DailyReport', {
 		var self = this;
 		var data = {};		
 		Ext.Ajax.request({
-			url: window.location.pathname.indexOf(contextPath) === 0 ? '/report/service' : 'assets/app-touch/data/daily_report.json',
-			method : 'GET',
-			params : { 
-				id : 'daily_driving_log'
-			},
-			success: function(response) {		    	
-			    var resultObj = Ext.JSON.decode(response.responseText);
+			url: window.location.pathname.indexOf(contextPath) === 0 ? 'diy_services/FleetDailyDrivingLog/shoot.json' : 'assets/app-touch/data/daily_report.json',
+			method : 'POST',
+			// params : { id : 'daily_driving_log'},
+			success: function(response) {
+				var resultObj = Ext.JSON.decode(response.responseText);
 
-			    if(resultObj.success) {
-					var records = resultObj.items;					
+				if(resultObj.success) {
+					var records = resultObj.items;
 					data.driving = records[0].driving;
 					data.maint = records[0].maint;
 					data.consummable = records[0].consumable;
@@ -48,19 +46,19 @@ Ext.define('FleetTouch.view.report.DailyReport', {
 			data : {},
 			cls : 'bgHGradient',
 			scrollable : 'vertical',
-			tpl : [			
+			tpl : [
 			'<div class="reportWrap">',
 			'<div class="reportMain">',
 				'<div class="reportTitle">' + T('report.daily_driving_report') + ' <span>{date}</span></div>',
 				'<table frame="void" rules="all">',
 				'<tr>',
-			   	 '<th>' + T('label.driver_id') + '</th>',
-			   	 '<th>' + T('label.vehicle_id') + '</th>',
-			   	 
-			   	 '<th rowspan="2">' + T('label.run_dist') + '</th>',
-			   	 '<th rowspan="2">' + T('label.run_time') + '</th>',
-			   	 '<th rowspan="2">' + T('label.fuel_consumption') + '</th>',
-			   	 '<th rowspan="2">' + T('label.fuel_efficiency') + '</th>',
+				'<th>' + T('label.driver_id') + '</th>',
+				'<th>' + T('label.vehicle_id') + '</th>',
+				
+				'<th rowspan="2">' + T('label.run_dist') + '</th>',
+				'<th rowspan="2">' + T('label.run_time') + '</th>',
+				'<th rowspan="2">' + T('label.fuel_consumption') + '</th>',
+				'<th rowspan="2">' + T('label.fuel_efficiency') + '</th>',
 				'</tr>',
 				'<tr>',
 					'<th>' + T('label.name') + '</th>',
@@ -81,7 +79,7 @@ Ext.define('FleetTouch.view.report.DailyReport', {
 				'</tr>',
 				'</tpl>',
 				'</table>',
-			'</div>',			
+			'</div>',
 			'<div class="reportSub">',
 				'<div class="reportTitle">' + T('title.maintenance') + T('report.report') + '</div>',
 				'<table frame="hsides" rules="rows">',
@@ -113,9 +111,9 @@ Ext.define('FleetTouch.view.report.DailyReport', {
 				'</tr>',
 				'</tpl>',
 				'</table>',
-			'</div>',	
-			'</div>',	
-			]			
+			'</div>',
+			'</div>',
+			]
 		};
 	}
 });
